@@ -8,6 +8,8 @@
       <li
         v-for="color in colors"
         :key="color"
+        :title="color"
+        style="justify-self: center"
         @click="$emit('click', { stop, color })"
       >
         <div

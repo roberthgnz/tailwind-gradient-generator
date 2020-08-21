@@ -1,5 +1,7 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap bg-white p-6">
+  <nav
+    class="flex items-center justify-center md:justify-between flex-wrap bg-white p-6"
+  >
     <div class="flex items-center flex-shrink-0 text-black mr-6">
       <svg
         class="fill-black h-8 w-8 mr-2"

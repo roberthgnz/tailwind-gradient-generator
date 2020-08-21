@@ -6,8 +6,8 @@
 
     <div class="text-center mt-5">
       <pre>
-      <code>
-      {{gradient}}
+      <code class="whitespace-pre-line">
+        {{gradient}}
       </code>
       </pre>
       <div>
@@ -26,7 +26,9 @@
       @click="handleDirection"
     ></direction-vue>
 
-    <div class="w-1/2 p-2 flex justify-center m-auto my-5">
+    <div
+      class="w-4/5 sm:w-3/4 md:w-1/2 p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center m-auto my-5"
+    >
       <gradient-selector-vue
         :title="'Starting color'"
         :colors="colors"
