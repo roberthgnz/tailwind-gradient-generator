@@ -7,7 +7,7 @@
     <div class="text-center mt-5">
       <pre>
       <code class="whitespace-pre-line">
-        {{gradient}}
+        {{stop}}
       </code>
       </pre>
       <div>
@@ -33,18 +33,21 @@
         :title="'Starting color'"
         :colors="colors"
         :stop="'from'"
+        :target="target"
         @click="handleColorStop"
       ></gradient-selector-vue>
       <gradient-selector-vue
         :title="'Middle color'"
         :colors="colors"
         :stop="'via'"
+        :target="target"
         @click="handleColorStop"
       ></gradient-selector-vue>
       <gradient-selector-vue
         :title="'Ending color'"
         :colors="colors"
         :stop="'to'"
+        :target="target"
         @click="handleColorStop"
       ></gradient-selector-vue>
     </div>
@@ -82,16 +85,20 @@ export default {
         "purple",
         "pink",
       ],
-      from: "red",
-      to: "green",
-      via: "blue",
+      stop: {
+        from: "red",
+        to: "green",
+        via: "blue",
+      },
       direction: "r",
+      target: '',
       copied: false,
     };
   },
   methods: {
     handleColorStop({ stop, color }) {
-      this[stop] = color;
+      this.target = stop;
+      this.$set(this.stop, stop, color);
     },
     handleShade(color, number) {
       console.log(color, number);
@@ -125,10 +132,13 @@ export default {
   computed: {
     gradient() {
       let result = [`bg-gradient-to-${this.direction}`];
-      if (this.from && this.from !== "none")
-        result.push(`from-${this.from}-400`);
-      if (this.via && this.via !== "none") result.push(`via-${this.via}-400`);
-      if (this.to && this.to !== "none") result.push(`to-${this.to}-400`);
+      let shade = 400;
+      // // !["transparent", "current", "black", "white"].includes(color)
+      // if (this.from && this.from !== "none")
+      //   result.push(`from-${this.from}-${shade}`);
+      // if (this.via && this.via !== "none")
+      //   result.push(`via-${this.via}-${shade}`);
+      // if (this.to && this.to !== "none") result.push(`to-${this.to}-${shade}`);
       return result.join(" ");
     },
   },
