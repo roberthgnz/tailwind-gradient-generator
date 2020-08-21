@@ -38,7 +38,7 @@
         </li>
       </ul>
     </nav>
-    <div class="h-48 bg-gradient-to-r" :class="gradient"></div>
+    <div class="h-48" :class="gradient"></div>
 
     <div class="text-center mt-5">
       <pre>
@@ -50,24 +50,198 @@
         <button
           class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           @click="copyToClipboard"
+          :disabled="copied"
         >
-          Copy to Clipboard
+          {{ !copied ? "Copy to Clipboard" : "Copied" }}
         </button>
-
-        <div v-if="copied" class="text-center py-4 lg:px-4">
-          <div
-            class="p-2 bg-blue-500 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
-            role="alert"
+      </div>
+    </div>
+    <div class="w-1/2 p-2 flex justify-center m-auto my-5">
+      <div
+        class="grid grid-flow-row p-4 text-gray-500 bg-white rounded-lg shadow-lg fill-current"
+        style="grid-template-columns: repeat(3, minmax(0, min-content));"
+      >
+        <button
+          @click="handleDirection('tl')"
+          :class="[direction === 'tl' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-up-left"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <span
-              class="flex rounded-full bg-blue-400 uppercase px-2 py-1 text-xs font-bold mr-3"
-              >Copied</span
-            >
-            <span class="font-semibold mr-2 text-left flex-auto">{{
-              gradient
-            }}</span>
-          </div>
-        </div>
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="7" y1="7" x2="17" y2="17" />
+            <polyline points="16 7 7 7 7 16" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('t')"
+          :class="[direction === 't' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-narrow-up"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="16" y1="9" x2="12" y2="5" />
+            <line x1="8" y1="9" x2="12" y2="5" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('tr')"
+          :class="[direction === 'tr' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-up-right"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="17" y1="7" x2="7" y2="17" />
+            <polyline points="8 7 17 7 17 16" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('l')"
+          :class="[direction === 'l' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-left"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="5" y1="12" x2="11" y2="18" />
+            <line x1="5" y1="12" x2="11" y2="6" />
+          </svg>
+        </button>
+        <div></div>
+        <button
+          @click="handleDirection('r')"
+          :class="[direction === 'r' ? 'text-gray-800 bg-gray-300' : null]"
+          class="border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-right"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="13" y1="18" x2="19" y2="12" />
+            <line x1="13" y1="6" x2="19" y2="12" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('bl')"
+          :class="[direction === 'bl' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-down-left"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="17" y1="7" x2="7" y2="17" />
+            <polyline points="16 17 7 17 7 8" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('b')"
+          :class="[direction === 'b' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-down"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="18" y1="13" x2="12" y2="19" />
+            <line x1="6" y1="13" x2="12" y2="19" />
+          </svg>
+        </button>
+        <button
+          @click="handleDirection('br')"
+          :class="[direction === 'br' ? 'text-gray-800 bg-gray-300' : null]"
+          class="w-6 border border-transparent rounded focus:outline-none hover:border-gray-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-down-right"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="7" y1="7" x2="17" y2="17" />
+            <polyline points="17 8 17 17 8 17" />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -160,6 +334,7 @@ export default {
       from: "red",
       to: "green",
       via: "blue",
+      direction: "r",
       copied: false,
     };
   },
@@ -169,6 +344,9 @@ export default {
     },
     handleShade(color, number) {
       console.log(color, number);
+    },
+    handleDirection(direction) {
+      this.direction = direction;
     },
     getBg(color, shade) {
       return !["transparent", "current", "black", "white"].includes(color)
@@ -200,12 +378,12 @@ export default {
       document.execCommand("copy");
       element.remove();
       this.copied = true;
-      setTimeout(() => (this.copied = false), 2000);
+      setTimeout(() => (this.copied = false), 1500);
     },
   },
   computed: {
     gradient() {
-      let result = [];
+      let result = [`bg-gradient-to-${this.direction}`];
       if (this.from && this.from !== "none")
         result.push(`from-${this.from}-400`);
       if (this.via && this.via !== "none") result.push(`via-${this.via}-400`);
