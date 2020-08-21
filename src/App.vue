@@ -47,13 +47,20 @@
       </code>
       </pre>
       <div>
+        <button
+          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          @click="copyToClipboard"
+        >
+          Copy to Clipboard
+        </button>
+
         <div v-if="copied" class="text-center py-4 lg:px-4">
           <div
-            class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+            class="p-2 bg-blue-500 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
             role="alert"
           >
             <span
-              class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"
+              class="flex rounded-full bg-blue-400 uppercase px-2 py-1 text-xs font-bold mr-3"
               >Copied</span
             >
             <span class="font-semibold mr-2 text-left flex-auto">{{
@@ -61,12 +68,6 @@
             }}</span>
           </div>
         </div>
-        <button
-          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          @click="copyToClipboard"
-        >
-          Copy to Clipboard
-        </button>
       </div>
     </div>
 
