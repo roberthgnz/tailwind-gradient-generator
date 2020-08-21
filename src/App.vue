@@ -21,18 +21,22 @@
     <div class="h-48 bg-gradient-to-r" :class="gradient"></div>
 
     <div class="text-center mt-5">
-      <span class="px-3 py-2 leading-none text-white bg-gray-800 rounded-md"
-        >Classes</span
-      >
       <pre>
       <code>
       {{gradient}}
       </code>
       </pre>
+      <div>
+        <button
+          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+        >
+          Copy to Clipboard
+        </button>
+      </div>
     </div>
 
     <div class="w-1/2 p-2 flex justify-center m-auto my-5">
-      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+      <div class="shadow-md border border-white p-2 m-2 uppercase text-center">
         <h2 class="text-gray-500 font-normal mb-2">
           Starting color
         </h2>
@@ -52,7 +56,7 @@
           </li>
         </ul>
       </div>
-      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+      <div class="shadow-md border border-white p-2 m-2 uppercase text-center">
         <h2 class="text-gray-500 font-normal mb-2">
           Middle color
         </h2>
@@ -72,7 +76,7 @@
           </li>
         </ul>
       </div>
-      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+      <div class="shadow-md border border-white p-2 m-2 uppercase text-center">
         <h2 class="text-gray-500 font-normal mb-2">
           Ending color
         </h2>
