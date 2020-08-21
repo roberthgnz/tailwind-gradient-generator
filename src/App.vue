@@ -25,10 +25,11 @@
       </code>
     </pre>
     <div class="w-1/2 p-2 flex justify-center m-auto my-5">
-      <div class="border border-gray-300 p-2 m-2">
-        <h2 class="text-gray-500 font-normal uppercase text-center mb-2">
+      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+        <h2 class="text-gray-500 font-normal mb-2">
           Starting color
         </h2>
+        <p v-if="from" class="mb-2 font-bold">{{ from }}</p>
         <ul class="grid grid-cols-5 gap-2">
           <li
             v-for="color in colors"
@@ -42,15 +43,16 @@
           </li>
         </ul>
       </div>
-      <div class="border border-gray-300 p-2 m-2">
-        <h2 class="text-gray-500 font-normal uppercase text-center mb-2">
-          Ending color
+      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+        <h2 class="text-gray-500 font-normal mb-2">
+          Middle color
         </h2>
+        <p v-if="via" class="mb-2 font-bold">{{ via }}</p>
         <ul class="grid grid-cols-5 gap-2">
           <li
             v-for="color in colors"
             :key="color"
-            @click="handleColorStop('to', color)"
+            @click="handleColorStop('via', color)"
           >
             <div
               class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
@@ -59,15 +61,16 @@
           </li>
         </ul>
       </div>
-      <div class="border border-gray-300 p-2 m-2">
-        <h2 class="text-gray-500 font-normal uppercase text-center mb-2">
-          Middle color
+      <div class="border border-gray-300 p-2 m-2 uppercase text-center">
+        <h2 class="text-gray-500 font-normal mb-2">
+          Ending color
         </h2>
+        <p v-if="to" class="mb-2 font-bold">{{ to }}</p>
         <ul class="grid grid-cols-5 gap-2">
           <li
             v-for="color in colors"
             :key="color"
-            @click="handleColorStop('via', color)"
+            @click="handleColorStop('to', color)"
           >
             <div
               class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
@@ -101,9 +104,9 @@ export default {
         "purple",
         "pink",
       ],
-      from: null,
-      to: null,
-      via: null,
+      from: "red",
+      to: "green",
+      via: "blue",
     };
   },
   methods: {
