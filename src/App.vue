@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex items-center justify-center flex-wrap bg-white p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-white p-6">
       <div class="flex items-center flex-shrink-0 text-black mr-6">
         <svg
           class="fill-black h-8 w-8 mr-2"
@@ -17,6 +17,26 @@
           >Tailwind Gradient Generator</span
         >
       </div>
+      <ul class="flex">
+        <li>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=buzz-js&repo=tailwind-gradient-generator&type=star&count=true"
+            frameborder="0"
+            scrolling="0"
+            width="150"
+            height="20"
+            title="GitHub"
+          ></iframe>
+        </li>
+        <li>
+          <a
+            class="twitter-share-button"
+            href="https://twitter.com/intent/tweet"
+          >
+            Tweet</a
+          >
+        </li>
+      </ul>
     </nav>
     <div class="h-48 bg-gradient-to-r" :class="gradient"></div>
 
@@ -27,8 +47,23 @@
       </code>
       </pre>
       <div>
+        <div v-if="copied" class="text-center py-4 lg:px-4">
+          <div
+            class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+            role="alert"
+          >
+            <span
+              class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"
+              >Copied</span
+            >
+            <span class="font-semibold mr-2 text-left flex-auto">{{
+              gradient
+            }}</span>
+          </div>
+        </div>
         <button
           class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          @click="copyToClipboard"
         >
           Copy to Clipboard
         </button>
@@ -124,6 +159,7 @@ export default {
       from: "red",
       to: "green",
       via: "blue",
+      copied: false,
     };
   },
   methods: {
@@ -142,6 +178,28 @@ export default {
       let colors = ["none", "transparent", "current", "black", "white"];
       let index = colors.findIndex((i) => i === color);
       return index !== -1 ? colors[index][0] : null;
+    },
+    copyToClipboard() {
+      function selectElementText(element) {
+        if (document.selection) {
+          let range = document.body.createTextRange();
+          range.moveToElementText(element);
+          range.select();
+        } else if (window.getSelection) {
+          let range = document.createRange();
+          range.selectNode(element);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+        }
+      }
+      let element = document.createElement("div");
+      element.textContent = this.gradient;
+      document.body.appendChild(element);
+      selectElementText(element);
+      document.execCommand("copy");
+      element.remove();
+      this.copied = true;
+      setTimeout(() => (this.copied = false), 2000);
     },
   },
   computed: {
