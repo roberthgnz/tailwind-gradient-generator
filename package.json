@@ -1,0 +1,30 @@
+{
+  "name": "tailwind-gradient-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.0",
+    "sass": "^1.26.10"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --out-dir docs/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buzz-js/tailwind-gradient-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buzz-js/tailwind-gradient-generator/issues"
+  },
+  "homepage": "https://github.com/buzz-js/tailwind-gradient-generator#readme"
+}
