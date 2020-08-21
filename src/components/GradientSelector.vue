@@ -28,7 +28,12 @@
         SHADE
       </h2>
       <ul class="grid grid-cols-5 gap-2">
-        <li v-for="n in 9" :key="n" style="justify-self: center">
+        <li
+          v-for="n in 9"
+          :key="n"
+          @click="handleShade({ shade: n })"
+          style="justify-self: center"
+        >
           <div
             class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
             :class="`bg-${color}-${n}00`"
@@ -68,7 +73,10 @@ export default {
   methods: {
     handleColor({ stop, color }) {
       this.color = color;
-      this.$emit("click", { stop, color });
+      this.$emit("color-selected", { stop, color });
+    },
+    handleShade({ shade }) {
+      this.$emit("shade-selected", { shade });
     },
     getBg(color, shade) {
       return !["transparent", "current", "black", "white"].includes(color)

@@ -2,24 +2,25 @@
   <div>
     <navbar-vue></navbar-vue>
 
-    <div class="h-48" :class="gradient"></div>
-
-    <div class="text-center mt-5">
-      <pre>
+    <template v-if="gradient">
+      <div class="h-48" :class="classes"></div>
+      <div class="text-center mt-5">
+        <pre>
       <code class="whitespace-pre-line">
-        {{stop}}
+        {{classes}}
       </code>
       </pre>
-      <div>
-        <button
-          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          @click="copyToClipboard"
-          :disabled="copied"
-        >
-          {{ !copied ? "Copy to Clipboard" : "Copied" }}
-        </button>
+        <div>
+          <button
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            @click="copyToClipboard"
+            :disabled="copied"
+          >
+            {{ !copied ? "Copy to Clipboard" : "Copied" }}
+          </button>
+        </div>
       </div>
-    </div>
+    </template>
 
     <direction-vue
       :direction="direction"
@@ -34,21 +35,24 @@
         :colors="colors"
         :stop="'from'"
         :target="target"
-        @click="handleColorStop"
+        @color-selected="handleColorStop"
+        @shade-selected="handleColorShade"
       ></gradient-selector-vue>
       <gradient-selector-vue
         :title="'Middle color'"
         :colors="colors"
         :stop="'via'"
         :target="target"
-        @click="handleColorStop"
+        @color-selected="handleColorStop"
+        @shade-selected="handleColorShade"
       ></gradient-selector-vue>
       <gradient-selector-vue
         :title="'Ending color'"
         :colors="colors"
         :stop="'to'"
         :target="target"
-        @click="handleColorStop"
+        @color-selected="handleColorStop"
+        @shade-selected="handleColorShade"
       ></gradient-selector-vue>
     </div>
   </div>
@@ -68,6 +72,7 @@ export default {
   },
   data: () => {
     return {
+      gradient: "from-teal-400 to-blue-500",
       colors: [
         "none",
         "transparent",
@@ -86,22 +91,48 @@ export default {
         "pink",
       ],
       stop: {
-        from: "red",
-        to: "green",
-        via: "blue",
+        from: {
+          color: "red",
+          shade: 100,
+        },
+        via: {
+          color: "blue",
+          shade: 900,
+        },
+        to: {
+          color: "green",
+          shade: 500,
+        },
       },
       direction: "r",
-      target: '',
+      target: "",
       copied: false,
     };
+  },
+  watch: {
+    stop: {
+      handler() {
+        let result = [];
+        for (const key in this.stop) {
+          if (this.stop.hasOwnProperty(key)) {
+            const element = this.stop[key];
+            if (element.color !== "none") {
+              result.push(`${key}-${element.color}-${element.shade}`);
+            }
+          }
+        }
+        this.gradient = result.join(" ");
+      },
+      deep: true,
+    },
   },
   methods: {
     handleColorStop({ stop, color }) {
       this.target = stop;
-      this.$set(this.stop, stop, color);
+      this.stop[stop].color = color;
     },
-    handleShade(color, number) {
-      console.log(color, number);
+    handleColorShade({ shade }) {
+      this.stop[this.target].shade = shade * 100;
     },
     handleDirection(direction) {
       this.direction = direction;
@@ -130,16 +161,8 @@ export default {
     },
   },
   computed: {
-    gradient() {
-      let result = [`bg-gradient-to-${this.direction}`];
-      let shade = 400;
-      // // !["transparent", "current", "black", "white"].includes(color)
-      // if (this.from && this.from !== "none")
-      //   result.push(`from-${this.from}-${shade}`);
-      // if (this.via && this.via !== "none")
-      //   result.push(`via-${this.via}-${shade}`);
-      // if (this.to && this.to !== "none") result.push(`to-${this.to}-${shade}`);
-      return result.join(" ");
+    classes() {
+      return `bg-gradient-to-${this.direction} ${this.gradient}`;
     },
   },
 };
