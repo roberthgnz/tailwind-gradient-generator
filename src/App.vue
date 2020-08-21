@@ -19,11 +19,18 @@
       </div>
     </nav>
     <div class="h-48 bg-gradient-to-r" :class="gradient"></div>
-    <pre class="text-center">
+
+    <div class="text-center mt-5">
+      <span class="px-3 py-2 leading-none text-white bg-gray-800 rounded-md"
+        >Classes</span
+      >
+      <pre>
       <code>
       {{gradient}}
       </code>
-    </pre>
+      </pre>
+    </div>
+
     <div class="w-1/2 p-2 flex justify-center m-auto my-5">
       <div class="border border-gray-300 p-2 m-2 uppercase text-center">
         <h2 class="text-gray-500 font-normal mb-2">
@@ -39,7 +46,9 @@
             <div
               class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
               :class="getBg(color, 400)"
-            ></div>
+            >
+              {{ getAbbr(color) }}
+            </div>
           </li>
         </ul>
       </div>
@@ -57,7 +66,9 @@
             <div
               class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
               :class="getBg(color, 500)"
-            ></div>
+            >
+              {{ getAbbr(color) }}
+            </div>
           </li>
         </ul>
       </div>
@@ -75,7 +86,9 @@
             <div
               class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
               :class="getBg(color, 500)"
-            ></div>
+            >
+              {{ getAbbr(color) }}
+            </div>
           </li>
         </ul>
       </div>
@@ -121,13 +134,19 @@ export default {
         ? `bg-${color}-${shade}`
         : `bg-${color}`;
     },
+    getAbbr(color) {
+      let colors = ["none", "transparent", "current", "black", "white"];
+      let index = colors.findIndex((i) => i === color);
+      return index !== -1 ? colors[index][0] : null;
+    },
   },
   computed: {
     gradient() {
       let result = [];
-      if (this.from) result.push(`from-${this.from}-400`);
-      if (this.via) result.push(`via-${this.via}-400`);
-      if (this.to) result.push(`to-${this.to}-400`);
+      if (this.from && this.from !== "none")
+        result.push(`from-${this.from}-400`);
+      if (this.via && this.via !== "none") result.push(`via-${this.via}-400`);
+      if (this.to && this.to !== "none") result.push(`to-${this.to}-400`);
       return result.join(" ");
     },
   },
