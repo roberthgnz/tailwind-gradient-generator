@@ -116,11 +116,19 @@ export default {
     stop: {
       handler() {
         let result = [];
+        let gradient = "";
         for (const key in this.stop) {
           if (this.stop.hasOwnProperty(key)) {
             const element = this.stop[key];
             if (element.color !== "none") {
-              result.push(`${key}-${element.color}-${element.shade}`);
+              gradient = `${key}-${element.color}`;
+              if (
+                !["transparent", "current", "black", "white"].includes(
+                  element.color
+                )
+              )
+                gradient += `-${element.shade}`;
+              result.push(gradient);
             }
           }
         }

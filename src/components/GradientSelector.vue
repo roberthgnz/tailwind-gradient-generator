@@ -23,7 +23,7 @@
         </div>
       </li>
     </ul>
-    <template v-if="target === stop">
+    <template v-if="showShades">
       <h2 class="text-gray-500 font-normal my-2">SHADE: {{ shade }}</h2>
       <ul class="grid grid-cols-5 gap-2">
         <li
@@ -82,6 +82,14 @@ export default {
     selectedShade() {
       let minus = this.shade !== 500 ? 100 : 200;
       return `bg-${this.color}-${900 - this.shade + minus}`;
+    },
+    showShades() {
+      return (
+        this.target === this.stop &&
+        !["none", "transparent", "current", "black", "white"].includes(
+          this.color
+        )
+      );
     },
   },
   methods: {
