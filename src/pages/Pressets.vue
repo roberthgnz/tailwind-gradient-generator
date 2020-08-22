@@ -7,6 +7,7 @@
         class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
         v-for="(presset, index) in pressets"
         :key="index"
+        @click="copyPresset(presset)"
       >
         <div
           class="flex justify-center items-center h-48 rounded"
@@ -19,6 +20,7 @@
 
 <script>
 import { pressets } from "../pressets";
+import { copyToClipboard } from "../helpers";
 
 export default {
   name: "Pressets",
@@ -29,6 +31,13 @@ export default {
   },
   mounted() {
     this.pressets = pressets;
+  },
+  methods: {
+    copyPresset(presset) {
+      copyToClipboard(presset, () => {
+        alert("Pressed copied!");
+      });
+    },
   },
 };
 </script>
