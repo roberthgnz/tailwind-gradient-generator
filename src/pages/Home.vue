@@ -11,7 +11,7 @@
         <div>
           <button
             class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            @click="copyToClipboard"
+            @click="copyClasses"
             :disabled="copied"
           >
             {{ !copied ? "Copy to Clipboard" : "Copied" }}
@@ -62,6 +62,7 @@
 <script>
 import DirectionVue from "../components/Direction.vue";
 import GradientSelectorVue from "../components/GradientSelector.vue";
+import { copyToClipboard } from "../helpers";
 
 export default {
   name: "Home",
@@ -141,27 +142,11 @@ export default {
     handleDirection(direction) {
       this.direction = direction;
     },
-    copyToClipboard() {
-      function selectElementText(element) {
-        if (document.selection) {
-          let range = document.body.createTextRange();
-          range.moveToElementText(element);
-          range.select();
-        } else if (window.getSelection) {
-          let range = document.createRange();
-          range.selectNode(element);
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(range);
-        }
-      }
-      let element = document.createElement("div");
-      element.textContent = this.gradient;
-      document.body.appendChild(element);
-      selectElementText(element);
-      document.execCommand("copy");
-      element.remove();
-      this.copied = true;
-      setTimeout(() => (this.copied = false), 1500);
+    copyClasses() {
+      copyToClipboard(this.classes, () => {
+        this.copied = true;
+        setTimeout(() => (this.copied = false), 1500);
+      });
     },
   },
   computed: {
