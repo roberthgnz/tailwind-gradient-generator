@@ -10,9 +10,29 @@
         @click="copyPresset(presset)"
       >
         <div
-          class="flex justify-center items-center h-48 rounded"
+          class="presset relative flex justify-center items-center h-48 rounded"
           :class="presset"
-        ></div>
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-copy"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <rect x="8" y="8" width="12" height="12" rx="2" />
+            <path
+              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+            />
+          </svg>
+          <span v-if="copied === presset" class="text-white">Copied 🎉</span>
+        </div>
       </li>
     </ul>
   </div>
@@ -27,6 +47,7 @@ export default {
   data: () => {
     return {
       pressets: [],
+      copied: null,
     };
   },
   mounted() {
@@ -35,9 +56,25 @@ export default {
   methods: {
     copyPresset(presset) {
       copyToClipboard(presset, () => {
-        alert("Pressed copied!");
+        this.copied = presset;
+        setTimeout(() => (this.copied = null), 1500);
       });
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.presset {
+  svg {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  &:hover svg {
+    opacity: 1;
+  }
+}
+</style>
