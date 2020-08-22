@@ -24,9 +24,7 @@
       </li>
     </ul>
     <template v-if="target === stop">
-      <h2 class="text-gray-500 font-normal my-2">
-        SHADE
-      </h2>
+      <h2 class="text-gray-500 font-normal my-2">SHADE: {{ shade }}</h2>
       <ul class="grid grid-cols-5 gap-2">
         <li
           v-for="n in 9"
@@ -35,9 +33,15 @@
           style="justify-self: center"
         >
           <div
-            class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
+            class="border rounded flex justify-center items-center w-8 h-8 cursor-pointer"
             :class="`bg-${color}-${n}00`"
-          ></div>
+          >
+            <div
+              v-if="color && shade === Number(n * 100)"
+              class="rounded-full h-4 w-4"
+              :class="selectedShade"
+            ></div>
+          </div>
         </li>
       </ul>
     </template>
@@ -60,6 +64,10 @@ export default {
       type: String,
       required: true,
     },
+    shade: {
+      type: Number,
+      required: true,
+    },
     target: {
       type: String,
       required: true,
@@ -69,6 +77,12 @@ export default {
     return {
       color: null,
     };
+  },
+  computed: {
+    selectedShade() {
+      let minus = this.shade !== 500 ? 100 : 200;
+      return `bg-${this.color}-${900 - this.shade + minus}`;
+    },
   },
   methods: {
     handleColor({ stop, color }) {
