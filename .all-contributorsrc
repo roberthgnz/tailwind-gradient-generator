@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "contributors": [
@@ -8,14 +10,27 @@
       "name": "Zentreaxᴰᵉᵛ",
       "avatar_url": "https://avatars3.githubusercontent.com/u/36458019?v=4",
       "profile": "https://zentreax.dev/",
-      "contributions": ["a11y"]
+      "contributions": [
+        "a11y"
+      ]
     },
     {
       "login": "keithmchd48",
       "name": "Keith Machado",
       "avatar_url": "https://avatars0.githubusercontent.com/u/29048050?v=4",
       "profile": "https://github.com/keithmchd48",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "varnebla",
+      "name": "Victor",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/52747851?v=4",
+      "profile": "https://www.linkedin.com/in/victor-arnedo-blanco/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
