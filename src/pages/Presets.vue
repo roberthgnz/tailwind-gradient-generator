@@ -5,13 +5,13 @@
     >
       <li
         class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
-        v-for="(presset, index) in pressets"
+        v-for="(preset, index) in presets"
         :key="index"
-        @click="copyPresset(presset)"
+        @click="copypreset(preset)"
       >
         <div
-          class="presset relative flex justify-center items-center h-48 rounded"
-          :class="presset"
+          class="preset relative flex justify-center items-center h-48 rounded"
+          :class="preset"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
               d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
             />
           </svg>
-          <span v-if="copied === presset" class="text-white">Copied 🎉</span>
+          <span v-if="copied === preset" class="text-white">Copied 🎉</span>
         </div>
       </li>
     </ul>
@@ -39,24 +39,24 @@
 </template>
 
 <script>
-import { pressets } from "../pressets";
+import { presets } from "../presets";
 import { copyToClipboard } from "../helpers";
 
 export default {
-  name: "Pressets",
+  name: "presets",
   data: () => {
     return {
-      pressets: [],
+      presets: [],
       copied: null,
     };
   },
   mounted() {
-    this.pressets = pressets;
+    this.presets = presets;
   },
   methods: {
-    copyPresset(presset) {
-      copyToClipboard(presset, () => {
-        this.copied = presset;
+    copypreset(preset) {
+      copyToClipboard(preset, () => {
+        this.copied = preset;
         setTimeout(() => (this.copied = null), 1500);
       });
     },
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.presset {
+.preset {
   svg {
     position: absolute;
     top: 5%;
