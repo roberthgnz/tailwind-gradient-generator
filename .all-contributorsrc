@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Zentreax",
+      "name": "Zentreaxᴰᵉᵛ",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/36458019?v=4",
+      "profile": "https://zentreax.dev/",
+      "contributions": [
+        "a11y"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "tailwind-gradient-generator",
+  "projectOwner": "buzz-js",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
