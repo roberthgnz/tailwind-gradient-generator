@@ -140,7 +140,9 @@ export default {
       this.stop[this.target].shade = shade * 100
     },
     handleDirection(direction) {
-      this.direction = direction
+      if (typeof direction === "string") {
+        this.direction = direction
+      }
     },
     copyClasses() {
       copyToClipboard(this.classes, () => {
