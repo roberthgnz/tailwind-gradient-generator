@@ -1,9 +1,9 @@
 import Home from "./pages/Home";
-import Pressets from "./pages/Pressets";
+import Presets from "./pages/Presets";
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/pressets", component: Pressets },
+  { path: "/presets", component: Presets },
 ];
 
 export default routes;

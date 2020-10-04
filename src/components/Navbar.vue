@@ -37,10 +37,10 @@
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <router-link
-          to="/pressets"
+          to="/presets"
           class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-900 text-gray-600 font-medium mr-4"
         >
-          Pressets
+          Presets
         </router-link>
       </div>
       <ul class="flex">
