@@ -62,7 +62,7 @@
 <script>
 import DirectionVue from "../components/Direction.vue";
 import GradientSelectorVue from "../components/GradientSelector.vue";
-import { copyToClipboard } from "../helpers";
+import { copyToClipboard, addClassesToLocalStorage } from "../helpers";
 
 export default {
   name: "Home",
@@ -147,6 +147,7 @@ export default {
         this.copied = true;
         setTimeout(() => (this.copied = false), 1500);
       });
+      addClassesToLocalStorage(this.classes);
     },
   },
   computed: {
