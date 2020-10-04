@@ -115,21 +115,21 @@ export default {
     // if the route name is 'user-gradient', that means the user has entered colors in the URL
     if (this.$route.name === 'user-gradient') {
       const [from, via, to] = this.$route.query.colors.split(' ')
+      let color = "none"
+      let shade = 500
       if (this.stop === 'from') {
-        // in case the user entered no "from" color in the URL, select "none"
-        this.color = from.toLowerCase() || "none"
-        this.handleColor({stop: this.stop, color: this.color})
+        [color, shade] = from ? from.split('-') : ["none", 500]
       }
       if (this.stop === 'via') {
-        // in case the user entered no "via" color in the URL, select "none"
-        this.color = via.toLowerCase() || "none"
-        this.handleColor({stop: this.stop, color: this.color})
+        [color, shade] = via ? via.split('-') : ["none", 500]
       }
       if (this.stop === 'to') {
-        // in case the user entered no "to" color in the URL, select "none"
-        this.color = to.toLowerCase() || "none"
-        this.handleColor({stop: this.stop, color: this.color})
+        [color, shade] = to ? to.split('-') : ["none", 500]
       }
+      this.color = color.toLowerCase()
+      this.handleColor({stop: this.stop, color: this.color})
+      // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
+      this.handleShade({shade: +shade/100 || 5})
     }
   }
 };
