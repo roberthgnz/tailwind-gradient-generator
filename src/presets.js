@@ -11,4 +11,4 @@ export const presets = [
   "bg-gradient-to-r from-current via-indigo-700 to-indigo-200",
   "bg-gradient-to-r from-green-200 via-blue-400 to-indigo-400",
   "bg-gradient-to-r from-purple-200 via-purple-400 to-indigo-900",
-];
+]

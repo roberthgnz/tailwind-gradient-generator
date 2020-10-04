@@ -2,41 +2,58 @@
   "name": "tailwind-gradient-generator",
   "version": "1.0.0",
   "description": "",
+  "author": "Roberth González",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
   "main": "src/index.js",
   "dependencies": {
-    "vue": "^2.6.12",
-    "vue-hot-reload-api": "^2.3.4",
-    "vue-router": "^3.4.3",
-    "vue-template-compiler": "^2.6.12"
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0-beta.1",
+    "vue-router": "^4.0.0-beta.13"
   },
   "devDependencies": {
-    "@vue/component-compiler-utils": "^3.2.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "parcel": "^1.12.4",
-    "sass": "^1.26.10"
+    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2"
   },
   "eslintConfig": {
     "root": true,
+    "env": {
+      "node": true
+    },
     "extends": [
       "plugin:vue/essential",
-      "plugin:prettier/recommended",
       "eslint:recommended"
-    ]
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
   },
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/buzz-js/tailwind-gradient-generator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
   "bugs": {
     "url": "https://github.com/buzz-js/tailwind-gradient-generator/issues"
   },
-  "homepage": "https://github.com/buzz-js/tailwind-gradient-generator#readme"
+  "homepage": "https://github.com/buzz-js/tailwind-gradient-generator#readme",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buzz-js/tailwind-gradient-generator.git"
+  }
 }

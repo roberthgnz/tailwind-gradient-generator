@@ -60,9 +60,9 @@
 </template>
 
 <script>
-import DirectionVue from "../components/Direction.vue";
-import GradientSelectorVue from "../components/GradientSelector.vue";
-import { copyToClipboard } from "../helpers";
+import DirectionVue from "../components/Direction.vue"
+import GradientSelectorVue from "../components/GradientSelector.vue"
+import { copyToClipboard } from "../helpers"
 
 export default {
   name: "Home",
@@ -104,29 +104,27 @@ export default {
       direction: "r",
       target: "",
       copied: false,
-    };
+    }
   },
   watch: {
     stop: {
       handler() {
-        let result = [];
-        let gradient = "";
+        let result = []
+        let gradient = ""
         for (const key in this.stop) {
-          if (this.stop.hasOwnProperty(key)) {
-            const element = this.stop[key];
-            if (element.color !== "none") {
-              gradient = `${key}-${element.color}`;
-              if (
-                !["transparent", "current", "black", "white"].includes(
-                  element.color
-                )
+          const element = this.stop[key]
+          if (element.color !== "none") {
+            gradient = `${key}-${element.color}`
+            if (
+              !["transparent", "current", "black", "white"].includes(
+                element.color
               )
-                gradient += `-${element.shade}`;
-              result.push(gradient);
-            }
+            )
+              gradient += `-${element.shade}`
+            result.push(gradient)
           }
         }
-        this.gradient = result.join(" ");
+        this.gradient = result.join(" ")
       },
       // watcher will look for changes as soon as this component is created
       immediate: true,
@@ -135,25 +133,25 @@ export default {
   },
   methods: {
     handleColorStop({ stop, color }) {
-      this.target = stop;
-      this.stop[stop].color = color;
+      this.target = stop
+      this.stop[stop].color = color
     },
     handleColorShade({ shade }) {
-      this.stop[this.target].shade = shade * 100;
+      this.stop[this.target].shade = shade * 100
     },
     handleDirection(direction) {
-      this.direction = direction;
+      this.direction = direction
     },
     copyClasses() {
       copyToClipboard(this.classes, () => {
-        this.copied = true;
-        setTimeout(() => (this.copied = false), 1500);
-      });
+        this.copied = true
+        setTimeout(() => (this.copied = false), 1500)
+      })
     },
   },
   computed: {
     classes() {
-      return `bg-gradient-to-${this.direction} ${this.gradient}`;
+      return `bg-gradient-to-${this.direction} ${this.gradient}`
     },
   },
   mounted() {
@@ -163,9 +161,9 @@ export default {
       // if direction is not mentioned in the URL, then "r" as default
       const dir = this.$route.query.direction
         ? this.$route.query.direction.toLowerCase()
-        : "r";
-      this.handleDirection(dir);
+        : "r"
+      this.handleDirection(dir)
     }
   },
-};
+}
 </script>

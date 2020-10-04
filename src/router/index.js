@@ -1,5 +1,7 @@
-import Home from "./pages/Home";
-import Presets from "./pages/Presets";
+import { createRouter, createWebHistory } from "vue-router"
+
+import Home from "../views/Home"
+import Presets from "../views/Presets"
 
 const routes = [
   { path: "/", component: Home },
@@ -13,6 +15,11 @@ const routes = [
       direction: route.query.direction,
     }),
   },
-];
+]
 
-export default routes;
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export default { router }

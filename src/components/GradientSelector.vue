@@ -76,12 +76,12 @@ export default {
   data: () => {
     return {
       color: null,
-    };
+    }
   },
   computed: {
     selectedShade() {
-      let minus = this.shade !== 500 ? 100 : 200;
-      return `bg-${this.color}-${900 - this.shade + minus}`;
+      let minus = this.shade !== 500 ? 100 : 200
+      return `bg-${this.color}-${900 - this.shade + minus}`
     },
     showShades() {
       return (
@@ -89,48 +89,48 @@ export default {
         !["none", "transparent", "current", "black", "white"].includes(
           this.color
         )
-      );
+      )
     },
   },
   methods: {
     handleColor({ stop, color }) {
-      this.color = color;
-      this.$emit("color-selected", { stop, color });
+      this.color = color
+      this.$emit("color-selected", { stop, color })
     },
     handleShade({ shade }) {
-      this.$emit("shade-selected", { shade });
+      this.$emit("shade-selected", { shade })
     },
     getBg(color, shade) {
       return !["transparent", "current", "black", "white"].includes(color)
         ? `bg-${color}-${shade}`
-        : `bg-${color}`;
+        : `bg-${color}`
     },
     getAbbr(color) {
-      let colors = ["none", "transparent", "current", "black", "white"];
-      let index = colors.findIndex((i) => i === color);
-      return index !== -1 ? colors[index][0] : null;
+      let colors = ["none", "transparent", "current", "black", "white"]
+      let index = colors.findIndex(i => i === color)
+      return index !== -1 ? colors[index][0] : null
     },
   },
   mounted() {
     // if the route name is 'gradient', that means the user has entered colors in the URL
     if (this.$route.name === "gradient") {
-      const [from, via, to] = this.$route.query.colors.split(",");
-      let color = "none";
-      let shade = 500;
+      const [from, via, to] = this.$route.query.colors.split(",")
+      let color = "none"
+      let shade = 500
       if (this.stop === "from") {
-        [color, shade] = from ? from.split("-") : ["none", 500];
+        [color, shade] = from ? from.split("-") : ["none", 500]
       }
       if (this.stop === "via") {
-        [color, shade] = via ? via.split("-") : ["none", 500];
+        [color, shade] = via ? via.split("-") : ["none", 500]
       }
       if (this.stop === "to") {
-        [color, shade] = to ? to.split("-") : ["none", 500];
+        [color, shade] = to ? to.split("-") : ["none", 500]
       }
-      this.color = color.toLowerCase();
-      this.handleColor({ stop: this.stop, color: this.color });
+      this.color = color.toLowerCase()
+      this.handleColor({ stop: this.stop, color: this.color })
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
-      this.handleShade({ shade: +shade / 100 || 5 });
+      this.handleShade({ shade: +shade / 100 || 5 })
     }
   },
-};
+}
 </script>

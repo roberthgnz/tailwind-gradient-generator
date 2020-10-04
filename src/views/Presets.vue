@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import { presets } from "../presets";
-import { copyToClipboard } from "../helpers";
+import { presets } from "../presets"
+import { copyToClipboard } from "../helpers"
 
 export default {
   name: "presets",
@@ -48,20 +48,20 @@ export default {
     return {
       presets: [],
       copied: null,
-    };
+    }
   },
   mounted() {
-    this.presets = presets;
+    this.presets = presets
   },
   methods: {
     copypreset(preset) {
       copyToClipboard(preset, () => {
-        this.copied = preset;
-        setTimeout(() => (this.copied = null), 1500);
-      });
+        this.copied = preset
+        setTimeout(() => (this.copied = null), 1500)
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
