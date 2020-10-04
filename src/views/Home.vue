@@ -56,17 +56,19 @@
         @shade-selected="handleColorShade"
       ></gradient-selector-vue>
     </div>
+    <HistoryBox :history="history"/>
   </div>
 </template>
 
 <script>
-import DirectionVue from "../components/Direction.vue"
-import GradientSelectorVue from "../components/GradientSelector.vue"
-import { copyToClipboard } from "../helpers"
+import DirectionVue from "../components/Direction.vue";
+import GradientSelectorVue from "../components/GradientSelector.vue";
+import HistoryBox from "../components/HistoryBox.vue";
+import { copyToClipboard, addClassesToLocalStorage } from "../helpers";
 
 export default {
   name: "Home",
-  components: { DirectionVue, GradientSelectorVue },
+  components: { DirectionVue, GradientSelectorVue, HistoryBox },
   data: () => {
     return {
       gradient: "from-teal-400 to-blue-500",
@@ -104,7 +106,8 @@ export default {
       direction: "r",
       target: "",
       copied: false,
-    }
+      savedGradients: JSON.parse(window.localStorage.getItem("savedGradients")),
+    };
   },
   watch: {
     stop: {
@@ -146,14 +149,19 @@ export default {
     },
     copyClasses() {
       copyToClipboard(this.classes, () => {
-        this.copied = true
-        setTimeout(() => (this.copied = false), 1500)
-      })
+        this.copied = true;
+        setTimeout(() => (this.copied = false), 1500);
+      });
+      addClassesToLocalStorage(this.classes);
+      !this.history.includes(this.classes) && this.history.push(this.classes);
     },
   },
   computed: {
     classes() {
       return `bg-gradient-to-${this.direction} ${this.gradient}`
+    },
+    history() {
+      return this.savedGradients;
     },
   },
   mounted() {
