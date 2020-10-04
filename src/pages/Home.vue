@@ -56,6 +56,12 @@
         @shade-selected="handleColorShade"
       ></gradient-selector-vue>
     </div>
+    <div v-if="historial.length">
+      <ul>
+        <li v-for="item in historial">{{item}}</li>
+      </ul>
+
+    </div>
   </div>
 </template>
 
@@ -148,11 +154,15 @@ export default {
         setTimeout(() => (this.copied = false), 1500);
       });
       addClassesToLocalStorage(this.classes);
+      this.historial.push(this.classes);
     },
   },
   computed: {
     classes() {
       return `bg-gradient-to-${this.direction} ${this.gradient}`;
+    },
+    historial() {
+      return JSON.parse(window.localStorage.getItem("savedGradients"));
     },
   },
 };
