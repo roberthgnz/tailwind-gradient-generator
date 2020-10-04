@@ -15,6 +15,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="https://zentreax.dev/"><img src="https://avatars3.githubusercontent.com/u/36458019?v=4" width="100px;" alt=""/><br /><sub><b>Zentreaxᴰᵉᵛ</b></sub></a><br /><a href="#a11y-Zentreax" title="Accessibility">️️️️♿️</a></td>
     <td align="center"><a href="https://github.com/keithmchd48"><img src="https://avatars0.githubusercontent.com/u/29048050?v=4" width="100px;" alt=""/><br /><sub><b>Keith Machado</b></sub></a><br /><a href="https://github.com/buzz-js/tailwind-gradient-generator/commits?author=keithmchd48" title="Code">💻</a></td>
   </tr>
 </table>
