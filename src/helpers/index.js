@@ -30,6 +30,7 @@ export const addClassesToLocalStorage = (classes) => {
 			'savedGradients',
 			JSON.stringify(parsedSavedGradients)
 		);
-	} else
+	} else {
 		window.localStorage.setItem('savedGradients', JSON.stringify([classes]));
+	}
 };
