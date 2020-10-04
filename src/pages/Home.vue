@@ -128,6 +128,8 @@ export default {
         }
         this.gradient = result.join(" ");
       },
+      // watcher will look for changes as soon as this component is created
+      immediate: true,
       deep: true,
     },
   },
