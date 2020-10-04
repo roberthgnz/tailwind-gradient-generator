@@ -157,13 +157,15 @@ export default {
     },
   },
   mounted() {
-    if (this.$route.name === 'user-gradient') {
+    if (this.$route.name === "gradient") {
       // direction should be either of the following:
       // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
       // if direction is not mentioned in the URL, then "r" as default
-      const dir = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : "r"
-      this.handleDirection(dir)
+      const dir = this.$route.query.direction
+        ? this.$route.query.direction.toLowerCase()
+        : "r";
+      this.handleDirection(dir);
     }
-  }
+  },
 };
 </script>

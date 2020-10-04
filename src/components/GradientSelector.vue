@@ -112,25 +112,25 @@ export default {
     },
   },
   mounted() {
-    // if the route name is 'user-gradient', that means the user has entered colors in the URL
-    if (this.$route.name === 'user-gradient') {
-      const [from, via, to] = this.$route.query.colors.split(' ')
-      let color = "none"
-      let shade = 500
-      if (this.stop === 'from') {
-        [color, shade] = from ? from.split('-') : ["none", 500]
+    // if the route name is 'gradient', that means the user has entered colors in the URL
+    if (this.$route.name === "gradient") {
+      const [from, via, to] = this.$route.query.colors.split(",");
+      let color = "none";
+      let shade = 500;
+      if (this.stop === "from") {
+        [color, shade] = from ? from.split("-") : ["none", 500];
       }
-      if (this.stop === 'via') {
-        [color, shade] = via ? via.split('-') : ["none", 500]
+      if (this.stop === "via") {
+        [color, shade] = via ? via.split("-") : ["none", 500];
       }
-      if (this.stop === 'to') {
-        [color, shade] = to ? to.split('-') : ["none", 500]
+      if (this.stop === "to") {
+        [color, shade] = to ? to.split("-") : ["none", 500];
       }
-      this.color = color.toLowerCase()
-      this.handleColor({stop: this.stop, color: this.color})
+      this.color = color.toLowerCase();
+      this.handleColor({ stop: this.stop, color: this.color });
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
-      this.handleShade({shade: +shade/100 || 5})
+      this.handleShade({ shade: +shade / 100 || 5 });
     }
-  }
+  },
 };
 </script>

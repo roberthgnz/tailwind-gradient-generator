@@ -6,10 +6,12 @@ const routes = [
   { path: "/presets", component: Presets },
   {
     path: "/gradient",
-    name: 'user-gradient',
+    name: "gradient",
     component: Home,
-    // user will be able to enter the url as "/gradient?colors=red+teal+indigo" or "/gradient?colors=red+teal+indigo&&direction=t"
-    props: route => ({ query: route.query.colors, direction: route.query.direction })
+    props: (route) => ({
+      query: route.query.colors,
+      direction: route.query.direction,
+    }),
   },
 ];
 
