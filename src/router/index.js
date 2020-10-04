@@ -10,7 +10,7 @@ const routes = [
     path: "/gradient",
     name: "gradient",
     component: Home,
-    props: (route) => ({
+    props: route => ({
       query: route.query.colors,
       direction: route.query.direction,
     }),
@@ -22,4 +22,4 @@ const router = createRouter({
   routes,
 })
 
-export default { router }
+export default router
