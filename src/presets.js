@@ -1,4 +1,4 @@
-export const pressets = [
+export const presets = [
   "bg-gradient-to-r from-teal-400 to-blue-500",
   "bg-gradient-to-r from-teal-100 via-teal-200 to-green-300",
   "bg-gradient-to-tr from-blue-600 via-purple-600 to-orange-500",
