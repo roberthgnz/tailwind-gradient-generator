@@ -106,7 +106,7 @@ export default {
       direction: "r",
       target: "",
       copied: false,
-      savedGradients: JSON.parse(window.localStorage.getItem("savedGradients")),
+      savedGradients: JSON.parse(window.localStorage.getItem("savedGradients")) || [],
     };
   },
   watch: {
@@ -153,7 +153,7 @@ export default {
         setTimeout(() => (this.copied = false), 1500);
       });
       addClassesToLocalStorage(this.classes);
-      !this.history.includes(this.classes) && this.history.push(this.classes);
+      !this.history.includes(this.classes) && this.savedGradients.push(this.classes);
     },
   },
   computed: {
