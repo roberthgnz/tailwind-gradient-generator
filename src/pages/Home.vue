@@ -63,12 +63,14 @@
 import DirectionVue from "../components/Direction.vue";
 import GradientSelectorVue from "../components/GradientSelector.vue";
 import { copyToClipboard } from "../helpers";
+import { debounce } from "../lib/utils";
 
 export default {
   name: "Home",
   components: { DirectionVue, GradientSelectorVue },
   data: () => {
     return {
+      debouncedUpdate: undefined,
       gradient: "from-teal-400 to-blue-500",
       colors: [
         "none",
@@ -106,6 +108,11 @@ export default {
       copied: false,
     };
   },
+  beforeMount() {
+    // assign the function to be debounced
+    // the "this.updateRoute" function will update the URL after 1000ms any time the user changes the colors or direction
+    this.debouncedUpdate = debounce(this.updateRoute, 1000);
+  },
   watch: {
     stop: {
       handler() {
@@ -127,11 +134,17 @@ export default {
           }
         }
         this.gradient = result.join(" ");
+        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate()
       },
       // watcher will look for changes as soon as this component is created
       immediate: true,
       deep: true,
     },
+    direction: {
+      handler () {
+        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate()
+      }
+    }
   },
   methods: {
     handleColorStop({ stop, color }) {
@@ -150,6 +163,24 @@ export default {
         setTimeout(() => (this.copied = false), 1500);
       });
     },
+    // function will update the URL based on the colors, shades and direction the user chooses
+    updateRoute () {
+      const oldColors = this.$route.query.colors
+      const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''
+      const oldPath = `${oldColors}${oldDirection}`
+      const newColors = `${this.stop.from.color}-${this.stop.from.shade} ${this.stop.via.color}-${this.stop.via.shade} ${this.stop.to.color}-${this.stop.to.shade}`
+      const newDirection = this.direction.toLowerCase()
+      const newPath = `${newColors}${newDirection}`
+      // for avoiding the "NavigationDuplicated" error in vue-router, do not push to the route if the previous route was the same
+      if (oldPath === newPath) return
+      this.$router.push({
+        name: 'user-gradient',
+        query: {
+          colors: `${this.stop.from.color}-${this.stop.from.shade} ${this.stop.via.color}-${this.stop.via.shade} ${this.stop.to.color}-${this.stop.to.shade}`,
+          direction: this.direction.toUpperCase()
+        },
+      })
+    }
   },
   computed: {
     classes() {
