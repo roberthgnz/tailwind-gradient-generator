@@ -1,7 +1,7 @@
 <template>
   <div
     class="shadow-md border border-white p-2 m-2 uppercase text-center"
-    style="height: fit-content;"
+    style="height: fit-content"
   >
     <h2 class="text-gray-500 font-normal mb-2">
       {{ title }}
@@ -16,7 +16,16 @@
         @click="handleColor({ stop, color })"
       >
         <div
-          class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer"
+          class="
+            border
+            flex
+            rounded
+            justify-center
+            items-center
+            w-8
+            h-8
+            cursor-pointer
+          "
           :class="getBg(color, 400)"
         >
           {{ getAbbr(color) }}
@@ -33,7 +42,16 @@
           style="justify-self: center"
         >
           <div
-            class="border rounded flex justify-center items-center w-8 h-8 cursor-pointer"
+            class="
+              border
+              rounded
+              flex
+              justify-center
+              items-center
+              w-8
+              h-8
+              cursor-pointer
+            "
             :class="`bg-${color}-${n}00`"
           >
             <div
@@ -106,9 +124,10 @@ export default {
         : `bg-${color}`
     },
     getAbbr(color) {
-      let colors = ["none", "transparent", "current", "black", "white"]
-      let index = colors.findIndex(i => i === color)
-      return index !== -1 ? colors[index][0] : null
+      let colors = {
+        "none": "n", "transparent": "t", "current": "c", "black": "b", "white": "w"
+      }
+      return colors[color] ?? null
     },
   },
   mounted() {
