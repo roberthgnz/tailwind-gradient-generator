@@ -29,7 +29,7 @@
       class="w-4/5 sm:w-3/4 md:w-1/2 p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center m-auto my-5"
     >
       <gradient-selector-vue
-        :title="'Starting color'"
+        :title="'FROM'"
         :colors="colors"
         :stop="'from'"
         :shade="stop['from'].shade"
@@ -38,7 +38,7 @@
         @shade-selected="handleColorShade"
       ></gradient-selector-vue>
       <gradient-selector-vue
-        :title="'Middle color'"
+        :title="'VIA'"
         :colors="colors"
         :stop="'via'"
         :shade="stop['via'].shade"
@@ -47,7 +47,7 @@
         @shade-selected="handleColorShade"
       ></gradient-selector-vue>
       <gradient-selector-vue
-        :title="'Ending color'"
+        :title="'TO'"
         :colors="colors"
         :stop="'to'"
         :shade="stop['to'].shade"
@@ -69,7 +69,7 @@ import { copyToClipboard, addClassesToLocalStorage, debounce } from "../helpers"
 export default {
   name: "Home",
   components: { DirectionVue, GradientSelectorVue, HistoryBox },
-  data: () => {
+  data() {
     return {
       gradient: "from-teal-400 to-blue-500",
       colors: [

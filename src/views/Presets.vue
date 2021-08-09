@@ -44,7 +44,7 @@ import { copyToClipboard } from "../helpers"
 
 export default {
   name: "presets",
-  data: () => {
+  data() {
     return {
       presets: [],
       copied: null,

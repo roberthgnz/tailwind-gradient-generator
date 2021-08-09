@@ -1,9 +1,7 @@
 <template>
   <div class="shadow-md my-8 border border-white max-w-2xl mx-auto py-4 px-2">
-    <h2 class="text-gray-500 font-normal mb-4 text-center">
-      SAVED GRADIENTS
-    </h2>
-    <ul class="h-48 overflow-y-auto">
+    <h2 class="text-gray-500 font-normal mb-4 text-center">SAVED GRADIENTS</h2>
+    <ul class="h-48 overflow-y-auto text-center">
       <li
         v-for="item in history"
         class="cursor-pointer leading-7 hover:text-gray-700"
@@ -32,7 +30,7 @@ export default {
       },
     },
   },
-  data: () => {
+  data() {
     return {
       copied: null,
     }

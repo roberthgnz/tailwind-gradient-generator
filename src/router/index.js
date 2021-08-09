@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 
-import Home from "../views/Home"
-import Presets from "../views/Presets"
+import Home from "../views/Home.vue"
+import Presets from "../views/Presets.vue"
 
 const routes = [
   { path: "/", component: Home },
