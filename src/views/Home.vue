@@ -1,34 +1,20 @@
 <template>
   <div class="home">
-    <template v-if="gradient">
-      <div class="h-48" :class="classes"></div>
-      <div class="text-center mt-5">
-        <pre>
-      <code class="whitespace-pre-line">
-        {{classes}}
-      </code>
-      </pre>
-        <div>
-          <button
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            @click="copyClasses"
-            :disabled="copied"
-          >
-            {{ !copied ? "Copy to Clipboard" : "Copied" }}
-          </button>
-        </div>
-      </div>
-    </template>
-
-    <direction-vue
-      :direction="direction"
-      @click="handleDirection"
-    ></direction-vue>
-
     <div
-      class="w-4/5 sm:w-3/4 md:w-1/2 p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center m-auto my-5"
+      class="
+        w-4/5
+        sm:w-3/4
+        md:w-1/2
+        p-2
+        grid grid-cols-1
+        sm:grid-cols-2
+        md:grid-cols-3
+        justify-center
+        m-auto
+        my-5
+      "
     >
-      <gradient-selector-vue
+      <gradient-selector
         :title="'FROM'"
         :colors="colors"
         :stop="'from'"
@@ -36,8 +22,9 @@
         :target="target"
         @color-selected="handleColorStop"
         @shade-selected="handleColorShade"
-      ></gradient-selector-vue>
-      <gradient-selector-vue
+      ></gradient-selector>
+
+      <gradient-selector
         :title="'VIA'"
         :colors="colors"
         :stop="'via'"
@@ -45,8 +32,9 @@
         :target="target"
         @color-selected="handleColorStop"
         @shade-selected="handleColorShade"
-      ></gradient-selector-vue>
-      <gradient-selector-vue
+      ></gradient-selector>
+
+      <gradient-selector
         :title="'TO'"
         :colors="colors"
         :stop="'to'"
@@ -54,21 +42,29 @@
         :target="target"
         @color-selected="handleColorStop"
         @shade-selected="handleColorShade"
-      ></gradient-selector-vue>
+      ></gradient-selector>
     </div>
-    <HistoryBox :history="history"/>
+
+    <template v-if="gradient">
+      <div class="relative" style="height: 33.33vh" :class="classes">
+        <div class="code-preview">{{ classes }}</div>
+        <direction :direction="direction" @click="handleDirection"></direction>
+      </div>
+    </template>
+
+    <HistoryBox :history="history" />
   </div>
 </template>
 
 <script>
-import DirectionVue from "../components/Direction.vue";
-import GradientSelectorVue from "../components/GradientSelector.vue";
-import HistoryBox from "../components/HistoryBox.vue";
-import { copyToClipboard, addClassesToLocalStorage, debounce } from "../helpers";
+import Direction from "../components/Direction.vue"
+import GradientSelector from "../components/GradientSelector.vue"
+import HistoryBox from "../components/HistoryBox.vue"
+import { copyToClipboard, addClassesToLocalStorage, debounce } from "../helpers"
 
 export default {
   name: "Home",
-  components: { DirectionVue, GradientSelectorVue, HistoryBox },
+  components: { Direction, GradientSelector, HistoryBox },
   data() {
     return {
       gradient: "from-teal-400 to-blue-500",
@@ -106,9 +102,10 @@ export default {
       direction: "r",
       target: "",
       copied: false,
-      savedGradients: JSON.parse(window.localStorage.getItem("savedGradients")) || [],
-      debouncedUpdate: undefined
-    };
+      savedGradients:
+        JSON.parse(window.localStorage.getItem("savedGradients")) || [],
+      debouncedUpdate: undefined,
+    }
   },
   watch: {
     stop: {
@@ -136,15 +133,15 @@ export default {
       deep: true,
     },
     direction: {
-      handler () {
+      handler() {
         if (typeof this.debouncedUpdate === "function") this.debouncedUpdate()
-      }
-    }
+      },
+    },
   },
   beforeMount() {
     // assign the function to be debounced
     // the "this.updateRoute" function will update the URL after 1000ms any time the user changes the colors or direction
-    this.debouncedUpdate = debounce(this.updateRoute, 1000);
+    this.debouncedUpdate = debounce(this.updateRoute, 1000)
   },
   methods: {
     handleColorStop({ stop, color }) {
@@ -161,16 +158,19 @@ export default {
     },
     copyClasses() {
       copyToClipboard(this.classes, () => {
-        this.copied = true;
-        setTimeout(() => (this.copied = false), 1500);
-      });
-      addClassesToLocalStorage(this.classes);
-      !this.history.includes(this.classes) && this.savedGradients.push(this.classes);
+        this.copied = true
+        setTimeout(() => (this.copied = false), 1500)
+      })
+      addClassesToLocalStorage(this.classes)
+      !this.history.includes(this.classes) &&
+        this.savedGradients.push(this.classes)
     },
     // function will update the URL based on the colors, shades and direction the user chooses
-    updateRoute () {
+    updateRoute() {
       const oldColors = this.$route.query.colors
-      const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''
+      const oldDirection = this.$route.query.direction
+        ? this.$route.query.direction.toLowerCase()
+        : ""
       const oldPath = `${oldColors}${oldDirection}`
       const newColors = `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`
       const newDirection = this.direction.toLowerCase()
@@ -178,20 +178,20 @@ export default {
       // for avoiding the "NavigationDuplicated" error in vue-router, do not push to the route if the previous route was the same
       if (oldPath === newPath) return
       this.$router.push({
-        name: 'gradient',
+        name: "gradient",
         query: {
           colors: `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`,
-          direction: this.direction.toUpperCase()
+          direction: this.direction.toUpperCase(),
         },
       })
-    }
+    },
   },
   computed: {
     classes() {
       return `bg-gradient-to-${this.direction} ${this.gradient}`
     },
     history() {
-      return this.savedGradients;
+      return this.savedGradients
     },
   },
   mounted() {
@@ -207,3 +207,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.code-preview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
