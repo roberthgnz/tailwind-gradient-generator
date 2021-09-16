@@ -1,6 +1,14 @@
 <template>
   <nav
-    class="flex items-center justify-between flex-wrap bg-white border-b border-gray-200 p-4"
+    class="
+      flex
+      items-center
+      justify-between
+      flex-wrap
+      bg-white
+      border-b border-gray-200
+      p-4
+    "
   >
     <div class="flex items-center flex-shrink-0 text-black mr-6">
       <svg
@@ -22,7 +30,18 @@
     </div>
     <div class="block lg:hidden">
       <button
-        class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        class="
+          flex
+          items-center
+          px-3
+          py-2
+          border
+          rounded
+          text-teal-200
+          border-teal-400
+          hover:text-white
+          hover:border-white
+        "
       >
         <svg
           class="fill-black h-3 w-3"
@@ -38,28 +57,28 @@
       <div class="text-sm lg:flex-grow">
         <router-link
           to="/presets"
-          class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-900 text-gray-600 font-medium mr-4"
+          class="
+            block
+            mt-4
+            lg:inline-block
+            lg:mt-0
+            hover:text-gray-900
+            text-gray-600
+            font-medium
+            mr-4
+          "
         >
           Presets
         </router-link>
       </div>
-      <ul class="flex">
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=buzz-js&repo=tailwind-gradient-generator&type=star&count=true"
-            frameborder="0"
-            scrolling="0"
-            width="150"
-            height="20"
-            title="GitHub"
-          ></iframe>
-        </li>
+      <ul class="flex justify-between items-center">
         <li>
           <a
-            class="twitter-share-button"
-            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&via=reliutg&text=Try%20it%2C%20you%20will%20love%20it&hashtags=tailwind-gradient-generator"
+            class="text-sm lg:flex-grow"
+            target="_blank"
+            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&via=eliutgon&text=Try%20it%2C%20you%20will%20love%20it&hashtags=tailwind-gradient-generator"
           >
-            Tweet</a
+            Follow me on Twitter</a
           >
         </li>
       </ul>
