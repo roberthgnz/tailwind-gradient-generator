@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <ul
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
+      class="grid grid-cols-2 md:grid-cols-4 gap-4"
     >
       <li
         class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
@@ -43,7 +43,7 @@ import { presets } from "../presets"
 import { copyToClipboard } from "../helpers"
 
 export default {
-  name: "presets",
+  name: "Presets",
   data() {
     return {
       presets: [],
@@ -64,17 +64,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.preset {
-  svg {
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-  &:hover svg {
-    opacity: 1;
-  }
+<style scoped>
+.preset svg {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.preset:hover svg {
+  opacity: 1;
 }
 </style>
