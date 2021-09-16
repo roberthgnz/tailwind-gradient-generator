@@ -1,19 +1,37 @@
 <template>
   <div class="home">
-    <div
-      class="
-        w-4/5
-        sm:w-3/4
-        md:w-1/2
-        p-2
-        grid grid-cols-1
-        sm:grid-cols-2
-        md:grid-cols-3
-        justify-center
-        m-auto
-        my-5
-      "
-    >
+    <template v-if="gradient">
+      <div class="relative" style="height: 33.33vh" :class="classes">
+        <div
+          title="Copy code"
+          class="code-preview cursor-pointer"
+          @click="copyClasses"
+        >
+          <svg
+            v-if="!copied"
+            xmlns="http://www.w3.org/2000/svg"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="8" y="8" width="12" height="12" rx="2" />
+            <path
+              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+            />
+          </svg>
+          <span v-else>🎉 copied</span>
+        </div>
+        <direction :direction="direction" @click="handleDirection"></direction>
+      </div>
+    </template>
+
+    <div class="grid grid-cols-3 p-4">
       <gradient-selector
         :title="'FROM'"
         :colors="colors"
@@ -44,34 +62,6 @@
         @shade-selected="handleColorShade"
       ></gradient-selector>
     </div>
-
-    <template v-if="gradient">
-      <div class="relative" style="height: 33.33vh" :class="classes">
-        <div title="Copy code" class="code-preview cursor-pointer" @click="copyClasses">
-          <svg
-            v-if="!copied"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path
-              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
-            />
-          </svg>
-          <span v-else>🎉 copied</span>
-        </div>
-        <direction :direction="direction" @click="handleDirection"></direction>
-      </div>
-    </template>
-
     <HistoryBox :history="history" />
   </div>
 </template>

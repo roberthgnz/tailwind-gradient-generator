@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadow-sm border border-white p-2 m-2 uppercase text-center"
+    class="shadow border border-white p-2 m-2 uppercase text-center"
     style="height: fit-content"
   >
     <h2 class="text-gray-500 font-normal mb-2">
