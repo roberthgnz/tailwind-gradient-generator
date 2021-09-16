@@ -97,15 +97,15 @@ export default {
       ],
       stop: {
         from: {
-          color: "red",
-          shade: 100,
+          color: "green",
+          shade: 400,
         },
         via: {
-          color: "blue",
+          color: "none",
           shade: 900,
         },
         to: {
-          color: "green",
+          color: "blue",
           shade: 500,
         },
       },
