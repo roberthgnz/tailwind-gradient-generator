@@ -78,7 +78,7 @@
             target="_blank"
             href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&via=eliutgon&text=Try%20it%2C%20you%20will%20love%20it&hashtags=tailwind-gradient-generator"
           >
-            Follow me on Twitter</a
+            Share on Twitter</a
           >
         </li>
       </ul>
