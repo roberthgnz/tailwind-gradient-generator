@@ -8,8 +8,6 @@ Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.a
 
 </div>
 
-<img src="https://media.giphy.com/media/3oEduZtPOv5OSecubu/giphy.gif" />
-
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
