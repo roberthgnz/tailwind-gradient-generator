@@ -1,13 +1,18 @@
-# Tailwind Gradient Generator 🎉
+<div align="center"> 
+ 
+# Tailwind Gradient Generator
 
-<img src="https://media.giphy.com/media/3oEduZtPOv5OSecubu/giphy.gif" />
+
+![Tailwind Gradiente Generator Banner](https://github.com/cesaralvrz/tailwind-gradient-generator/blob/master/assets/banner.png)
+Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.app/) 
+
+</div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-Let's go [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.app/)
 
-Feel free to collaborate
+Feel free to collaborate.
 
 ## Contributors ✨
 
