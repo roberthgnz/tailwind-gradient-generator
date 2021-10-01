@@ -31,7 +31,7 @@
       </div>
     </template>
 
-    <div class="grid grid-cols-3 p-4">
+    <div class="grid sm:grid-cols-3 p-4">
       <gradient-selector
         :title="'FROM'"
         :colors="colors"
