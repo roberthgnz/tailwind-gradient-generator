@@ -31,11 +31,22 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cesaralvrz",
+      "name": "César Álvarez Llaneza",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57325703?v=4",
+      "profile": "https://cesaralvarez.js.org/",
+      "contributions": [
+        "doc",
+        "design",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "tailwind-gradient-generator",
-  "projectOwner": "buzz-js",
+  "projectOwner": "eliutgon",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true
