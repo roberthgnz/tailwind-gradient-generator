@@ -30,7 +30,12 @@
         <direction :direction="direction" @click="handleDirection"></direction>
       </div>
     </template>
-
+    <div class="flex items-center w-full justify-center my-3">
+      <button class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
+              @click="generateRandomGradient">
+        Generate Random Gradient
+      </button>
+    </div>
     <div class="grid sm:grid-cols-3 p-4">
       <gradient-selector
         :title="'FROM'"
@@ -70,7 +75,7 @@
 import Direction from "../components/Direction.vue"
 import GradientSelector from "../components/GradientSelector.vue"
 import HistoryBox from "../components/HistoryBox.vue"
-import { copyToClipboard, addClassesToLocalStorage, debounce } from "../helpers"
+import { copyToClipboard, addClassesToLocalStorage, debounce, getRandomInt } from "../helpers"
 
 export default {
   name: "Home",
@@ -195,6 +200,22 @@ export default {
         },
       })
     },
+    generateRandomGradient() {
+      const randomNumFromColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      this.stop.from.color = this.colors[randomNumFromColor]
+      this.stop.from.shade = getRandomInt(1, 9) * 100
+
+      const randomNumViaColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      this.stop.via.color = this.colors[randomNumViaColor]
+      this.stop.via.shade = getRandomInt(1, 9) * 100
+
+      const randomNumToColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      this.stop.to.color = this.colors[randomNumToColor]
+      this.stop.to.shade = getRandomInt(1, 9) * 100
+
+      const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"]
+      this.direction = availableDirections[getRandomInt(0, 7)]
+    }
   },
   computed: {
     classes() {
