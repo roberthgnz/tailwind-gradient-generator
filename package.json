@@ -10,11 +10,6 @@
     "lint": "npx eslint src/**/* --fix",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "main": "src/index.js",
   "dependencies": {
     "vue": "^3.0.5",
