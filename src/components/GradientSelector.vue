@@ -112,14 +112,21 @@ export default {
   },
   methods: {
     handleColor({ stop, color }) {
-      this.color = color
-      this.$emit("color-selected", { stop, color })
+      if (color !== "current") {
+        this.color = color
+        this.$emit("color-selected", { stop, color })
+      }
     },
     handleShade({ shade }) {
       this.$emit("shade-selected", { shade })
     },
     getBg(color, shade) {
-      return !["transparent", "current", "black", "white"].includes(color)
+      if (color === "current") {
+        return !["transparent", "black", "white"].includes(this.color)
+          ? `bg-${this.color}-${this.shade}`
+          : `bg-${this.color}`
+      }
+      return !["transparent", "black", "white"].includes(color)
         ? `bg-${color}-${shade}`
         : `bg-${color}`
     },
