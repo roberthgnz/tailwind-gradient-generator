@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "npx eslint src/**/* --fix"
   },
   "main": "src/index.js",
   "dependencies": {
