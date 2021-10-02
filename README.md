@@ -9,7 +9,7 @@ Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.a
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Feel free to collaborate.
@@ -27,6 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/keithmchd48"><img src="https://avatars0.githubusercontent.com/u/29048050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Keith Machado</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=keithmchd48" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/victor-arnedo-blanco/"><img src="https://avatars1.githubusercontent.com/u/52747851?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Victor</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=varnebla" title="Code">💻</a></td>
     <td align="center"><a href="https://cesaralvarez.js.org/"><img src="https://avatars.githubusercontent.com/u/57325703?v=4?s=100" width="100px;" alt=""/><br /><sub><b>César Álvarez Llaneza</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=cesaralvrz" title="Documentation">📖</a> <a href="#design-cesaralvrz" title="Design">🎨</a> <a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=cesaralvrz" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/JasonFritsche"><img src="https://avatars.githubusercontent.com/u/34847680?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jason Fritsche</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=JasonFritsche" title="Code">💻</a></td>
   </tr>
 </table>
 
