@@ -38,5 +38,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-### Thanks
-Project strongly inspired in https://gradient-designer.csspost.com/ by @jenstornell
+### Thanks ❤️
+Project strongly inspired in https://gradient-designer.csspost.com by @jenstornell
