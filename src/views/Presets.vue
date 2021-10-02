@@ -1,18 +1,13 @@
 <template>
   <div class="p-4">
-    <ul
-      class="grid grid-cols-2 md:grid-cols-4 gap-4"
-    >
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <li
-        class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
         v-for="(preset, index) in presets"
         :key="index"
+        class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
         @click="copypreset(preset)"
       >
-        <div
-          class="preset relative flex justify-center items-center h-48 rounded"
-          :class="preset"
-        >
+        <div class="preset relative flex justify-center items-center h-48 rounded" :class="preset">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-copy"
@@ -27,9 +22,7 @@
           >
             <path stroke="none" d="M0 0h24v24H0z" />
             <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path
-              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
-            />
+            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
           </svg>
           <span v-if="copied === preset" class="text-white">Copied 🎉</span>
         </div>
@@ -39,11 +32,11 @@
 </template>
 
 <script>
-import { presets } from "../presets"
-import { copyToClipboard } from "../helpers"
+import { presets } from '../presets'
+import { copyToClipboard } from '../helpers'
 
 export default {
-  name: "Presets",
+  name: 'Presets',
   data() {
     return {
       presets: [],

@@ -1,9 +1,9 @@
 <template>
   <div class="direction h-full w-full">
     <button
-      @click="$emit('click', 'tl')"
       :class="[direction === 'tl' ? 'direction-button--active' : null]"
       class="direction-button tl"
+      @click="$emit('click', 'tl')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -22,9 +22,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 't')"
       :class="[direction === 't' ? 'direction-button--active' : null]"
       class="direction-button t"
+      @click="$emit('click', 't')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +44,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 'tr')"
       :class="[direction === 'tr' ? 'direction-button--active' : null]"
       class="direction-button tr"
+      @click="$emit('click', 'tr')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +65,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 'l')"
       :class="[direction === 'l' ? 'direction-button--active' : null]"
       class="direction-button l"
+      @click="$emit('click', 'l')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -88,9 +88,9 @@
     </button>
     <div></div>
     <button
-      @click="$emit('click', 'r')"
       :class="[direction === 'r' ? 'direction-button--active' : null]"
       class="direction-button r"
+      @click="$emit('click', 'r')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -110,9 +110,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 'bl')"
       :class="[direction === 'bl' ? 'direction-button--active' : null]"
       class="direction-button bl"
+      @click="$emit('click', 'bl')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -131,9 +131,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 'b')"
       :class="[direction === 'b' ? 'direction-button--active' : null]"
       class="direction-button b"
+      @click="$emit('click', 'b')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -153,9 +153,9 @@
       </svg>
     </button>
     <button
-      @click="$emit('click', 'br')"
       :class="[direction === 'br' ? 'direction-button--active' : null]"
       class="direction-button br"
+      @click="$emit('click', 'br')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@
 
 <script>
 export default {
-  name: "Direction",
+  name: 'Direction',
   props: {
     direction: {
       type: String,
@@ -193,8 +193,7 @@ export default {
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
   --tw-gradient-from: #38bdf8;
-  --tw-gradient-stops: var(--tw-gradient-from),
-    var(--tw-gradient-to, rgba(56, 189, 248, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(56, 189, 248, 0));
   --tw-gradient-to: #2563eb;
   box-sizing: border-box;
   border-width: 0;

@@ -4,23 +4,21 @@
     <ul class="h-48 overflow-y-auto text-center">
       <li
         v-for="item in history"
+        :key="item"
         class="cursor-pointer leading-7 hover:text-gray-700"
         @click="copyHistoryItem(item)"
-        :key="item"
       >
         <code class="text-left pr-2">{{ item }}</code>
-        <span v-if="copied === item" class="text-right text-gray-400"
-          >Copied🎉</span
-        >
+        <span v-if="copied === item" class="text-right text-gray-400">Copied🎉</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { copyToClipboard } from "../helpers/index.js"
+import { copyToClipboard } from '../helpers/index.js'
 export default {
-  name: "HistoryBox",
+  name: 'HistoryBox',
   props: {
     history: {
       type: Array,

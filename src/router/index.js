@@ -1,20 +1,20 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from "../views/Home.vue"
-import Presets from "../views/Presets.vue"
+import Home from '../views/Home.vue'
+import Presets from '../views/Presets.vue'
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/presets", component: Presets },
+  { path: '/', component: Home },
+  { path: '/presets', component: Presets },
   {
-    path: "/gradient",
-    name: "gradient",
+    path: '/gradient',
+    name: 'gradient',
     component: Home,
     // user will be able to enter the url as "/gradient?colors=red-300,teal-200,indigo-800" or "/gradient?colors=red-300,teal-200,indigo-800&direction=t"
-    props: route => ({
+    props: (route) => ({
       colors: route.query.colors,
-      direction: route.query.direction
-    })
+      direction: route.query.direction,
+    }),
   },
 ]
 

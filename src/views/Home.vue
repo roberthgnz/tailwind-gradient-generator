@@ -2,11 +2,7 @@
   <div class="home">
     <template v-if="gradient">
       <div class="relative" style="height: 33.33vh" :class="classes">
-        <div
-          title="Copy code"
-          class="code-preview cursor-pointer"
-          @click="copyClasses"
-        >
+        <div title="Copy code" class="code-preview cursor-pointer" @click="copyClasses">
           <svg
             v-if="!copied"
             xmlns="http://www.w3.org/2000/svg"
@@ -21,9 +17,7 @@
           >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path
-              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
-            />
+            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
           </svg>
           <span v-else>🎉 copied</span>
         </div>
@@ -31,8 +25,10 @@
       </div>
     </template>
     <div class="flex items-center w-full justify-center my-3">
-      <button class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
-              @click="generateRandomGradient">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
+        @click="generateRandomGradient"
+      >
         Generate Random Gradient
       </button>
     </div>
@@ -72,76 +68,78 @@
 </template>
 
 <script>
-import Direction from "../components/Direction.vue"
-import GradientSelector from "../components/GradientSelector.vue"
-import HistoryBox from "../components/HistoryBox.vue"
-import { copyToClipboard, addClassesToLocalStorage, debounce, getRandomInt } from "../helpers"
+import Direction from '../components/Direction.vue'
+import GradientSelector from '../components/GradientSelector.vue'
+import HistoryBox from '../components/HistoryBox.vue'
+import { copyToClipboard, addClassesToLocalStorage, debounce, getRandomInt } from '../helpers'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: { Direction, GradientSelector, HistoryBox },
   data() {
     return {
-      gradient: "from-teal-400 to-blue-500",
+      gradient: 'from-teal-400 to-blue-500',
       colors: [
-        "none",
-        "transparent",
-        "current",
-        "black",
-        "white",
-        "gray",
-        "red",
-        "yellow",
-        "orange",
-        "green",
-        "teal",
-        "blue",
-        "indigo",
-        "purple",
-        "pink",
+        'none',
+        'transparent',
+        'current',
+        'black',
+        'white',
+        'gray',
+        'red',
+        'yellow',
+        'orange',
+        'green',
+        'teal',
+        'blue',
+        'indigo',
+        'purple',
+        'pink',
       ],
       stop: {
         from: {
-          color: "green",
+          color: 'green',
           shade: 400,
         },
         via: {
-          color: "none",
+          color: 'none',
           shade: 900,
         },
         to: {
-          color: "blue",
+          color: 'blue',
           shade: 500,
         },
       },
-      direction: "r",
-      target: "",
+      direction: 'r',
+      target: '',
       copied: false,
-      savedGradients:
-        JSON.parse(window.localStorage.getItem("savedGradients")) || [],
+      savedGradients: JSON.parse(window.localStorage.getItem('savedGradients')) || [],
       debouncedUpdate: undefined,
     }
+  },
+  computed: {
+    classes() {
+      return `bg-gradient-to-${this.direction} ${this.gradient}`
+    },
+    history() {
+      return this.savedGradients
+    },
   },
   watch: {
     stop: {
       handler() {
         let result = []
-        let gradient = ""
+        let gradient = ''
         for (const key in this.stop) {
           const element = this.stop[key]
-          if (element.color !== "none") {
+          if (element.color !== 'none') {
             gradient = `${key}-${element.color}`
-            if (
-              !["transparent", "current", "black", "white"].includes(
-                element.color
-              )
-            )
-              gradient += `-${element.shade}`
+            if (!['transparent', 'current', 'black', 'white'].includes(element.color)) gradient += `-${element.shade}`
             result.push(gradient)
           }
         }
-        this.gradient = result.join(" ")
-        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate()
+        this.gradient = result.join(' ')
+        if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
       },
       // watcher will look for changes as soon as this component is created
       immediate: true,
@@ -149,7 +147,7 @@ export default {
     },
     direction: {
       handler() {
-        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate()
+        if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
       },
     },
   },
@@ -157,6 +155,15 @@ export default {
     // assign the function to be debounced
     // the "this.updateRoute" function will update the URL after 1000ms any time the user changes the colors or direction
     this.debouncedUpdate = debounce(this.updateRoute, 1000)
+  },
+  mounted() {
+    if (this.$route.name === 'gradient') {
+      // direction should be either of the following:
+      // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
+      // if direction is not mentioned in the URL, then "r" as default
+      const dir = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : 'r'
+      this.handleDirection(dir)
+    }
   },
   methods: {
     handleColorStop({ stop, color }) {
@@ -167,7 +174,7 @@ export default {
       this.stop[this.target].shade = shade * 100
     },
     handleDirection(direction) {
-      if (typeof direction === "string") {
+      if (typeof direction === 'string') {
         this.direction = direction
       }
     },
@@ -177,15 +184,12 @@ export default {
         setTimeout(() => (this.copied = false), 1500)
       })
       addClassesToLocalStorage(this.classes)
-      !this.history.includes(this.classes) &&
-        this.savedGradients.push(this.classes)
+      !this.history.includes(this.classes) && this.savedGradients.push(this.classes)
     },
     // function will update the URL based on the colors, shades and direction the user chooses
     updateRoute() {
       const oldColors = this.$route.query.colors
-      const oldDirection = this.$route.query.direction
-        ? this.$route.query.direction.toLowerCase()
-        : ""
+      const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''
       const oldPath = `${oldColors}${oldDirection}`
       const newColors = `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`
       const newDirection = this.direction.toLowerCase()
@@ -193,7 +197,7 @@ export default {
       // for avoiding the "NavigationDuplicated" error in vue-router, do not push to the route if the previous route was the same
       if (oldPath === newPath) return
       this.$router.push({
-        name: "gradient",
+        name: 'gradient',
         query: {
           colors: `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`,
           direction: this.direction.toUpperCase(),
@@ -213,28 +217,9 @@ export default {
       this.stop.to.color = this.colors[randomNumToColor]
       this.stop.to.shade = getRandomInt(1, 9) * 100
 
-      const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"]
+      const availableDirections = ['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br']
       this.direction = availableDirections[getRandomInt(0, 7)]
-    }
-  },
-  computed: {
-    classes() {
-      return `bg-gradient-to-${this.direction} ${this.gradient}`
     },
-    history() {
-      return this.savedGradients
-    },
-  },
-  mounted() {
-    if (this.$route.name === "gradient") {
-      // direction should be either of the following:
-      // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
-      // if direction is not mentioned in the URL, then "r" as default
-      const dir = this.$route.query.direction
-        ? this.$route.query.direction.toLowerCase()
-        : "r"
-      this.handleDirection(dir)
-    }
   },
 }
 </script>
