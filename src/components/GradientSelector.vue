@@ -5,9 +5,15 @@
     </h2>
     <p v-if="stop" class="mb-2 font-bold">{{ color }}</p>
     <ul class="grid grid-cols-5 gap-2">
-      <li v-for="co in colors" :key="co" :title="co" style="justify-self: center" @click="handleColor({ stop, co })">
-        <div class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer" :class="getBg(color, 400)">
-          {{ getAbbr(co) }}
+      <li
+        v-for="item in colors"
+        :key="item"
+        :title="item"
+        style="justify-self: center"
+        @click="handleColor({ stop, color: item })"
+      >
+        <div class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer" :class="getBg(item, 400)">
+          {{ getAbbr(item) }}
         </div>
       </li>
     </ul>
