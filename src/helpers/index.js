@@ -21,14 +21,14 @@ export const copyToClipboard = (text, callback = null) => {
   if (callback !== null) callback()
 }
 
-export const addClassesToLocalStorage = (classes) => {
-  const savedGradients = window.localStorage.getItem('savedGradients')
-  if (savedGradients) {
-    const parsedSavedGradients = JSON.parse(savedGradients)
-    !parsedSavedGradients.includes(classes) && parsedSavedGradients.push(classes)
-    window.localStorage.setItem('savedGradients', JSON.stringify(parsedSavedGradients))
-  } else {
-    window.localStorage.setItem('savedGradients', JSON.stringify([classes]))
+export const addClassesToLocalStorage = (classes, database) => {
+  const generatedClass = database.findOne('gradients', {
+    where: {
+      class: { $eq: classes },
+    },
+  })
+  if (!generatedClass) {
+    database.insert('gradients', { class: classes })
   }
 }
 

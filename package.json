@@ -12,6 +12,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
+    "@reliutg/lsdb": "^4.7.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.11"
   },

@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import Lsdb from '@reliutg/lsdb'
 import Direction from '../components/Direction.vue'
 import GradientSelector from '../components/GradientSelector.vue'
 import HistoryBox from '../components/HistoryBox.vue'
@@ -113,8 +114,9 @@ export default {
       direction: 'r',
       target: '',
       copied: false,
-      savedGradients: JSON.parse(window.localStorage.getItem('savedGradients')) || [],
+      savedGradients: [],
       debouncedUpdate: undefined,
+      database: null,
     }
   },
   computed: {
@@ -157,6 +159,9 @@ export default {
     this.debouncedUpdate = debounce(this.updateRoute, 1000)
   },
   mounted() {
+    this.database = new Lsdb('tailwind-gradient-generator')
+    this.database.collection(['gradients'])
+    this.savedGradients = this.database.all().gradients ? this.database.all().gradients.map((item) => item.class) : []
     if (this.$route.name === 'gradient') {
       // direction should be either of the following:
       // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
@@ -183,7 +188,7 @@ export default {
         this.copied = true
         setTimeout(() => (this.copied = false), 1500)
       })
-      addClassesToLocalStorage(this.classes)
+      addClassesToLocalStorage(this.classes, this.database)
       !this.history.includes(this.classes) && this.savedGradients.push(this.classes)
     },
     // function will update the URL based on the colors, shades and direction the user chooses
