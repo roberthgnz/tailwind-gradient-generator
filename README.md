@@ -3,7 +3,7 @@
 # Tailwind Gradient Generator
 
 
-![Tailwind Gradiente Generator Banner](assets/banner.png)
+![Tailwind Gradiente Generator Banner](public/banner.png)
 Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.app/) 
 
 </div>
