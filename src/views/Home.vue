@@ -67,27 +67,6 @@
   </div>
 </template>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
 import Lsdb from '@reliutg/lsdb'
 import Direction from '../components/Direction.vue'
@@ -261,27 +240,6 @@ export default {
   },
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <style scoped>
 .code-preview {

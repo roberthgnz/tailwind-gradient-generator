@@ -31,7 +31,7 @@
       </ul>
     </template>
   </div>
-</template>
+</template>
 
 <script>
 export default {
@@ -74,6 +74,13 @@ export default {
   },
   mounted() {
     // if the route name is 'gradient', that means the user has entered colors in the URL
+    const camelCaseColors = [
+        'blueGray',
+        'coolGray',
+        'trueGray',
+        'warmGray',
+        'lightBlue',
+    ]
     if (this.$route.name === 'gradient') {
       const [from, via, to] = this.$route.query.colors.split(',')
       let color = 'none'
@@ -87,7 +94,7 @@ export default {
       if (this.stop === 'to') {
         ;[color, shade] = to ? to.split('-') : ['none', 500]
       }
-      this.color = color.toLowerCase()
+      this.color = camelCaseColors.includes(color) ? color : color.toLowerCase()
       this.handleColor({ stop: this.stop, color: this.color })
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
       this.handleShade({ shade: +shade / 100 || 5 })
@@ -123,4 +130,14 @@ export default {
     },
   },
 }
-</script>
+</script>
+
+
+
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
     <navbar-vue></navbar-vue>
     <router-view></router-view>
   </div>
-</template>
+</template>
 
 <script>
 import NavbarVue from './components/Navbar.vue'
@@ -14,4 +14,14 @@ export default {
     NavbarVue,
   },
 }
-</script>
+</script>
+
+
+
+
+
+
+
+
+
+
