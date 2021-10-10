@@ -100,7 +100,7 @@ export default {
         'emerald',
         'teal',
         'cyan',
-        'lightBlue',
+        'sky',
         'blue',
         'indigo',
         'violet',

@@ -78,8 +78,7 @@ export default {
         'blueGray',
         'coolGray',
         'trueGray',
-        'warmGray',
-        'lightBlue',
+        'warmGray'
     ]
     if (this.$route.name === 'gradient') {
       const [from, via, to] = this.$route.query.colors.split(',')
