@@ -222,15 +222,16 @@ export default {
       })
     },
     generateRandomGradient() {
-      const randomNumFromColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      const colorLength = this.colors.length
+      const randomNumFromColor = getRandomInt(1, colorLength) // from 1 to skip "none"
       this.stop.from.color = this.colors[randomNumFromColor]
       this.stop.from.shade = getRandomInt(1, 9) * 100
 
-      const randomNumViaColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      const randomNumViaColor = getRandomInt(1, colorLength) // from 1 to skip "none"
       this.stop.via.color = this.colors[randomNumViaColor]
       this.stop.via.shade = getRandomInt(1, 9) * 100
 
-      const randomNumToColor = getRandomInt(1, 14) // 1 to 14 to skip "none"
+      const randomNumToColor = getRandomInt(1, colorLength) // from 1 to skip "none"
       this.stop.to.color = this.colors[randomNumToColor]
       this.stop.to.shade = getRandomInt(1, 9) * 100
 
