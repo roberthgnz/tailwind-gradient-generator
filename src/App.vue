@@ -3,15 +3,15 @@
     <navbar-vue></navbar-vue>
     <router-view></router-view>
   </div>
-</template>
+</template>
 
 <script>
-import NavbarVue from "./components/Navbar.vue"
+import NavbarVue from './components/Navbar.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     NavbarVue,
   },
 }
-</script>
+</script>

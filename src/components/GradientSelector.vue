@@ -31,7 +31,7 @@
       </ul>
     </template>
   </div>
-</template>
+</template>
 
 <script>
 export default {
@@ -123,4 +123,4 @@ export default {
     },
   },
 }
-</script>
+</script>

@@ -67,6 +67,27 @@
   </div>
 </template>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 import Lsdb from '@reliutg/lsdb'
 import Direction from '../components/Direction.vue'
@@ -86,16 +107,28 @@ export default {
         'current',
         'black',
         'white',
+        'blueGray',
+        'coolGray',
         'gray',
+        'trueGray',
+        'warmGray',
         'red',
-        'yellow',
         'orange',
+        'amber',
+        'yellow',
+        'lime',
         'green',
+        'emerald',
         'teal',
+        'cyan',
+        'lightBlue',
         'blue',
         'indigo',
+        'violet',
         'purple',
+        'fuchsia',
         'pink',
+        'rose',
       ],
       stop: {
         from: {
@@ -229,6 +262,27 @@ export default {
 }
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style scoped>
 .code-preview {
   position: absolute;
@@ -237,3 +291,24 @@ export default {
   transform: translate(-50%, -50%);
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

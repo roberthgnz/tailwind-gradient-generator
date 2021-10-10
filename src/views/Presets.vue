@@ -29,7 +29,7 @@
       </li>
     </ul>
   </div>
-</template>
+</template>
 
 <script>
 import { presets } from '../presets'
@@ -55,7 +55,7 @@ export default {
     },
   },
 }
-</script>
+</script>
 
 <style scoped>
 .preset svg {
@@ -68,4 +68,4 @@ export default {
 .preset:hover svg {
   opacity: 1;
 }
-</style>
+</style>

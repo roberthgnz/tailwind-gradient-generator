@@ -13,7 +13,7 @@
       </li>
     </ul>
   </div>
-</template>
+</template>
 
 <script>
 import { copyToClipboard } from '../helpers/index.js'
@@ -42,4 +42,4 @@ export default {
     },
   },
 }
-</script>
+</script>

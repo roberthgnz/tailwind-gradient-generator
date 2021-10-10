@@ -7,29 +7,24 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "npx eslint src/**/* --fix",
     "prepare": "husky install"
   },
   "main": "src/index.js",
   "dependencies": {
-    "@reliutg/lsdb": "4.7.2",
+    "@reliutg/lsdb": "4.7.3",
     "vue": "3.0.5",
     "vue-router": "4.0.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.0",
+    "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "@vitejs/plugin-vue": "^1.3.0",
-    "@vue/compiler-sfc": "^3.0.5",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-prettier-vue": "^3.1.0",
-    "eslint-plugin-vue": "^7.18.0",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "@vue/compiler-sfc": "3.0.5",
+    "autoprefixer": "^10.3.7",
     "husky": "^7.0.2",
-    "prettier": "^2.4.1",
-    "vite": "^2.4.4"
+    "postcss": "^8.3.9",
+    "tailwindcss": "^2.2.16",
+    "vite": "^2.6.5"
   },
   "browserslist": [
     "> 1%",

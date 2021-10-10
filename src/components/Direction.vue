@@ -174,7 +174,7 @@
       </svg>
     </button>
   </div>
-</template>
+</template>
 
 <script>
 export default {
@@ -186,7 +186,7 @@ export default {
     },
   },
 }
-</script>
+</script>
 
 <style scoped>
 .direction-button {
@@ -287,4 +287,4 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-</style>
+</style>
