@@ -2,24 +2,8 @@
   <div class="home">
     <template v-if="gradient">
       <div class="relative" style="height: 33.33vh" :class="classes">
-        <div title="Copy code" class="code-preview cursor-pointer" @click="copyClasses">
-          <svg
-            v-if="!copied"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
-          </svg>
-          <span v-else>🎉 copied</span>
+        <div class="code-preview">
+          <Copy :value="classes" @click="copyClasses" />
         </div>
         <direction :direction="direction" @click="handleDirection"></direction>
       </div>
@@ -72,11 +56,12 @@ import Lsdb from '@reliutg/lsdb'
 import Direction from '../components/Direction.vue'
 import GradientSelector from '../components/GradientSelector.vue'
 import HistoryBox from '../components/HistoryBox.vue'
+import Copy from '../components/Copy.vue'
 import { copyToClipboard, addClassesToLocalStorage, debounce, getRandomInt } from '../helpers'
 
 export default {
   name: 'Home',
-  components: { Direction, GradientSelector, HistoryBox },
+  components: { Direction, GradientSelector, HistoryBox, Copy },
   data() {
     return {
       gradient: 'from-teal-400 to-blue-500',

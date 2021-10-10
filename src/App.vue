@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-gray-500 bg-white">
     <navbar-vue></navbar-vue>
     <router-view></router-view>
   </div>

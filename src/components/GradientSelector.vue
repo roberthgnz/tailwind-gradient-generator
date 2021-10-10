@@ -1,6 +1,6 @@
 <template>
   <div class="shadow border border-white p-2 m-2 uppercase text-center" style="height: fit-content">
-    <h2 class="text-gray-500 font-normal mb-2">
+    <h2 class="font-mono text-gray-900 font-bold mb-2">
       {{ title }}
     </h2>
     <p v-if="stop" class="mb-2 font-bold">{{ color }}</p>
