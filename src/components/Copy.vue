@@ -5,7 +5,7 @@
         class="w-full sm:w-auto flex-none bg-gray-50 text-gray-400 hover:text-gray-900 font-mono leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl flex items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200"
     >
         <span class="text-gray-900">
-            <span class="hidden sm:inline text-gray-500 mr-1" aria-hidden="true">$</span>{{value}}
+            {{value}}
         </span>
         <span class="sr-only">(click to copy to clipboard)</span>
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
