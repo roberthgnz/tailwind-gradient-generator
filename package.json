@@ -11,6 +11,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
+    "@reliutg/buzz-notify": "^2.1.5",
     "@reliutg/lsdb": "4.7.3",
     "vue": "3.0.5",
     "vue-router": "4.0.11"

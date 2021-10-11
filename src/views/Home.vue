@@ -10,7 +10,15 @@
     </template>
     <div class="flex items-center w-full justify-center my-3">
       <button
-        class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-sm text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+        "
         @click="generateRandomGradient"
       >
         Generate Random Gradient
@@ -52,93 +60,104 @@
 </template>
 
 <script>
-import Lsdb from '@reliutg/lsdb'
-import Direction from '../components/Direction.vue'
-import GradientSelector from '../components/GradientSelector.vue'
-import HistoryBox from '../components/HistoryBox.vue'
-import Copy from '../components/Copy.vue'
-import { copyToClipboard, addClassesToLocalStorage, debounce, getRandomInt } from '../helpers'
+import Lsdb from "@reliutg/lsdb";
+import Notify from "@reliutg/buzz-notify";
+import "@reliutg/buzz-notify/dist/buzz-notify.css";
+import Direction from "../components/Direction.vue";
+import GradientSelector from "../components/GradientSelector.vue";
+import HistoryBox from "../components/HistoryBox.vue";
+import Copy from "../components/Copy.vue";
+import {
+  copyToClipboard,
+  addClassesToLocalStorage,
+  debounce,
+  getRandomInt,
+} from "../helpers";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: { Direction, GradientSelector, HistoryBox, Copy },
   data() {
     return {
-      gradient: 'from-teal-400 to-blue-500',
+      gradient: "from-teal-400 to-blue-500",
       colors: [
-        'none',
-        'transparent',
-        'current',
-        'black',
-        'white',
-        'blueGray',
-        'coolGray',
-        'gray',
-        'trueGray',
-        'warmGray',
-        'red',
-        'orange',
-        'amber',
-        'yellow',
-        'lime',
-        'green',
-        'emerald',
-        'teal',
-        'cyan',
-        'sky',
-        'blue',
-        'indigo',
-        'violet',
-        'purple',
-        'fuchsia',
-        'pink',
-        'rose',
+        "none",
+        "transparent",
+        "current",
+        "black",
+        "white",
+        "blueGray",
+        "coolGray",
+        "gray",
+        "trueGray",
+        "warmGray",
+        "red",
+        "orange",
+        "amber",
+        "yellow",
+        "lime",
+        "green",
+        "emerald",
+        "teal",
+        "cyan",
+        "sky",
+        "blue",
+        "indigo",
+        "violet",
+        "purple",
+        "fuchsia",
+        "pink",
+        "rose",
       ],
       stop: {
         from: {
-          color: 'green',
+          color: "green",
           shade: 400,
         },
         via: {
-          color: 'none',
+          color: "none",
           shade: 900,
         },
         to: {
-          color: 'blue',
+          color: "blue",
           shade: 500,
         },
       },
-      direction: 'r',
-      target: '',
-      copied: false,
+      direction: "r",
+      target: "",
       savedGradients: [],
       debouncedUpdate: undefined,
       database: null,
-    }
+    };
   },
   computed: {
     classes() {
-      return `bg-gradient-to-${this.direction} ${this.gradient}`
+      return `bg-gradient-to-${this.direction} ${this.gradient}`;
     },
     history() {
-      return this.savedGradients
+      return this.savedGradients;
     },
   },
   watch: {
     stop: {
       handler() {
-        let result = []
-        let gradient = ''
+        let result = [];
+        let gradient = "";
         for (const key in this.stop) {
-          const element = this.stop[key]
-          if (element.color !== 'none') {
-            gradient = `${key}-${element.color}`
-            if (!['transparent', 'current', 'black', 'white'].includes(element.color)) gradient += `-${element.shade}`
-            result.push(gradient)
+          const element = this.stop[key];
+          if (element.color !== "none") {
+            gradient = `${key}-${element.color}`;
+            if (
+              !["transparent", "current", "black", "white"].includes(
+                element.color
+              )
+            )
+              gradient += `-${element.shade}`;
+            result.push(gradient);
           }
         }
-        this.gradient = result.join(' ')
-        if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
+        this.gradient = result.join(" ");
+        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate();
       },
       // watcher will look for changes as soon as this component is created
       immediate: true,
@@ -146,85 +165,101 @@ export default {
     },
     direction: {
       handler() {
-        if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
+        if (typeof this.debouncedUpdate === "function") this.debouncedUpdate();
       },
     },
   },
   beforeMount() {
     // assign the function to be debounced
     // the "this.updateRoute" function will update the URL after 1000ms any time the user changes the colors or direction
-    this.debouncedUpdate = debounce(this.updateRoute, 1000)
+    this.debouncedUpdate = debounce(this.updateRoute, 1000);
   },
   mounted() {
-    this.database = new Lsdb('tailwind-gradient-generator')
-    this.database.collection(['gradients'])
-    this.savedGradients = this.database.all().gradients ? this.database.all().gradients.map((item) => item.class) : []
-    if (this.$route.name === 'gradient') {
+    this.database = new Lsdb("tailwind-gradient-generator");
+    this.database.collection(["gradients"]);
+    this.savedGradients = this.database.all().gradients
+      ? this.database.all().gradients.map((item) => item.class)
+      : [];
+    if (this.$route.name === "gradient") {
       // direction should be either of the following:
       // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
       // if direction is not mentioned in the URL, then "r" as default
-      const dir = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : 'r'
-      this.handleDirection(dir)
+      const dir = this.$route.query.direction
+        ? this.$route.query.direction.toLowerCase()
+        : "r";
+      this.handleDirection(dir);
     }
   },
   methods: {
     handleColorStop({ stop, color }) {
-      this.target = stop
-      this.stop[stop].color = color
+      this.target = stop;
+      this.stop[stop].color = color;
     },
     handleColorShade({ shade }) {
-      this.stop[this.target].shade = shade * 100
+      this.stop[this.target].shade = shade * 100;
     },
     handleDirection(direction) {
-      if (typeof direction === 'string') {
-        this.direction = direction
+      if (typeof direction === "string") {
+        this.direction = direction;
       }
     },
     copyClasses() {
       copyToClipboard(this.classes, () => {
-        this.copied = true
-        setTimeout(() => (this.copied = false), 1500)
-      })
-      addClassesToLocalStorage(this.classes, this.database)
-      !this.history.includes(this.classes) && this.savedGradients.push(this.classes)
+        Notify({
+          title: "Copied",
+          type: "success",
+          position: "top center",
+          duration: 1500,
+          config: {
+            icons: {
+              success: "🎉",
+            },
+          },
+        });
+      });
+      addClassesToLocalStorage(this.classes, this.database);
+      !this.history.includes(this.classes) &&
+        this.savedGradients.push(this.classes);
     },
     // function will update the URL based on the colors, shades and direction the user chooses
     updateRoute() {
-      const oldColors = this.$route.query.colors
-      const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''
-      const oldPath = `${oldColors}${oldDirection}`
-      const newColors = `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`
-      const newDirection = this.direction.toLowerCase()
-      const newPath = `${newColors}${newDirection}`
+      const oldColors = this.$route.query.colors;
+      const oldDirection = this.$route.query.direction
+        ? this.$route.query.direction.toLowerCase()
+        : "";
+      const oldPath = `${oldColors}${oldDirection}`;
+      const newColors = `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`;
+      const newDirection = this.direction.toLowerCase();
+      const newPath = `${newColors}${newDirection}`;
       // for avoiding the "NavigationDuplicated" error in vue-router, do not push to the route if the previous route was the same
-      if (oldPath === newPath) return
+      if (oldPath === newPath) return;
       this.$router.push({
-        name: 'gradient',
+        name: "gradient",
         query: {
           colors: `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`,
           direction: this.direction.toUpperCase(),
         },
-      })
+      });
     },
     generateRandomGradient() {
-      const colorLength = this.colors.length
-      const randomNumFromColor = getRandomInt(1, colorLength) // from 1 to skip "none"
-      this.stop.from.color = this.colors[randomNumFromColor]
-      this.stop.from.shade = getRandomInt(1, 9) * 100
+      const colorLength = this.colors.length;
+      const randomNumFromColor = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.from.color = this.colors[randomNumFromColor];
+      this.stop.from.shade = getRandomInt(1, 9) * 100;
 
-      const randomNumViaColor = getRandomInt(1, colorLength) // from 1 to skip "none"
-      this.stop.via.color = this.colors[randomNumViaColor]
-      this.stop.via.shade = getRandomInt(1, 9) * 100
+      const randomNumViaColor = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.via.color = this.colors[randomNumViaColor];
+      this.stop.via.shade = getRandomInt(1, 9) * 100;
 
-      const randomNumToColor = getRandomInt(1, colorLength) // from 1 to skip "none"
-      this.stop.to.color = this.colors[randomNumToColor]
-      this.stop.to.shade = getRandomInt(1, 9) * 100
+      const randomNumToColor = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.to.color = this.colors[randomNumToColor];
+      this.stop.to.shade = getRandomInt(1, 9) * 100;
 
-      const availableDirections = ['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br']
-      this.direction = availableDirections[getRandomInt(0, 7)]
+      const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"];
+      this.direction = availableDirections[getRandomInt(0, 7)];
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -235,24 +270,3 @@ export default {
   transform: translate(-50%, -50%);
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
