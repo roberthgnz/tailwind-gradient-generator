@@ -1,11 +1,11 @@
 <template>
   <div
-    class="shadow my-8 border border-white max-w-2xl mx-auto py-4 px-2 relative"
+    class="shadow my-8 border border-white max-w-2xl mx-auto py-4 px-2 relative dark:text-white"
     v-if="history.length > 0"
   >
-    <h2 class="text-gray-500 font-normal mb-4 text-center">SAVED GRADIENTS</h2>
+    <h2 class="text-gray-500 font-normal mb-4 text-center dark:text-white">SAVED GRADIENTS</h2>
     <span
-      class="text-gray-400 font-thin absolute top-0 right-0 p-3 cursor-pointer"
+      class="text-gray-400 font-thin absolute top-0 right-0 p-3 cursor-pointer dark:text-white hover:text-gray-700 dark:hover:text-gray-200"
       @click="handleRemoveHistoryItems(history)"
     >
       Remove all
@@ -14,7 +14,7 @@
       <li
         v-for="item in history"
         :key="item"
-        class="cursor-pointer hover:text-gray-700"
+        class="cursor-pointer hover:text-gray-700 dark:hover:text-gray-200"
       >
         <div class="flex justify-center items-center">
           <code class="text-left leading-7 pr-2" @click="copyHistoryItem(item)">

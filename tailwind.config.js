@@ -7,6 +7,7 @@ module.exports = {
             safelist: [/^bg-gradient-to-/, /^from-/, /^via-/, /^to-/, /^bg-/],
         },
     },
+    darkMode: 'class',
     theme: {
         colors: {
             transparent: 'transparent',
