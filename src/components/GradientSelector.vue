@@ -1,9 +1,9 @@
 <template>
   <div class="shadow border border-white p-2 m-2 uppercase text-center" style="height: fit-content">
-    <h2 class="font-mono text-gray-900 font-bold mb-2">
+    <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
       {{ title }}
     </h2>
-    <p v-if="stop" class="mb-2 font-bold">{{ color }}</p>
+    <p v-if="stop" class="mb-2 font-bold dark:text-white">{{ color }}</p>
     <ul class="grid grid-cols-5 gap-2">
       <li
         v-for="item in colors"
@@ -18,7 +18,7 @@
       </li>
     </ul>
     <template v-if="showShades">
-      <h2 class="text-gray-500 font-normal my-2">SHADE: {{ shade }}</h2>
+      <h2 class="text-gray-500 font-normal my-2 dark:text-white">SHADE: {{ shade }}</h2>
       <ul class="grid grid-cols-5 gap-2">
         <li v-for="n in 9" :key="n" style="justify-self: center" @click="handleShade({ shade: n })">
           <div
