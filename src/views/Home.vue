@@ -55,7 +55,7 @@
         @shade-selected="handleColorShade"
       ></gradient-selector>
     </div>
-    <HistoryBox :history="history" />
+    <HistoryBox :history="history" @remove-history-items="removeClasses" />
   </div>
 </template>
 
@@ -72,6 +72,7 @@ import {
   addClassesToLocalStorage,
   debounce,
   getRandomInt,
+  removeClassesFromLocalStorage,
 } from "../helpers";
 
 export default {
@@ -177,9 +178,7 @@ export default {
   mounted() {
     this.database = new Lsdb("tailwind-gradient-generator");
     this.database.collection(["gradients"]);
-    this.savedGradients = this.database.all().gradients
-      ? this.database.all().gradients.map((item) => item.class)
-      : [];
+    this.fetchSavedGradients();
     if (this.$route.name === "gradient") {
       // direction should be either of the following:
       // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
@@ -203,6 +202,11 @@ export default {
         this.direction = direction;
       }
     },
+    fetchSavedGradients() {
+      this.savedGradients = this.database.all().gradients
+        ? this.database.all().gradients.map((item) => item.class)
+        : [];
+    },
     copyClasses() {
       copyToClipboard(this.classes, () => {
         Notify({
@@ -220,6 +224,22 @@ export default {
       addClassesToLocalStorage(this.classes, this.database);
       !this.history.includes(this.classes) &&
         this.savedGradients.push(this.classes);
+    },
+    removeClasses(classes) {
+      removeClassesFromLocalStorage(classes, this.database, () => {
+        this.fetchSavedGradients();
+        Notify({
+          title: "Removed",
+          type: "success",
+          position: "bottom center",
+          duration: 1500,
+          config: {
+            icons: {
+              success: "🎉",
+            },
+          },
+        });
+      });
     },
     // function will update the URL based on the colors, shades and direction the user chooses
     updateRoute() {
