@@ -11,7 +11,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "@reliutg/buzz-notify": "^2.1.5",
+    "@reliutg/buzz-notify": "^2.3.3",
     "@reliutg/lsdb": "4.7.3",
     "vue": "3.0.5",
     "vue-router": "4.0.11"
@@ -22,10 +22,10 @@
     "@vitejs/plugin-vue": "^1.9.3",
     "@vue/compiler-sfc": "3.0.5",
     "autoprefixer": "^10.3.7",
-    "husky": "^7.0.2",
-    "postcss": "^8.3.9",
-    "tailwindcss": "^2.2.16",
-    "vite": "^2.6.5"
+    "husky": "^7.0.4",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
+    "vite": "^2.6.10"
   },
   "browserslist": [
     "> 1%",

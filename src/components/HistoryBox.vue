@@ -41,7 +41,7 @@
 
 <script>
 import { copyToClipboard } from "../helpers/index.js";
-import Notify from "@reliutg/buzz-notify";
+import { Notify } from "@reliutg/buzz-notify";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
 export default {
