@@ -111,25 +111,28 @@ export default {
   },
   mounted() {
     this.database = new Lsdb("tailwind-gradient-generator");
-    this.database.collection(["theme"]);
+    this.database.collection("theme");
     if (this.database.all("theme").length === 0) {
       this.database.insert("theme", { theme: "light" });
     }
-    if (this.theme === "light") {
-      document.querySelector("html").classList.remove("dark");
-    } else {
-      document.querySelector("html").classList.add("dark");
-    }
+    document
+      .querySelector("html")
+      .classList.toggle("dark", this.theme !== "light");
   },
   methods: {
     toggleTheme() {
-      if (this.theme === "light") {
-        this.database.update("theme", { theme: "light" }, { theme: "dark" });
-        document.querySelector("html").classList.add("dark");
-      } else {
-        this.database.update("theme", { theme: "dark" }, { theme: "light" });
-        document.querySelector("html").classList.remove("dark");
-      }
+      const THEMES = {
+        light: "dark",
+        dark: "light",
+      };
+      this.database.update(
+        "theme",
+        { theme: this.theme },
+        { theme: THEMES[this.theme] }
+      );
+      document
+        .querySelector("html")
+        .classList.toggle("dark", this.theme !== "light");
     },
   },
 };
