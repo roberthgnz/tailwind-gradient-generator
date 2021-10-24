@@ -212,7 +212,7 @@ export default {
         Notify({
           title: "Copied",
           type: "success",
-          position: "top center",
+          position: "top-center",
           duration: 1500,
           config: {
             icons: {
@@ -231,7 +231,7 @@ export default {
         Notify({
           title: "Removed",
           type: "success",
-          position: "bottom center",
+          position: "bottom-center",
           duration: 1500,
           config: {
             icons: {
