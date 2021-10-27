@@ -33,13 +33,13 @@
     "not dead"
   ],
   "bugs": {
-    "url": "https://github.com/eliutgon/tailwind-gradient-generator/issues"
+    "url": "https://github.com/eliut505/tailwind-gradient-generator/issues"
   },
-  "homepage": "https://github.com/eliutgon/tailwind-gradient-generator#readme",
+  "homepage": "https://github.com/eliut505/tailwind-gradient-generator#readme",
   "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliutgon/tailwind-gradient-generator.git"
+    "url": "git+https://github.com/eliut505/tailwind-gradient-generator.git"
   }
 }
