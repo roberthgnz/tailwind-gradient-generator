@@ -11,21 +11,21 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "@reliutg/buzz-notify": "2.3.3",
-    "@reliutg/lsdb": "4.8.1",
+    "@reliutg/buzz-notify": "2.4.2",
+    "@reliutg/lsdb": "4.8.2",
     "vue": "3.2.20",
     "vue-router": "4.0.11"
   },
   "devDependencies": {
     "@commitlint/cli": "13.2.1",
     "@commitlint/config-conventional": "13.2.0",
-    "@vitejs/plugin-vue": "1.9.3",
+    "@vitejs/plugin-vue": "1.9.4",
     "@vue/compiler-sfc": "3.2.20",
     "autoprefixer": "10.3.7",
     "husky": "7.0.4",
     "postcss": "8.3.11",
     "tailwindcss": "2.2.17",
-    "vite": "2.6.10"
+    "vite": "2.6.13"
   },
   "browserslist": [
     "> 1%",
