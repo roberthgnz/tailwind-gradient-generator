@@ -8,7 +8,7 @@
       bg-white
       border-b border-gray-200
       p-4
-      dark:bg-blueGray-900
+      dark:bg-blueGray-900 dark:border-gray-600
     "
   >
     <div class="flex items-center flex-shrink-0 text-black mr-6">

@@ -1,5 +1,8 @@
 <template>
-  <div class="shadow border border-white p-2 m-2 uppercase text-center" style="height: fit-content">
+  <div
+    class="rounded border dark:border-gray-600 p-2 m-2 uppercase text-center"
+    style="height: fit-content"
+  >
     <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
       {{ title }}
     </h2>
@@ -12,20 +15,54 @@
         style="justify-self: center"
         @click="handleColor({ stop, color: item })"
       >
-        <div class="border flex rounded justify-center items-center w-8 h-8 cursor-pointer" :class="getBg(item, 400)">
+        <div
+          class="
+            border
+            dark:border-gray-600
+            flex
+            rounded
+            justify-center
+            items-center
+            w-8
+            h-8
+            cursor-pointer
+          "
+          :class="getBg(item, 400)"
+        >
           {{ getAbbr(item) }}
         </div>
       </li>
     </ul>
     <template v-if="showShades">
-      <h2 class="text-gray-500 font-normal my-2 dark:text-white">SHADE: {{ shade }}</h2>
+      <h2 class="text-gray-500 font-normal my-2 dark:text-white">
+        SHADE: {{ shade }}
+      </h2>
       <ul class="grid grid-cols-5 gap-2">
-        <li v-for="n in 9" :key="n" style="justify-self: center" @click="handleShade({ shade: n })">
+        <li
+          v-for="n in 9"
+          :key="n"
+          style="justify-self: center"
+          @click="handleShade({ shade: n })"
+        >
           <div
-            class="border rounded flex justify-center items-center w-8 h-8 cursor-pointer"
+            class="
+              border
+              dark:border-gray-600
+              rounded
+              flex
+              justify-center
+              items-center
+              w-8
+              h-8
+              cursor-pointer
+            "
             :class="`bg-${color}-${n}00`"
           >
-            <div v-if="color && shade === Number(n * 100)" class="rounded-full h-4 w-4" :class="selectedShade"></div>
+            <div
+              v-if="color && shade === Number(n * 100)"
+              class="rounded-full h-4 w-4"
+              :class="selectedShade"
+            ></div>
           </div>
         </li>
       </ul>
@@ -35,7 +72,7 @@
 
 <script>
 export default {
-  name: 'GradientSelector',
+  name: "GradientSelector",
   props: {
     title: {
       type: String,
@@ -61,82 +98,76 @@ export default {
   data: () => {
     return {
       color: null,
-    }
+    };
   },
   computed: {
     selectedShade() {
-      let minus = this.shade !== 500 ? 100 : 200
-      return `bg-${this.color}-${900 - this.shade + minus}`
+      let minus = this.shade !== 500 ? 100 : 200;
+      return `bg-${this.color}-${900 - this.shade + minus}`;
     },
     showShades() {
-      return this.target === this.stop && !['none', 'transparent', 'current', 'black', 'white'].includes(this.color)
+      return (
+        this.target === this.stop &&
+        !["none", "transparent", "current", "black", "white"].includes(
+          this.color
+        )
+      );
     },
   },
   mounted() {
     // if the route name is 'gradient', that means the user has entered colors in the URL
-    const camelCaseColors = [
-        'blueGray',
-        'coolGray',
-        'trueGray',
-        'warmGray'
-    ]
-    if (this.$route.name === 'gradient') {
-      const [from, via, to] = this.$route.query.colors.split(',')
-      let color = 'none'
-      let shade = 500
-      if (this.stop === 'from') {
-        ;[color, shade] = from ? from.split('-') : ['none', 500]
+    const camelCaseColors = ["blueGray", "coolGray", "trueGray", "warmGray"];
+    if (this.$route.name === "gradient") {
+      const [from, via, to] = this.$route.query.colors.split(",");
+      let color = "none";
+      let shade = 500;
+      if (this.stop === "from") {
+        [color, shade] = from ? from.split("-") : ["none", 500];
       }
-      if (this.stop === 'via') {
-        ;[color, shade] = via ? via.split('-') : ['none', 500]
+      if (this.stop === "via") {
+        [color, shade] = via ? via.split("-") : ["none", 500];
       }
-      if (this.stop === 'to') {
-        ;[color, shade] = to ? to.split('-') : ['none', 500]
+      if (this.stop === "to") {
+        [color, shade] = to ? to.split("-") : ["none", 500];
       }
-      this.color = camelCaseColors.includes(color) ? color : color.toLowerCase()
-      this.handleColor({ stop: this.stop, color: this.color })
+      this.color = camelCaseColors.includes(color)
+        ? color
+        : color.toLowerCase();
+      this.handleColor({ stop: this.stop, color: this.color });
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
-      this.handleShade({ shade: +shade / 100 || 5 })
+      this.handleShade({ shade: +shade / 100 || 5 });
     }
   },
   methods: {
     handleColor({ stop, color }) {
-      if (color !== 'current') {
-        this.color = color
-        this.$emit('color-selected', { stop, color })
+      if (color !== "current") {
+        this.color = color;
+        this.$emit("color-selected", { stop, color });
       }
     },
     handleShade({ shade }) {
-      this.$emit('shade-selected', { shade })
+      this.$emit("shade-selected", { shade });
     },
     getBg(color, shade) {
-      if (color === 'current') {
-        return !['transparent', 'black', 'white'].includes(this.color)
+      if (color === "current") {
+        return !["transparent", "black", "white"].includes(this.color)
           ? `bg-${this.color}-${this.shade}`
-          : `bg-${this.color}`
+          : `bg-${this.color}`;
       }
-      return !['transparent', 'black', 'white'].includes(color) ? `bg-${color}-${shade}` : `bg-${color}`
+      return !["transparent", "black", "white"].includes(color)
+        ? `bg-${color}-${shade}`
+        : `bg-${color}`;
     },
     getAbbr(color) {
       let colors = {
-        none: 'n',
-        transparent: 't',
-        current: 'c',
-        black: 'b',
-        white: 'w',
-      }
-      return colors[color] ?? null
+        none: "n",
+        transparent: "t",
+        current: "c",
+        black: "b",
+        white: "w",
+      };
+      return colors[color] ?? null;
     },
   },
-}
+};
 </script>
-
-
-
-
-
-
-
-
-
-

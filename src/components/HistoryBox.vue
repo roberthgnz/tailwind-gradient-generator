@@ -1,9 +1,10 @@
 <template>
   <div
     class="
-      shadow
+      rounded
       my-8
-      border border-white
+      border
+      dark:border-gray-600
       max-w-2xl
       mx-auto
       py-4
