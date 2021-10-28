@@ -7,8 +7,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -28,8 +28,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -50,8 +50,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -71,8 +71,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -94,8 +94,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -116,8 +116,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -137,8 +137,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -159,8 +159,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -178,14 +178,14 @@
 
 <script>
 export default {
-  name: 'Direction',
+  name: "Direction",
   props: {
     direction: {
       type: String,
       required: true,
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -193,7 +193,8 @@ export default {
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
   --tw-gradient-from: #38bdf8;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(56, 189, 248, 0));
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, rgba(56, 189, 248, 0));
   --tw-gradient-to: #2563eb;
   box-sizing: border-box;
   border-width: 0;
@@ -288,13 +289,3 @@ export default {
   transform: translateY(-50%);
 }
 </style>
-
-
-
-
-
-
-
-
-
-

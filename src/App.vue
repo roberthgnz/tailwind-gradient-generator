@@ -1,5 +1,5 @@
 <template>
-  <div class="text-gray-500 bg-white dark:bg-blueGray-800">
+  <div class="text-gray-500 bg-white dark:bg-blueGray-900">
     <navbar-vue></navbar-vue>
     <router-view></router-view>
     <div id="notify"></div>

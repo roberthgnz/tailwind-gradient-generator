@@ -4,7 +4,7 @@
       rounded
       my-8
       border
-      dark:border-gray-600
+      dark:border-gray-700
       max-w-2xl
       mx-auto
       py-4

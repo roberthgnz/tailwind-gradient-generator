@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded border dark:border-gray-600 p-2 m-2 uppercase text-center"
+    class="rounded border dark:border-gray-700 p-2 m-2 uppercase text-center"
     style="height: fit-content"
   >
     <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
@@ -18,7 +18,7 @@
         <div
           class="
             border
-            dark:border-gray-600
+            dark:border-gray-700
             flex
             rounded
             justify-center
@@ -47,7 +47,7 @@
           <div
             class="
               border
-              dark:border-gray-600
+              dark:border-gray-700
               rounded
               flex
               justify-center

@@ -9,7 +9,7 @@
       bg-white
       border-b border-gray-200
       p-4
-      dark:bg-blueGray-900 dark:border-gray-600
+      dark:bg-blueGray-900 dark:border-gray-700
     "
   >
     <h1 class="flex justify-center md:justify-start w-full">
@@ -46,7 +46,7 @@
             dark:text-white
           "
         >
-          Presets
+          Gradients
         </router-link>
       </li>
       <li>

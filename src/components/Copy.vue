@@ -28,7 +28,7 @@
       duration-200
     "
   >
-    <span class="hidden md:block md:mr-3 text-gray-900">
+    <span class="hidden md:block text-2xl font-bold text-center p-2">
       {{ value }}
     </span>
     <span class="sr-only">(click to copy to clipboard)</span>
