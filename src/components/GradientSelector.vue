@@ -116,8 +116,8 @@ export default {
   },
   mounted() {
     // if the route name is 'gradient', that means the user has entered colors in the URL
-    const camelCaseColors = ["blueGray", "coolGray", "trueGray", "warmGray"];
     if (this.$route.name === "gradient") {
+      const camelCaseColors = ["blueGray", "coolGray", "trueGray", "warmGray"];
       const [from, via, to] = this.$route.query.colors.split(",");
       let color = "none";
       let shade = 500;
@@ -159,7 +159,7 @@ export default {
         : `bg-${color}`;
     },
     getAbbr(color) {
-      let colors = {
+      const colors = {
         none: "n",
         transparent: "t",
         current: "c",

@@ -146,14 +146,18 @@ export default {
         let gradient = "";
         for (const key in this.stop) {
           const element = this.stop[key];
-          if (element.color !== "none") {
+          if (
+            element.color !== "none" &&
+            !(key === "to" && element.color === "transparent")
+          ) {
             gradient = `${key}-${element.color}`;
             if (
               !["transparent", "current", "black", "white"].includes(
                 element.color
               )
-            )
+            ) {
               gradient += `-${element.shade}`;
+            }
             result.push(gradient);
           }
         }
@@ -272,8 +276,8 @@ export default {
       this.stop.via.color = this.colors[via];
       this.stop.via.shade = getRandomInt(1, 9) * 100;
 
-      const tp = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.to.color = this.colors[tp];
+      const to = getRandomInt(2, colorLength); // from 2 to skip "none" and "transparent"
+      this.stop.to.color = this.colors[to];
       this.stop.to.shade = getRandomInt(1, 9) * 100;
 
       const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"];
