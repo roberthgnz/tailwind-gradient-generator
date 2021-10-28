@@ -3,7 +3,7 @@
     <template v-if="gradient">
       <div class="relative" style="height: 33.33vh" :class="classes">
         <div class="code-preview">
-          <Copy :value="classes" @click="copyClasses" />
+          <Copy :value="classes" :target="target" @click="copyClasses" />
         </div>
         <direction :direction="direction" @click="handleDirection"></direction>
       </div>

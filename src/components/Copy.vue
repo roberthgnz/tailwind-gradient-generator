@@ -28,8 +28,10 @@
       duration-200
     "
   >
-    <span class="hidden md:block text-2xl font-bold text-center p-2">
-      {{ value }}
+    <span
+      class="hidden md:block text-2xl font-bold text-center p-2"
+      v-html="parsedValue"
+    >
     </span>
     <span class="sr-only">(click to copy to clipboard)</span>
     <svg
@@ -52,6 +54,20 @@ export default {
     value: {
       type: String,
       required: true,
+    },
+    target: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+    parsedValue() {
+      if (!this.target) return this.value;
+      const reg = new RegExp(
+        `${this.target}-[a-z]+-[0-9]+|${this.target}-[a-z]{3,}(-[0-9]+)?`,
+        "gi"
+      );
+      return this.value.replace(reg, '<code class="text-gray-900">$&</code>');
     },
   },
 };
