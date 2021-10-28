@@ -203,8 +203,8 @@ export default {
       }
     },
     fetchSavedGradients() {
-      this.savedGradients = this.database.all().gradients
-        ? this.database.all().gradients.map((item) => item.class)
+      this.savedGradients = this.database.all("gradients")
+        ? this.database.all("gradients").map((item) => item.class)
         : [];
     },
     copyClasses() {
@@ -222,8 +222,9 @@ export default {
         });
       });
       addClassesToLocalStorage(this.classes, this.database);
-      !this.history.includes(this.classes) &&
+      if (!this.history.includes(this.classes)) {
         this.savedGradients.push(this.classes);
+      }
     },
     removeClasses(classes) {
       removeClassesFromLocalStorage(classes, this.database, () => {
@@ -262,21 +263,22 @@ export default {
       });
     },
     generateRandomGradient() {
-      const colorLength = this.colors.length;
-      const randomNumFromColor = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.from.color = this.colors[randomNumFromColor];
+      const colorLength = this.colors.length - 1;
+      const from = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.from.color = this.colors[from];
       this.stop.from.shade = getRandomInt(1, 9) * 100;
 
-      const randomNumViaColor = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.via.color = this.colors[randomNumViaColor];
+      const via = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.via.color = this.colors[via];
       this.stop.via.shade = getRandomInt(1, 9) * 100;
 
-      const randomNumToColor = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.to.color = this.colors[randomNumToColor];
+      const tp = getRandomInt(1, colorLength); // from 1 to skip "none"
+      this.stop.to.color = this.colors[tp];
       this.stop.to.shade = getRandomInt(1, 9) * 100;
 
       const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"];
-      this.direction = availableDirections[getRandomInt(0, 7)];
+      this.direction =
+        availableDirections[getRandomInt(0, availableDirections.length - 1)];
     },
   },
 };

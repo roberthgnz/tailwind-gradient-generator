@@ -38,6 +38,7 @@
       <li
         v-for="item in history"
         :key="item"
+        title="Click to copy"
         class="cursor-pointer hover:text-gray-700 dark:hover:text-gray-200"
       >
         <div class="flex justify-center items-center">
