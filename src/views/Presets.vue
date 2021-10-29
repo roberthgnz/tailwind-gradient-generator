@@ -1,159 +1,185 @@
 <template>
   <div class="p-4">
-    <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <li
-        v-for="(preset, index) in presets"
-        :key="index"
-        class="rounded cursor-pointer shadow-md transition duration-100 ease-in"
-      >
-        <div
-          class="
-            preset
-            rounded-t
-            relative
-            flex
-            justify-center
-            items-center
-            h-48
-          "
-          :class="preset"
-          @click="copypreset(preset)"
+    <h1
+      class="
+        inline-block
+        text-3xl
+        font-extrabold
+        text-gray-900
+        dark:text-white
+        tracking-tight
+      "
+    >
+      Gradients
+    </h1>
+    <template v-for="preset in presets" :key="preset.author.url">
+      <h2 class="my-3 text-lg text-gray-500">
+        <a :href="preset.author.url"
+          >Made by <strong>{{ preset.author.name }}</strong></a
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="#ffffff"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+      </h2>
+      <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <li
+          v-for="(gradient, index) in preset.gradients"
+          :key="index"
+          class="
+            rounded
+            cursor-pointer
+            shadow-md
+            transition
+            duration-100
+            ease-in
+          "
+        >
+          <div
+            class="
+              preset
+              rounded-t
+              relative
+              flex
+              justify-center
+              items-center
+              h-48
+            "
+            :class="gradient"
+            @click="copypreset(gradient)"
           >
-            <path stroke="none" d="M0 0h24v24H0z" />
-            <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path
-              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
-            />
-          </svg>
-          <span v-if="copied === preset" class="text-white">Copied 🎉</span>
-        </div>
-        <div class="flex flex-wrap justify-center -m-0.5">
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#ffffff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <Arrow />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform rotate-180" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform -rotate-90" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform rotate-90" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform -rotate-45" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform rotate-45" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform -rotate-135" />
-            </button>
-          </span>
-          <span class="p-0.5">
-            <button
-              class="
-                p-1.5
-                rounded-lg
-                text-gray-500
-                dark:text-gray-400 dark:hover:text-gray-600
-                hover:text-gray-900
-                transition-colors
-              "
-            >
-              <Arrow class="transform rotate-135" />
-            </button>
-          </span>
-        </div>
-      </li>
-    </ul>
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <rect x="8" y="8" width="12" height="12" rx="2" />
+              <path
+                d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+              />
+            </svg>
+            <span v-if="copied === gradient" class="text-white">Copied 🎉</span>
+          </div>
+          <div class="flex flex-wrap justify-center -m-0.5">
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform rotate-180" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform -rotate-90" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform rotate-90" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform -rotate-45" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform rotate-45" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform -rotate-135" />
+              </button>
+            </span>
+            <span class="p-0.5">
+              <button
+                class="
+                  p-1.5
+                  rounded-lg
+                  text-gray-500
+                  dark:text-gray-400 dark:hover:text-gray-600
+                  hover:text-gray-900
+                  transition-colors
+                "
+              >
+                <Arrow class="transform rotate-135" />
+              </button>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
