@@ -23,8 +23,8 @@
             rounded
             justify-center
             items-center
-            w-8
-            h-8
+            w-9
+            h-9
             cursor-pointer
           "
           :class="getBg(item, 400)"
@@ -52,8 +52,8 @@
               flex
               justify-center
               items-center
-              w-8
-              h-8
+              w-9
+              h-9
               cursor-pointer
             "
             :class="`bg-${color}-${n}00`"
