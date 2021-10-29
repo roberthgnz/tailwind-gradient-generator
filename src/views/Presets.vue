@@ -4,13 +4,23 @@
       <li
         v-for="(preset, index) in presets"
         :key="index"
-        class="cursor-pointer hover:shadow-lg transition duration-100 ease-in"
-        @click="copypreset(preset)"
+        class="rounded cursor-pointer shadow-md transition duration-100 ease-in"
       >
-        <div class="preset relative flex justify-center items-center h-48 rounded" :class="preset">
+        <div
+          class="
+            preset
+            rounded-t
+            relative
+            flex
+            justify-center
+            items-center
+            h-48
+          "
+          :class="preset"
+          @click="copypreset(preset)"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-copy"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -22,9 +32,117 @@
           >
             <path stroke="none" d="M0 0h24v24H0z" />
             <rect x="8" y="8" width="12" height="12" rx="2" />
-            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
+            <path
+              d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+            />
           </svg>
           <span v-if="copied === preset" class="text-white">Copied 🎉</span>
+        </div>
+        <div class="flex flex-wrap justify-center -m-0.5">
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform rotate-180" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform -rotate-90" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform rotate-90" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform -rotate-45" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform rotate-45" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform -rotate-135" />
+            </button>
+          </span>
+          <span class="p-0.5">
+            <button
+              class="
+                p-1.5
+                rounded-lg
+                text-gray-500
+                hover:text-gray-900
+                transition-colors
+              "
+            >
+              <Arrow class="transform rotate-135" />
+            </button>
+          </span>
         </div>
       </li>
     </ul>
@@ -32,40 +150,32 @@
 </template>
 
 <script>
-import { presets } from '../presets'
-import { copyToClipboard } from '../helpers'
+import { presets } from "../presets";
+import { copyToClipboard } from "../helpers";
+import Arrow from "../icons/Arrow.vue";
 
 export default {
-  name: 'Presets',
+  name: "Presets",
   data() {
     return {
       presets: [],
       copied: null,
-    }
+    };
   },
   mounted() {
-    this.presets = presets
+    this.presets = presets;
   },
   methods: {
     copypreset(preset) {
       copyToClipboard(preset, () => {
-        this.copied = preset
-        setTimeout(() => (this.copied = null), 1500)
-      })
+        this.copied = preset;
+        setTimeout(() => (this.copied = null), 1500);
+      });
     },
   },
-}
+  components: { Arrow },
+};
 </script>
-
-
-
-
-
-
-
-
-
-
 
 <style scoped>
 .preset svg {
@@ -79,13 +189,3 @@ export default {
   opacity: 1;
 }
 </style>
-
-
-
-
-
-
-
-
-
-

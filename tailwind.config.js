@@ -1,42 +1,48 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-    purge: {
-        content: ["./src/**/*.vue", "./public/**/*.html"],
-        options: {
-            safelist: [/^bg-gradient-to-/, /^from-/, /^via-/, /^to-/, /^bg-/],
-        },
+  purge: {
+    content: ["./src/**/*.vue", "./public/**/*.html"],
+    options: {
+      safelist: [/^bg-gradient-to-/, /^from-/, /^via-/, /^to-/, /^bg-/],
     },
-    darkMode: 'class',
-    theme: {
-        colors: {
-            transparent: 'transparent',
-            current: 'currentColor',
-            black: '#000',
-            white: '#fff',
-            blueGray: colors.blueGray,
-            coolGray: colors.coolGray,
-            gray: colors.gray,
-            trueGray: colors.trueGray,
-            warmGray: colors.warmGray,
-            red: colors.red,
-            orange: colors.orange,
-            amber: colors.amber,
-            yellow: colors.yellow,
-            lime: colors.lime,
-            green: colors.green,
-            emerald: colors.emerald,
-            teal: colors.teal,
-            cyan: colors.cyan,
-            sky: colors.sky,
-            blue: colors.blue,
-            indigo: colors.indigo,
-            violet: colors.violet,
-            purple: colors.purple,
-            fuchsia: colors.fuchsia,
-            pink: colors.pink,
-            rose: colors.rose,
-        },
+  },
+  darkMode: "class",
+  theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      black: "#000",
+      white: "#fff",
+      blueGray: colors.blueGray,
+      coolGray: colors.coolGray,
+      gray: colors.gray,
+      trueGray: colors.trueGray,
+      warmGray: colors.warmGray,
+      red: colors.red,
+      orange: colors.orange,
+      amber: colors.amber,
+      yellow: colors.yellow,
+      lime: colors.lime,
+      green: colors.green,
+      emerald: colors.emerald,
+      teal: colors.teal,
+      cyan: colors.cyan,
+      sky: colors.sky,
+      blue: colors.blue,
+      indigo: colors.indigo,
+      violet: colors.violet,
+      purple: colors.purple,
+      fuchsia: colors.fuchsia,
+      pink: colors.pink,
+      rose: colors.rose,
     },
-    plugins: [],
-}
+    extend: {
+      rotate: {
+        135: "135deg",
+        "-135": "-135deg",
+      },
+    },
+  },
+  plugins: [],
+};

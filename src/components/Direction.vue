@@ -5,86 +5,28 @@
       class="direction-button tl"
       @click="$emit('click', 'tl')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="7" y1="7" x2="17" y2="17" />
-        <polyline points="17 8 17 17 8 17" />
-      </svg>
+      <Arrow class="transform rotate-135" />
     </button>
     <button
       :class="[direction === 't' ? 'direction-button--active' : null]"
       class="direction-button t"
       @click="$emit('click', 't')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <line x1="18" y1="13" x2="12" y2="19" />
-        <line x1="6" y1="13" x2="12" y2="19" />
-      </svg>
+      <Arrow class="transform rotate-180" />
     </button>
     <button
       :class="[direction === 'tr' ? 'direction-button--active' : null]"
       class="direction-button tr"
       @click="$emit('click', 'tr')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="17" y1="7" x2="7" y2="17" />
-        <polyline points="16 17 7 17 7 8" />
-      </svg>
+      <Arrow class="transform -rotate-135" />
     </button>
     <button
       :class="[direction === 'l' ? 'direction-button--active' : null]"
       class="direction-button l"
       @click="$emit('click', 'l')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <line x1="5" y1="12" x2="11" y2="18" />
-        <line x1="5" y1="12" x2="11" y2="6" />
-      </svg>
+      <Arrow class="transform -rotate-90" />
     </button>
     <div></div>
     <button
@@ -92,91 +34,34 @@
       class="direction-button r"
       @click="$emit('click', 'r')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <line x1="15" y1="16" x2="19" y2="12" />
-        <line x1="15" y1="8" x2="19" y2="12" />
-      </svg>
+      <Arrow class="transform rotate-90" />
     </button>
     <button
       :class="[direction === 'bl' ? 'direction-button--active' : null]"
       class="direction-button bl"
       @click="$emit('click', 'bl')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="17" y1="7" x2="7" y2="17" />
-        <polyline points="8 7 17 7 17 16" />
-      </svg>
+      <Arrow class="transform rotate-45" />
     </button>
     <button
       :class="[direction === 'b' ? 'direction-button--active' : null]"
       class="direction-button b"
       @click="$emit('click', 'b')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <line x1="16" y1="9" x2="12" y2="5" />
-        <line x1="8" y1="9" x2="12" y2="5" />
-      </svg>
+      <Arrow />
     </button>
     <button
       :class="[direction === 'br' ? 'direction-button--active' : null]"
       class="direction-button br"
       @click="$emit('click', 'br')"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="7" y1="7" x2="17" y2="17" />
-        <polyline points="16 7 7 7 7 16" />
-      </svg>
+      <Arrow class="transform -rotate-45" />
     </button>
   </div>
 </template>
 
 <script>
+import Arrow from "../icons/Arrow.vue";
 export default {
   name: "Direction",
   props: {
@@ -185,6 +70,7 @@ export default {
       required: true,
     },
   },
+  components: { Arrow },
 };
 </script>
 
