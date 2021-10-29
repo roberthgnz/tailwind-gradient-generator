@@ -31,47 +31,29 @@
         </span>
       </router-link>
     </h1>
-    <ul class="block flex justify-between items-center w-full md:w-1/4">
+    <ul class="flex items-center text-base justify-center w-full md:w-auto">
       <li>
         <router-link
           to="/presets"
-          class="
-            mt-4
-            text-sm
-            lg:inline-block lg:mt-0
-            hover:text-gray-900
-            text-gray-600
-            font-medium
-            mr-4
-            dark:text-white
-          "
+          class="mr-5 hover:text-gray-900 dark:text-white"
         >
           Gradients
         </router-link>
       </li>
       <li>
         <a
-          class="
-            mt-4
-            text-sm
-            lg:inline-block lg:mt-0
-            hover:text-gray-900
-            text-gray-600
-            font-medium
-            mr-4
-            dark:text-white
-          "
+          class="mr-5 hover:text-gray-900 dark:text-white"
           target="_blank"
           href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&via=eliut505&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
         >
-          Share on Twitter
+          Twitter
         </a>
       </li>
       <li>
-        <div class="cursor-pointer" @click="toggleTheme()">
+        <button class="flex" @click="toggleTheme">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-7 w-7 hover:text-gray-600"
+            class="h-7 w-7 hover:text-gray-900"
             viewBox="0 0 20 20"
             fill="currentColor"
             v-if="theme === 'light'"
@@ -93,7 +75,7 @@
               d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
             />
           </svg>
-        </div>
+        </button>
       </li>
     </ul>
   </nav>
