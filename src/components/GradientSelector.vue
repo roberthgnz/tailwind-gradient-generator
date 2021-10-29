@@ -107,6 +107,7 @@ export default {
     },
     showShades() {
       return (
+        this.color &&
         this.target === this.stop &&
         !["none", "transparent", "current", "black", "white"].includes(
           this.color

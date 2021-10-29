@@ -268,21 +268,33 @@ export default {
     },
     generateRandomGradient() {
       const colorLength = this.colors.length - 1;
-      const from = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.from.color = this.colors[from];
-      this.stop.from.shade = getRandomInt(1, 9) * 100;
 
-      const via = getRandomInt(1, colorLength); // from 1 to skip "none"
-      this.stop.via.color = this.colors[via];
-      this.stop.via.shade = getRandomInt(1, 9) * 100;
+      const fromIndex = getRandomInt(1, colorLength); // from 1 to skip "none"
+      let color = this.colors[fromIndex];
+      let shade = getRandomInt(1, 9);
 
-      const to = getRandomInt(2, colorLength); // from 2 to skip "none" and "transparent"
-      this.stop.to.color = this.colors[to];
-      this.stop.to.shade = getRandomInt(1, 9) * 100;
+      this.handleColorStop({ stop: "from", color });
+      this.handleColorShade({ shade });
+
+      const viaIndex = getRandomInt(1, colorLength); // from 1 to skip "none"
+      color = this.colors[viaIndex];
+      shade = getRandomInt(1, 9);
+
+      this.handleColorStop({ stop: "via", color });
+      this.handleColorShade({ shade });
+
+      const toIndex = getRandomInt(2, colorLength); // from 2 to skip "none" and "transparent"
+      color = this.colors[toIndex];
+      shade = getRandomInt(1, 9);
+
+      this.handleColorStop({ stop: "to", color });
+      this.handleColorShade({ shade });
 
       const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"];
-      this.direction =
+      const direction =
         availableDirections[getRandomInt(0, availableDirections.length - 1)];
+
+      this.handleDirection(direction);
     },
   },
 };
