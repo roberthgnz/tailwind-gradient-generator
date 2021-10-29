@@ -5,10 +5,8 @@
       my-8
       border
       dark:border-gray-700
-      max-w-2xl
-      mx-auto
-      py-4
-      px-2
+      p-2
+      mx-4
       relative
       dark:text-white
     "
@@ -42,7 +40,10 @@
         class="cursor-pointer hover:text-gray-700 dark:hover:text-gray-200"
       >
         <div class="flex justify-center items-center">
-          <code class="text-left leading-7 pr-2" @click="copyHistoryItem(item)">
+          <code
+            class="text-center md:text-left leading-7 pr-1 md:pr-2"
+            @click="copyHistoryItem(item)"
+          >
             {{ item }}
           </code>
           <svg
