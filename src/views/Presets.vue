@@ -45,6 +45,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -58,6 +59,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -71,6 +73,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -84,6 +87,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -97,6 +101,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -110,6 +115,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -123,6 +129,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
@@ -136,6 +143,7 @@
                 p-1.5
                 rounded-lg
                 text-gray-500
+                dark:text-gray-400 dark:hover:text-gray-600
                 hover:text-gray-900
                 transition-colors
               "
