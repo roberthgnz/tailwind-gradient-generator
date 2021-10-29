@@ -14,7 +14,7 @@
     </h1>
     <template v-for="preset in presets" :key="preset.author.url">
       <h2 class="my-3 text-lg text-gray-500">
-        <a :href="preset.author.url"
+        <a :href="preset.author.url" target="_blank" rel="noopener noreferrer"
           >Made by <strong>{{ preset.author.name }}</strong></a
         >
       </h2>
