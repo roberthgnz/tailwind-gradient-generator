@@ -63,7 +63,7 @@
             </svg>
             <span v-if="copied === gradient" class="text-white">Copied 🎉</span>
           </div>
-          <div class="flex flex-wrap justify-center -m-0.5">
+          <!-- <div class="flex flex-wrap justify-center -m-0.5">
             <span class="p-0.5">
               <button
                 class="
@@ -176,7 +176,7 @@
                 <Arrow class="transform rotate-135" />
               </button>
             </span>
-          </div>
+          </div> -->
         </li>
       </ul>
     </template>
