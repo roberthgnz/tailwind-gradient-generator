@@ -1,16 +1,6 @@
 <template>
   <nav
-    class="
-      flex
-      items-center
-      justify-between
-      flex-wrap
-      md:flex-row md:flex-nowrap
-      bg-white
-      border-b border-gray-200
-      p-4
-      dark:bg-blueGray-900 dark:border-gray-700
-    "
+    class="flex items-center justify-between flex-wrap md:flex-row md:flex-nowrap bg-white border-b border-gray-200 p-4 dark:bg-blueGray-900 dark:border-gray-700"
   >
     <h1 class="flex justify-center md:justify-start w-full">
       <svg
@@ -43,16 +33,10 @@
       <li>
         <a
           target="_blank"
-          href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&via=eliut505&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
+          href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
         >
           <svg
-            class="
-              w-5
-              h-5
-              mr-5
-              hover:text-gray-900
-              dark:text-white dark:hover:text-gray-200
-            "
+            class="w-5 h-5 mr-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -74,13 +58,7 @@
           rel="noopener noreferrer"
         >
           <svg
-            class="
-              w-5
-              h-5
-              mr-5
-              hover:text-gray-900
-              dark:text-white dark:hover:text-gray-200
-            "
+            class="w-5 h-5 mr-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
