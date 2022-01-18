@@ -36,7 +36,7 @@
           href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
         >
           <svg
-            class="w-5 h-5 mr-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
+            class="w-5 h-5 mx-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
