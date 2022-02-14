@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded border dark:border-gray-700 p-2 m-2 uppercase text-center"
+    class="rounded border bg-white dark:border-gray-700 p-2 m-2 uppercase text-center"
     style="height: fit-content"
   >
     <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
@@ -16,17 +16,7 @@
         @click="handleColor({ stop, color: item })"
       >
         <div
-          class="
-            border
-            dark:border-gray-700
-            flex
-            rounded
-            justify-center
-            items-center
-            w-9
-            h-9
-            cursor-pointer
-          "
+          class="border dark:border-gray-700 flex rounded justify-center items-center w-9 h-9 cursor-pointer"
           :class="getBg(item, 400)"
         >
           {{ getAbbr(item) }}
@@ -45,17 +35,7 @@
           @click="handleShade({ shade: n })"
         >
           <div
-            class="
-              border
-              dark:border-gray-700
-              rounded
-              flex
-              justify-center
-              items-center
-              w-9
-              h-9
-              cursor-pointer
-            "
+            class="border dark:border-gray-700 rounded flex justify-center items-center w-9 h-9 cursor-pointer"
             :class="`bg-${color}-${n}00`"
           >
             <div
@@ -118,7 +98,7 @@ export default {
   mounted() {
     // if the route name is 'gradient', that means the user has entered colors in the URL
     if (this.$route.name === "gradient") {
-      const camelCaseColors = ["blueGray", "coolGray", "trueGray", "warmGray"];
+      const camelCaseColors = ["slate", "slate", "neutral", "stone"];
       const [from, via, to] = this.$route.query.colors.split(",");
       let color = "none";
       let shade = 500;
