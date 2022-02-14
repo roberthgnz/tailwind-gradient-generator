@@ -121,13 +121,20 @@ export default {
   },
   mounted() {
     this.database = new Lsdb("tailwind-gradient-generator");
+
     this.database.collection("theme");
+
     if (this.database.all("theme").length === 0) {
       this.database.insert("theme", { theme: "light" });
     }
+
+    const prefersColorScheme = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
     document
       .querySelector("html")
-      .classList.toggle("dark", this.theme !== "light");
+      .classList.toggle("dark", this.theme !== "light" && prefersColorScheme);
   },
   methods: {
     toggleTheme() {
