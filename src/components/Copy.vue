@@ -2,31 +2,7 @@
   <button
     type="button"
     title="Click to copy to clipboard"
-    class="
-      w-full
-      sm:w-auto
-      flex-none
-      bg-gray-50
-      text-gray-400
-      hover:text-gray-900
-      font-mono
-      leading-6
-      text-center
-      py-3
-      px-6
-      border border-gray-200
-      rounded-xl
-      flex
-      items-center
-      justify-center
-      focus:ring-2
-      focus:ring-offset-2
-      focus:ring-offset-white
-      focus:ring-gray-300
-      focus:outline-none
-      transition-colors
-      duration-200
-    "
+    class="w-full sm:w-auto flex-none bg-gray-50 text-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 hover:text-gray-900 font-mono leading-6 text-center py-3 px-6 border border-gray-200 rounded-xl flex items-center justify-center focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200"
   >
     <span
       class="hidden md:block text-2xl font-bold text-center p-2"
@@ -67,7 +43,10 @@ export default {
         `${this.target}-[a-z]+-[0-9]+|${this.target}-[a-z]{3,}(-[0-9]+)?`,
         "gi"
       );
-      return this.value.replace(reg, '<code class="text-gray-900">$&</code>');
+      return this.value.replace(
+        reg,
+        '<code class="text-gray-900 dark:text-gray-200">$&</code>'
+      );
     },
   },
 };
