@@ -4,7 +4,23 @@ module.exports = {
   purge: {
     content: ["./src/**/*.vue", "./public/**/*.html"],
     options: {
-      safelist: [/^bg-gradient-to-/, /^from-/, /^via-/, /^to-/, /^bg-/],
+      safelist: [
+        {
+          pattern: /^bg-gradient-to-/,
+        },
+        {
+          pattern: /^from-/,
+        },
+        {
+          pattern: /^via-/,
+        },
+        {
+          pattern: /^to-/,
+        },
+        {
+          pattern: /^bg-/,
+        },
+      ],
     },
   },
   darkMode: "class",
@@ -14,11 +30,10 @@ module.exports = {
       current: "currentColor",
       black: "#000",
       white: "#fff",
-      blueGray: colors.blueGray,
-      coolGray: colors.coolGray,
+      slate: colors.slate,
       gray: colors.gray,
-      trueGray: colors.trueGray,
-      warmGray: colors.warmGray,
+      neutral: colors.neutral,
+      stone: colors.stone,
       red: colors.red,
       orange: colors.orange,
       amber: colors.amber,

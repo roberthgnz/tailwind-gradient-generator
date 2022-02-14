@@ -10,15 +10,7 @@
     </template>
     <div class="flex items-center w-full justify-center my-3">
       <button
-        class="
-          bg-blue-500
-          hover:bg-blue-700
-          text-sm text-white
-          font-bold
-          py-2
-          px-4
-          rounded
-        "
+        class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
         @click="generateRandomGradient"
       >
         Generate Random Gradient
@@ -87,11 +79,10 @@ export default {
         "current",
         "black",
         "white",
-        "blueGray",
-        "coolGray",
+        "slate",
         "gray",
-        "trueGray",
-        "warmGray",
+        "neutral",
+        "stone",
         "red",
         "orange",
         "amber",

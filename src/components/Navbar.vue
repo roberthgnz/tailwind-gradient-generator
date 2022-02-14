@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex items-center justify-between flex-wrap md:flex-row md:flex-nowrap bg-white border-b border-gray-200 p-4 dark:bg-blueGray-900 dark:border-gray-700"
+    class="flex items-center justify-between flex-wrap md:flex-row md:flex-nowrap bg-white border-b border-gray-200 p-4 dark:bg-slate-900 dark:border-gray-700"
   >
     <h1 class="flex justify-center md:justify-start w-full">
       <svg
