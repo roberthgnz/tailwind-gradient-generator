@@ -1,5 +1,7 @@
 <template>
-  <div class="text-gray-500 bg-gray-100 dark:bg-slate-900">
+  <div
+    class="dark:bg-slate-900 min-h-screen text-gray-500 bg-gray-100 dark:bg-slate-900"
+  >
     <navbar-vue></navbar-vue>
     <router-view></router-view>
     <div id="notify"></div>
