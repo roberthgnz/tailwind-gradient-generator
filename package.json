@@ -12,16 +12,16 @@
   "dependencies": {
     "@reliutg/buzz-notify": "2.4.3",
     "@reliutg/lsdb": "4.8.2",
-    "vue": "3.2.22",
-    "vue-router": "4.0.11"
+    "vue": "3.2.31",
+    "vue-router": "4.0.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "1.9.4",
-    "@vue/compiler-sfc": "3.2.22",
-    "autoprefixer": "10.4.0",
-    "postcss": "8.3.11",
-    "tailwindcss": "2.2.19",
-    "vite": "^2.6.14"
+    "@vitejs/plugin-vue": "2.2.0",
+    "@vue/compiler-sfc": "3.2.31",
+    "autoprefixer": "10.4.2",
+    "postcss": "8.4.6",
+    "tailwindcss": "3.0.22",
+    "vite": "^2.8.2"
   },
   "browserslist": [
     "> 1%",
@@ -29,13 +29,13 @@
     "not dead"
   ],
   "bugs": {
-    "url": "https://github.com/eliut505/tailwind-gradient-generator/issues"
+    "url": "https://github.com/reliut-g/tailwind-gradient-generator/issues"
   },
-  "homepage": "https://github.com/eliut505/tailwind-gradient-generator#readme",
+  "homepage": "https://github.com/reliut-g/tailwind-gradient-generator#readme",
   "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliut505/tailwind-gradient-generator.git"
+    "url": "git+https://github.com/reliut-g/tailwind-gradient-generator.git"
   }
 }
