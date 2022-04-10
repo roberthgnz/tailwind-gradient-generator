@@ -77,7 +77,7 @@ export default {
   components: { Direction, GradientSelector, HistoryBox, Copy },
   data() {
     return {
-      gradient: "from-teal-400 to-blue-500",
+      gradient: "",
       colors: [
         "none",
         "transparent",
@@ -112,7 +112,7 @@ export default {
           shade: 400,
         },
         via: {
-          color: "none",
+          color: "cyan",
           shade: 900,
         },
         to: {
@@ -121,7 +121,7 @@ export default {
         },
       },
       direction: "r",
-      target: "",
+      target: "to",
       savedGradients: [],
       debouncedUpdate: undefined,
       database: null,
@@ -190,8 +190,8 @@ export default {
       this.target = stop;
       this.stop[stop].color = color;
     },
-    handleColorShade({ shade }) {
-      this.stop[this.target].shade = shade * 100;
+    handleColorShade({ stop, shade }) {
+      this.stop[stop].shade = shade * 100;
     },
     handleDirection(direction) {
       if (typeof direction === "string") {

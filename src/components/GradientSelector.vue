@@ -13,6 +13,9 @@
         :key="item"
         :title="item"
         style="justify-self: center"
+        :class="{
+          selected: item === color,
+        }"
         @click="handleColor({ stop, color: item })"
       >
         <div
@@ -23,34 +26,27 @@
         </div>
       </li>
     </ul>
-    <template v-if="showShades">
-      <h2 class="text-gray-500 font-normal my-2 dark:text-white">SHADE: {{ shade }}</h2>
-      <ul class="grid grid-cols-5 gap-2">
-        <li
-          v-for="n in 9"
-          :key="n"
-          style="justify-self: center"
-          @click="handleShade({ shade: n })"
-        >
-          <div
-            class="border dark:border-gray-700 rounded flex justify-center items-center w-9 h-9 cursor-pointer"
-            :class="`bg-${color}-${n}00`"
-          >
-            <div
-              v-if="color && shade === Number(n * 100)"
-              class="rounded-full h-4 w-4"
-              :class="selectedShade"
-            ></div>
-          </div>
-        </li>
-      </ul>
-    </template>
+    <gradient-shade-selector
+      v-if="color"
+      :color="color"
+      :shade="shade"
+      :selected-shade="selectedShade"
+      @click="({ shade }) => $emit('shade-selected', { stop, shade })"
+    ></gradient-shade-selector>
   </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue";
+
+const GradientShadeSelector = defineAsyncComponent(() =>
+  import("./GradientShadeSelector.vue")
+);
+
 export default {
   name: "GradientSelector",
+  components: { GradientShadeSelector },
+  emits: ["shade-selected", "color-selected"],
   props: {
     title: {
       type: String,
@@ -83,17 +79,14 @@ export default {
       let minus = this.shade !== 500 ? 100 : 200;
       return `bg-${this.color}-${900 - this.shade + minus}`;
     },
-    showShades() {
-      return (
-        this.color &&
-        this.target === this.stop &&
-        !["none", "transparent", "current", "black", "white"].includes(this.color)
-      );
-    },
   },
   mounted() {
-    // if the route name is 'gradient', that means the user has entered colors in the URL
     if (this.$route.name === "gradient") {
+      this.initFromRoute();
+    }
+  },
+  methods: {
+    initFromRoute() {
       const camelCaseColors = ["slate", "slate", "neutral", "stone"];
       const [from, via, to] = this.$route.query.colors.split(",");
       let color = "none";
@@ -110,18 +103,16 @@ export default {
       this.color = camelCaseColors.includes(color) ? color : color.toLowerCase();
       this.handleColor({ stop: this.stop, color: this.color });
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
-      this.handleShade({ shade: +shade / 100 || 5 });
-    }
-  },
-  methods: {
+      this.handleShade({ stop: this.stop, shade: +shade / 100 || 5 });
+    },
     handleColor({ stop, color }) {
       if (color !== "current") {
         this.color = color;
         this.$emit("color-selected", { stop, color });
       }
     },
-    handleShade({ shade }) {
-      this.$emit("shade-selected", { shade });
+    handleShade({ stop, shade }) {
+      this.$emit("shade-selected", { stop, shade });
     },
     getBg(color, shade) {
       if (color === "current") {
@@ -146,3 +137,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+li.selected {
+  position: relative;
+}
+li.selected::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: #00000050;
+}
+</style>
