@@ -16,7 +16,7 @@
         Generate Random Gradient
       </button>
     </div>
-    <div class="grid sm:grid-cols-3 p-4">
+    <div class="grid sm:grid-cols-3 px-4 pb-4">
       <gradient-selector
         :title="'FROM'"
         :colors="colors"
@@ -142,11 +142,7 @@ export default {
             !(key === "to" && element.color === "transparent")
           ) {
             gradient = `${key}-${element.color}`;
-            if (
-              !["transparent", "current", "black", "white"].includes(
-                element.color
-              )
-            ) {
+            if (!["transparent", "current", "black", "white"].includes(element.color)) {
               gradient += `-${element.shade}`;
             }
             result.push(gradient);

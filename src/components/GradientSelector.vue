@@ -1,13 +1,13 @@
 <template>
   <div
-    class="rounded border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 m-2 uppercase text-center"
+    class="rounded w-3/4 border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto uppercase text-center"
     style="height: fit-content"
   >
     <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
       {{ title }}
     </h2>
     <p v-if="stop" class="mb-2 font-bold dark:text-white">{{ color }}</p>
-    <ul class="grid grid-cols-5 gap-2">
+    <ul class="grid grid-cols-5 gap-1">
       <li
         v-for="item in colors"
         :key="item"
@@ -24,9 +24,7 @@
       </li>
     </ul>
     <template v-if="showShades">
-      <h2 class="text-gray-500 font-normal my-2 dark:text-white">
-        SHADE: {{ shade }}
-      </h2>
+      <h2 class="text-gray-500 font-normal my-2 dark:text-white">SHADE: {{ shade }}</h2>
       <ul class="grid grid-cols-5 gap-2">
         <li
           v-for="n in 9"
@@ -89,9 +87,7 @@ export default {
       return (
         this.color &&
         this.target === this.stop &&
-        !["none", "transparent", "current", "black", "white"].includes(
-          this.color
-        )
+        !["none", "transparent", "current", "black", "white"].includes(this.color)
       );
     },
   },
@@ -111,9 +107,7 @@ export default {
       if (this.stop === "to") {
         [color, shade] = to ? to.split("-") : ["none", 500];
       }
-      this.color = camelCaseColors.includes(color)
-        ? color
-        : color.toLowerCase();
+      this.color = camelCaseColors.includes(color) ? color : color.toLowerCase();
       this.handleColor({ stop: this.stop, color: this.color });
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
       this.handleShade({ shade: +shade / 100 || 5 });
