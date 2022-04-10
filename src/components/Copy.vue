@@ -25,19 +25,37 @@ export default {
       type: String,
       required: true,
     },
+    direction: {
+      type: String,
+      required: true,
+    },
   },
-  computed: {
-    parsedValue() {
-      if (!this.target) return this.value;
+  data() {
+    return {
+      parsedValue: "",
+    };
+  },
+  watch: {
+    target() {
       const reg = new RegExp(
         `${this.target}-[a-z]+-[0-9]+|${this.target}-[a-z]{3,}(-[0-9]+)?`,
         "gi"
       );
-      return this.value.replace(
+      this.parsedValue = this.value.replace(
         reg,
         '<code class="text-gray-900 dark:text-gray-200">$&</code>'
       );
     },
+    direction() {
+      const reg = new RegExp(`bg-gradient-to-${this.direction}`, "gi");
+      this.parsedValue = this.value.replace(
+        reg,
+        '<code class="text-gray-900 dark:text-gray-200">$&</code>'
+      );
+    },
+  },
+  mounted() {
+    this.parsedValue = this.value;
   },
 };
 </script>
