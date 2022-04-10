@@ -30,13 +30,8 @@
         </direction>
       </div>
     </template>
-    <div class="flex items-center w-full justify-center my-3">
-      <Copy
-        :value="classes"
-        :target="target"
-        :direction="direction"
-        @click="copyClasses"
-      />
+    <div class="flex items-center w-full justify-center p-3">
+      <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
     </div>
     <div class="grid sm:grid-cols-3 px-4 pb-4">
       <gradient-selector
@@ -80,7 +75,7 @@ import "@reliutg/buzz-notify/dist/buzz-notify.css";
 import Direction from "../components/Direction.vue";
 import GradientSelector from "../components/GradientSelector.vue";
 import HistoryBox from "../components/HistoryBox.vue";
-import Copy from "../components/Copy.vue";
+import ClassOutput from "../components/ClassOutput.vue";
 import {
   copyToClipboard,
   addClassesToLocalStorage,
@@ -91,7 +86,7 @@ import {
 
 export default {
   name: "Home",
-  components: { Direction, GradientSelector, HistoryBox, Copy },
+  components: { Direction, GradientSelector, HistoryBox, ClassOutput },
   data() {
     return {
       gradient: "",

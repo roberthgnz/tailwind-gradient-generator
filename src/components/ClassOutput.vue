@@ -21,10 +21,6 @@ export default {
       type: String,
       required: true,
     },
-    target: {
-      type: String,
-      required: true,
-    },
     direction: {
       type: String,
       required: true,
@@ -36,26 +32,38 @@ export default {
     };
   },
   watch: {
-    target() {
-      const reg = new RegExp(
-        `${this.target}-[a-z]+-[0-9]+|${this.target}-[a-z]{3,}(-[0-9]+)?`,
-        "gi"
-      );
-      this.parsedValue = this.value.replace(
-        reg,
-        '<code class="text-gray-900 dark:text-gray-200">$&</code>'
-      );
+    value: {
+      handler(newValue, oldValue) {
+        if (!oldValue) {
+          this.parsedValue = newValue;
+          return;
+        }
+        const diff = [];
+        const oldValueArr = oldValue.split(" ");
+        const newValueArr = newValue.split(" ");
+        for (let i = 0; i < oldValueArr.length; i++) {
+          if (oldValueArr[i] !== newValueArr[i]) {
+            diff.push(newValueArr[i]);
+          }
+        }
+        if (diff.length !== 1) {
+          this.parsedValue = this.value;
+        }
+        const reg = new RegExp(`(${diff[0]})`, "gi");
+        this.parsedValue = this.value.replace(
+          reg,
+          '<code class="text-gray-900 dark:text-gray-200">$&</code>'
+        );
+      },
+      immediate: true,
     },
     direction() {
       const reg = new RegExp(`bg-gradient-to-${this.direction}`, "gi");
-      this.parsedValue = this.value.replace(
+      this.parsedValue = this.parsedValue.replace(
         reg,
         '<code class="text-gray-900 dark:text-gray-200">$&</code>'
       );
     },
-  },
-  mounted() {
-    this.parsedValue = this.value;
   },
 };
 </script>

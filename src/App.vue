@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dark:bg-slate-900 min-h-screen text-gray-500 bg-gray-100 dark:bg-slate-900"
+    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 min-h-screen"
   >
     <navbar-vue></navbar-vue>
     <router-view></router-view>
