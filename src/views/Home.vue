@@ -278,21 +278,21 @@ export default {
       let shade = getRandomInt(1, 9);
 
       this.handleColorStop({ stop: "from", color });
-      this.handleColorShade({ shade });
+      this.handleColorShade({ stop: "from", shade });
 
       const viaIndex = getRandomInt(1, colorLength); // from 1 to skip "none"
       color = this.colors[viaIndex];
       shade = getRandomInt(1, 9);
 
       this.handleColorStop({ stop: "via", color });
-      this.handleColorShade({ shade });
+      this.handleColorShade({ stop: "via", shade });
 
       const toIndex = getRandomInt(2, colorLength); // from 2 to skip "none" and "transparent"
       color = this.colors[toIndex];
       shade = getRandomInt(1, 9);
 
       this.handleColorStop({ stop: "to", color });
-      this.handleColorShade({ shade });
+      this.handleColorShade({ stop: "to", shade });
 
       const availableDirections = ["t", "r", "b", "l", "tl", "tr", "bl", "br"];
       const direction =
