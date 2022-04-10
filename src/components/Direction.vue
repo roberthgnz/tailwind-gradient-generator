@@ -57,6 +57,9 @@
     >
       <Arrow class="transform -rotate-45" />
     </button>
+    <div class="random-btn">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -75,34 +78,17 @@ export default {
 </script>
 
 <style scoped>
-.direction-button {
-  -webkit-text-size-adjust: 100%;
-  tab-size: 4;
-  --tw-gradient-from: #38bdf8;
-  --tw-gradient-stops: var(--tw-gradient-from),
-    var(--tw-gradient-to, rgba(56, 189, 248, 0));
-  --tw-gradient-to: #2563eb;
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e4e4e7;
-  --tw-shadow: 0 0 transparent;
-  --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
-  --tw-ring-offset-shadow: 0 0 transparent;
-  --tw-ring-shadow: 0 0 transparent;
-  font-family: inherit;
-  font-size: 100%;
-  text-transform: none;
-  -webkit-appearance: button;
-  background-image: none;
-  cursor: pointer;
-  line-height: inherit;
-  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+.random-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.direction-button,
+.random-btn {
   --tw-bg-opacity: 0.25;
-  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,14 +96,6 @@ export default {
   padding: 0.5rem;
   fill: currentColor;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
-  --tw-text-opacity: 0.5;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
 }
 .direction-button:hover {
   --tw-text-opacity: 1;
@@ -138,6 +116,7 @@ export default {
 }
 .t {
   position: absolute;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
 }

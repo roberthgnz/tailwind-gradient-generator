@@ -2,24 +2,41 @@
   <div class="home">
     <template v-if="gradient">
       <div class="relative" style="height: 33.33vh" :class="classes">
-        <div class="code-preview">
-          <Copy
-            :value="classes"
-            :target="target"
-            :direction="direction"
-            @click="copyClasses"
-          />
-        </div>
-        <direction :direction="direction" @click="handleDirection"></direction>
+        <direction :direction="direction" @click="handleDirection">
+          <button
+            type="button"
+            title=" Generate random gradient"
+            @click="generateRandomGradient"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-refresh-cw"
+            >
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path
+                d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+              ></path>
+            </svg>
+          </button>
+        </direction>
       </div>
     </template>
     <div class="flex items-center w-full justify-center my-3">
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
-        @click="generateRandomGradient"
-      >
-        Generate Random Gradient
-      </button>
+      <Copy
+        :value="classes"
+        :target="target"
+        :direction="direction"
+        @click="copyClasses"
+      />
     </div>
     <div class="grid sm:grid-cols-3 px-4 pb-4">
       <gradient-selector
