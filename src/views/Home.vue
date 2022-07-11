@@ -33,7 +33,7 @@
     <div class="flex items-center w-full justify-center p-3">
       <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
     </div>
-    <div class="grid sm:grid-cols-3 px-4 pb-4">
+    <div class="w-full md:w-9/12 grid md:grid-cols-3 px-4 pb-4 mx-auto">
       <gradient-selector
         :title="'FROM'"
         :colors="colors"

@@ -74,7 +74,7 @@
       <li>
         <button 
             type="button"
-            class="flex" 
+            class="flex ml-6" 
             title="Toggle theme"
             @click="toggleTheme">
           <svg
@@ -92,7 +92,7 @@
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 text-white hover:text-gray-200 ml-6"
+            class="w-5 h-5 text-white hover:text-gray-200"
             viewBox="0 0 20 20"
             fill="currentColor"
             v-if="theme === 'dark'"

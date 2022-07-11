@@ -1,37 +1,39 @@
 <template>
   <div
     class="
-      rounded
-      my-8
+      w-3/4
+      md:w-9/12
+      rounded-xl
       border
-      dark:border-gray-700
       p-2
-      mx-4
+      my-8
+      mx-auto
       relative
+      dark:border-gray-700
       dark:text-white
     "
     v-if="history.length > 0"
   >
-    <h2 class="text-gray-500 font-normal mb-4 text-center dark:text-white">
+    <h2 class="text-gray-500 font-normal md:mb-4 text-center dark:text-white">
       SAVED GRADIENTS
     </h2>
     <span
       class="
+        block
         text-gray-400
         font-thin
-        absolute
-        top-0
-        right-0
+        md:absolute
+        md:top-0
+        md:right-0
         p-3
+        text-center
         cursor-pointer
         dark:text-white
         hover:text-gray-700
         dark:hover:text-gray-200
       "
       @click="handleRemoveHistoryItems(history)"
-    >
-      Remove all
-    </span>
+    >Remove all</span>
     <ul class="h-48 overflow-y-auto text-center">
       <li
         v-for="item in history"
