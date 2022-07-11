@@ -87,7 +87,6 @@ export default {
   },
   methods: {
     initFromRoute() {
-      const camelCaseColors = ["slate", "slate", "neutral", "stone"];
       const [from, via, to] = this.$route.query.colors.split(",");
       let color = "none";
       let shade = 500;
@@ -100,7 +99,7 @@ export default {
       if (this.stop === "to") {
         [color, shade] = to ? to.split("-") : ["none", 500];
       }
-      this.color = camelCaseColors.includes(color) ? color : color.toLowerCase();
+      this.color = color.toLowerCase();
       this.handleColor({ stop: this.stop, color: this.color });
       // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
       this.handleShade({ stop: this.stop, shade: +shade / 100 || 5 });
