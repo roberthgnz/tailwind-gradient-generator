@@ -32,6 +32,7 @@
       </li>
       <li>
         <a
+          aria-label="Share on Twitter"
           target="_blank"
           href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
         >
@@ -53,6 +54,7 @@
       </li>
       <li>
         <a
+          aria-label="GitHub Respository"
           href="https://github.com/eliut505/tailwind-gradient-generator"
           target="_blank"
           rel="noopener noreferrer"
@@ -70,7 +72,11 @@
         </a>
       </li>
       <li>
-        <button class="flex" @click="toggleTheme">
+        <button 
+            type="button"
+            class="flex" 
+            title="Toggle theme"
+            @click="toggleTheme">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-5 h-5 hover:text-gray-900"
@@ -86,7 +92,7 @@
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 text-white hover:text-gray-200"
+            class="w-5 h-5 text-white hover:text-gray-200 ml-6"
             viewBox="0 0 20 20"
             fill="currentColor"
             v-if="theme === 'dark'"
