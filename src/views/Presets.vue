@@ -13,11 +13,6 @@
       Gradients
     </h1>
     <template v-for="preset in presets" :key="preset.author.url">
-      <h2 class="my-3 text-lg text-gray-500">
-        <a :href="preset.author.url" target="_blank" rel="noopener noreferrer"
-          >Made by <strong>{{ preset.author.name }}</strong></a
-        >
-      </h2>
       <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <li
           v-for="(gradient, index) in preset.gradients"
@@ -63,120 +58,6 @@
             </svg>
             <span v-if="copied === gradient" class="text-white">Copied 🎉</span>
           </div>
-          <!-- <div class="flex flex-wrap justify-center -m-0.5">
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform rotate-180" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform -rotate-90" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform rotate-90" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform -rotate-45" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform rotate-45" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform -rotate-135" />
-              </button>
-            </span>
-            <span class="p-0.5">
-              <button
-                class="
-                  p-1.5
-                  rounded-lg
-                  text-gray-500
-                  dark:text-gray-400 dark:hover:text-gray-600
-                  hover:text-gray-900
-                  transition-colors
-                "
-              >
-                <Arrow class="transform rotate-135" />
-              </button>
-            </span>
-          </div> -->
         </li>
       </ul>
     </template>
