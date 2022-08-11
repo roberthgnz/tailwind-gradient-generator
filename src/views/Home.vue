@@ -70,7 +70,7 @@
 
 <script>
 import Lsdb from "@reliutg/lsdb";
-import { Notify } from "@reliutg/buzz-notify";
+import { Notify } from "@reliutg/buzz-notify/dist/esm/index";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 import Direction from "../components/Direction.vue";
 import GradientSelector from "../components/GradientSelector.vue";
