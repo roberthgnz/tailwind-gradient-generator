@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "author": "Eliut González",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
