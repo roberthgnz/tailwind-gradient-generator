@@ -1,28 +1,24 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: {
-    content: ["./src/**/*.vue", "./public/**/*.html"],
-    options: {
-      safelist: [
-        {
-          pattern: /^bg-gradient-to-/,
-        },
-        {
-          pattern: /^from-/,
-        },
-        {
-          pattern: /^via-/,
-        },
-        {
-          pattern: /^to-/,
-        },
-        {
-          pattern: /^bg-/,
-        },
-      ],
+  content: ["./src/**/*.vue", "./public/**/*.html"],
+  safelist: [
+    {
+      pattern: /^bg-gradient-to-/,
     },
-  },
+    {
+      pattern: /^from-/,
+    },
+    {
+      pattern: /^via-/,
+    },
+    {
+      pattern: /^to-/,
+    },
+    {
+      pattern: /^bg-/,
+    },
+  ],
   darkMode: "class",
   theme: {
     colors: {
