@@ -2,19 +2,25 @@
  
 # Tailwind Gradient Generator
 
-
 ![Tailwind Gradiente Generator Banner](public/banner.png)
-Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.app/) 
+Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.app/)
 
 </div>
 
+## Donations
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/eliutdev)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Feel free to collaborate.
 
-## Contributing 
+## Contributing
+
 Are you interested in contributing to the project? Thank you very much for your interest. We are always looking for improvements to the project and contributions from open source developers are greatly appreciated. If you have a contribution in mind, please see our [Contribution Guide](/CONTRIBUTING.md) for information on how to do so.
 
 ## Contributors ✨
@@ -43,4 +49,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ### Thanks ❤️
+
 Project strongly inspired in https://gradient-designer.csspost.com by @jenstornell
