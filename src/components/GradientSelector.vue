@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-xl w-3/4 border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto uppercase text-center mb-3 md:mb-0"
+    class="rounded-xl w-full border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto uppercase text-center mb-3 md:mb-0"
     style="height: fit-content"
   >
     <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">

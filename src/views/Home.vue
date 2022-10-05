@@ -1,70 +1,40 @@
 <template>
   <div class="home">
-    <template v-if="gradient">
-      <div class="relative" style="height: 33.33vh" :class="classes">
-        <direction :direction="direction" @click="handleDirection">
-          <button
-            type="button"
-            title=" Generate random gradient"
-            @click="generateRandomGradient"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-refresh-cw"
-            >
-              <polyline points="23 4 23 10 17 10"></polyline>
-              <polyline points="1 20 1 14 7 14"></polyline>
-              <path
-                d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
-              ></path>
-            </svg>
-          </button>
-        </direction>
+    <div class="grid md:grid-cols-2 gap-4 p-4">
+      <div>
+        <template v-if="gradient">
+          <div class="relative rounded-xl" style="height: 50vh" :class="classes">
+            <direction :direction="direction" @click="handleDirection">
+              <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-refresh-cw">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+              </button>
+            </direction>
+          </div>
+        </template>
+        <div class="flex items-center w-full justify-center p-3">
+          <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
+        </div>
       </div>
-    </template>
-    <div class="flex items-center w-full justify-center p-3">
-      <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
-    </div>
-    <div class="w-full md:w-9/12 grid md:grid-cols-3 px-4 pb-4 mx-auto">
-      <gradient-selector
-        :title="'FROM'"
-        :colors="colors"
-        :stop="'from'"
-        :shade="stop['from'].shade"
-        :target="target"
-        @color-selected="handleColorStop"
-        @shade-selected="handleColorShade"
-      ></gradient-selector>
+      <div>
+        <div class="w-full grid md:grid-cols-3 gap-4">
+          <gradient-selector :title="'FROM'" :colors="colors" :stop="'from'" :shade="stop['from'].shade"
+            :target="target" @color-selected="handleColorStop" @shade-selected="handleColorShade"></gradient-selector>
 
-      <gradient-selector
-        :title="'VIA'"
-        :colors="colors"
-        :stop="'via'"
-        :shade="stop['via'].shade"
-        :target="target"
-        @color-selected="handleColorStop"
-        @shade-selected="handleColorShade"
-      ></gradient-selector>
+          <gradient-selector :title="'VIA'" :colors="colors" :stop="'via'" :shade="stop['via'].shade" :target="target"
+            @color-selected="handleColorStop" @shade-selected="handleColorShade"></gradient-selector>
 
-      <gradient-selector
-        :title="'TO'"
-        :colors="colors"
-        :stop="'to'"
-        :shade="stop['to'].shade"
-        :target="target"
-        @color-selected="handleColorStop"
-        @shade-selected="handleColorShade"
-      ></gradient-selector>
+          <gradient-selector :title="'TO'" :colors="colors" :stop="'to'" :shade="stop['to'].shade" :target="target"
+            @color-selected="handleColorStop" @shade-selected="handleColorShade"></gradient-selector>
+        </div>
+        <HistoryBox :history="history" @remove-history-items="removeClasses" />
+      </div>
     </div>
-    <HistoryBox :history="history" @remove-history-items="removeClasses" />
   </div>
 </template>
 
