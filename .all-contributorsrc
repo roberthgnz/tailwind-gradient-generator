@@ -60,12 +60,22 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ThPadelis",
+      "name": "Pantelis Theodosiou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33872406?v=4",
+      "profile": "https://pantelis.theodosiou.me/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "tailwind-gradient-generator",
-  "projectOwner": "eliutgon",
+  "projectOwner": "rxb3rth",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
