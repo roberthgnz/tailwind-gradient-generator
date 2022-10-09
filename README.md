@@ -12,9 +12,7 @@ Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.a
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/eliutdev)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Feel free to collaborate.
@@ -31,14 +29,17 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://zentreax.dev/"><img src="https://avatars3.githubusercontent.com/u/36458019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zentreaxᴰᵉᵛ</b></sub></a><br /><a href="#a11y-Zentreax" title="Accessibility">️️️️♿️</a></td>
-    <td align="center"><a href="https://github.com/keithmchd48"><img src="https://avatars0.githubusercontent.com/u/29048050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Keith Machado</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=keithmchd48" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/victor-arnedo-blanco/"><img src="https://avatars1.githubusercontent.com/u/52747851?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Victor</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=varnebla" title="Code">💻</a></td>
-    <td align="center"><a href="https://cesaralvarez.js.org/"><img src="https://avatars.githubusercontent.com/u/57325703?v=4?s=100" width="100px;" alt=""/><br /><sub><b>César Álvarez Llaneza</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=cesaralvrz" title="Documentation">📖</a> <a href="#design-cesaralvrz" title="Design">🎨</a> <a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=cesaralvrz" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/JasonFritsche"><img src="https://avatars.githubusercontent.com/u/34847680?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jason Fritsche</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=JasonFritsche" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/amimaro"><img src="https://avatars.githubusercontent.com/u/6666978?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Amir Zahlan</b></sub></a><br /><a href="https://github.com/eliutgon/tailwind-gradient-generator/commits?author=amimaro" title="Code">💻</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://zentreax.dev/"><img src="https://avatars3.githubusercontent.com/u/36458019?v=4?s=100" width="100px;" alt="Zentreaxᴰᵉᵛ"/><br /><sub><b>Zentreaxᴰᵉᵛ</b></sub></a><br /><a href="#a11y-Zentreax" title="Accessibility">️️️️♿️</a></td>
+      <td align="center"><a href="https://github.com/keithmchd48"><img src="https://avatars0.githubusercontent.com/u/29048050?v=4?s=100" width="100px;" alt="Keith Machado"/><br /><sub><b>Keith Machado</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=keithmchd48" title="Code">💻</a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/victor-arnedo-blanco/"><img src="https://avatars1.githubusercontent.com/u/52747851?v=4?s=100" width="100px;" alt="Victor"/><br /><sub><b>Victor</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=varnebla" title="Code">💻</a></td>
+      <td align="center"><a href="https://cesaralvarez.js.org/"><img src="https://avatars.githubusercontent.com/u/57325703?v=4?s=100" width="100px;" alt="César Álvarez Llaneza"/><br /><sub><b>César Álvarez Llaneza</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=cesaralvrz" title="Documentation">📖</a> <a href="#design-cesaralvrz" title="Design">🎨</a> <a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=cesaralvrz" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/JasonFritsche"><img src="https://avatars.githubusercontent.com/u/34847680?v=4?s=100" width="100px;" alt="Jason Fritsche"/><br /><sub><b>Jason Fritsche</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=JasonFritsche" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/amimaro"><img src="https://avatars.githubusercontent.com/u/6666978?v=4?s=100" width="100px;" alt="Amir Zahlan"/><br /><sub><b>Amir Zahlan</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=amimaro" title="Code">💻</a></td>
+      <td align="center"><a href="https://pantelis.theodosiou.me/"><img src="https://avatars.githubusercontent.com/u/33872406?v=4?s=100" width="100px;" alt="Pantelis Theodosiou"/><br /><sub><b>Pantelis Theodosiou</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=ThPadelis" title="Code">💻</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
