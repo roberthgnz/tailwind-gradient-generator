@@ -1,6 +1,6 @@
 <template>
     <div class="bmc-btn-container">
-        <a class="bmc-btn" target="_blank" href="http://buymeacoffee.com/eliutdev">
+        <a class="bmc-btn" target="_blank" href="https://www.buymeacoffee.com/roberth.gonz">
             <svg viewBox="0 0 884 1279" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M791.109 297.518L790.231 297.002L788.201 296.383C789.018 297.072 790.04 297.472 791.109 297.518Z"
