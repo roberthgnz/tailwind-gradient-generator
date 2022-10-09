@@ -31,21 +31,37 @@ export default {
         }
     },
     methods: {
-        onShare() {
-            const queryParams = new URLSearchParams();
-            if (this.isFirstVisit) {
-                let colors = this.value; // e.g "bg-gradient-to-br from-slate-900 via-pink-200 to-green-100";
-                colors = colors.replaceAll(/(bg-gradient-to-)[a-zA-Z]{1,2}/g, "").replaceAll(/(from-|via-|to-)/g, "").trim().split(" ").join(",")
-                queryParams.append("colors", colors);
-                queryParams.append("direction", this.direction)
+        async onShare() {
+            try {
+                const queryParams = new URLSearchParams();
+                if (this.isFirstVisit) {
+                    let colors = this.value; // e.g "bg-gradient-to-br from-slate-900 via-pink-200 to-green-100";
+                    colors = colors.replaceAll(/(bg-gradient-to-)[a-zA-Z]{1,2}/g, "").replaceAll(/(from-|via-|to-)/g, "").trim().split(" ").join(",")
+                    queryParams.append("colors", colors);
+                    queryParams.append("direction", this.direction)
+                }
+                const baseURL = "https://tailwind-gradient-generator.vercel.app";
+                const currentPath = this.isFirstVisit ? `/gradient?${queryParams.toString()}` : this.$router.currentRoute.value.fullPath;
+                const _url = new URL("https://twitter.com/intent/tweet");
+                _url.searchParams.append("url", baseURL + currentPath);
+                _url.searchParams.append("text", "Check this gradient. You will love it!");
+                _url.searchParams.append("hashtags", "TailwindGradientGenerator");
+
+                // Check if Web Share API is available. If it is not supported, share it in the traditional way
+                if ("share" in navigator) {
+                    await navigator.share({
+                        title: document.title,
+                        text: "Check this gradient. You will love it!",
+                        url: _url
+                    });
+                } else {
+                    // Fallback sharing option
+                    window.open(_url, "_blank");
+                }
+            } catch (error) {
+                // Failed to share it. Fallback sharing option
+                window.open(_url, "_blank");
             }
-            const baseURL = "https://tailwind-gradient-generator.vercel.app";
-            const currentPath = this.isFirstVisit ? `/gradient?${queryParams.toString()}` : this.$router.currentRoute.value.fullPath;
-            const _url = new URL("https://twitter.com/intent/tweet");
-            _url.searchParams.append("url", baseURL + currentPath);
-            _url.searchParams.append("text", "Check this gradient. You will love it!");
-            _url.searchParams.append("hashtags", "TailwindGradientGenerator");
-            window.open(_url, "_blank");
         }
     }
 }
