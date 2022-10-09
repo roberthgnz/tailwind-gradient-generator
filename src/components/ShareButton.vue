@@ -52,7 +52,7 @@ export default {
                     await navigator.share({
                         title: document.title,
                         text: "Check this gradient. You will love it!",
-                        url: _url
+                        url: baseURL + currentPath
                     });
                 } else {
                     // Fallback sharing option
