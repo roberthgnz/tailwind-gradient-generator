@@ -69,6 +69,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "raulwwq0",
+      "name": "Raúl Aguilar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77344353?v=4",
+      "profile": "https://raul-aguilar.netlify.app/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
