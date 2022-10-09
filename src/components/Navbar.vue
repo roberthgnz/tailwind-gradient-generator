@@ -15,7 +15,7 @@
     </h1>
     <ul class="flex items-center text-base justify-center w-full md:w-auto">
       <li>
-        <BuyMeACoffeButton />
+        <BuyMeACoffeeButton />
       </li>
       <li>
         <a aria-label="Share on Twitter" target="_blank"
@@ -60,11 +60,11 @@
 
 <script>
 import Lsdb from "@reliutg/lsdb";
-import BuyMeACoffeButton from "./BuyMeACoffeButton.vue"
+import BuyMeACoffeeButton from "./BuyMeACoffeeButton.vue"
 
 export default {
   name: "Navbar",
-  components: { BuyMeACoffeButton },
+  components: { BuyMeACoffeeButton },
   data() {
     return {
       database: null,
