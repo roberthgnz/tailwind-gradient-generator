@@ -17,8 +17,9 @@
             </direction>
           </div>
         </template>
-        <div class="flex items-center w-full justify-center p-3">
+        <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
           <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
+          <ShareButton :direction="direction" :value="classes" />
         </div>
       </div>
       <div>
@@ -46,6 +47,8 @@ import Direction from "../components/Direction.vue";
 import GradientSelector from "../components/GradientSelector.vue";
 import HistoryBox from "../components/HistoryBox.vue";
 import ClassOutput from "../components/ClassOutput.vue";
+import ShareButton from "../components/ShareButton.vue";
+
 import {
   copyToClipboard,
   addClassesToLocalStorage,
@@ -56,7 +59,7 @@ import {
 
 export default {
   name: "Home",
-  components: { Direction, GradientSelector, HistoryBox, ClassOutput },
+  components: { Direction, GradientSelector, HistoryBox, ClassOutput, ShareButton },
   data() {
     return {
       gradient: "",
