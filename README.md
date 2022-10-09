@@ -12,7 +12,7 @@ Link: [Tailwind Gradient Generator](https://tailwind-gradient-generator.vercel.a
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/roberth.gonz)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Feel free to collaborate.
@@ -38,6 +38,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center"><a href="https://github.com/JasonFritsche"><img src="https://avatars.githubusercontent.com/u/34847680?v=4?s=100" width="100px;" alt="Jason Fritsche"/><br /><sub><b>Jason Fritsche</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=JasonFritsche" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/amimaro"><img src="https://avatars.githubusercontent.com/u/6666978?v=4?s=100" width="100px;" alt="Amir Zahlan"/><br /><sub><b>Amir Zahlan</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=amimaro" title="Code">💻</a></td>
       <td align="center"><a href="https://pantelis.theodosiou.me/"><img src="https://avatars.githubusercontent.com/u/33872406?v=4?s=100" width="100px;" alt="Pantelis Theodosiou"/><br /><sub><b>Pantelis Theodosiou</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=ThPadelis" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://raul-aguilar.netlify.app/"><img src="https://avatars.githubusercontent.com/u/77344353?v=4?s=100" width="100px;" alt="Raúl Aguilar"/><br /><sub><b>Raúl Aguilar</b></sub></a><br /><a href="https://github.com/rxb3rth/tailwind-gradient-generator/commits?author=raulwwq0" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
