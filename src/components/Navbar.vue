@@ -15,9 +15,6 @@
     </h1>
     <ul class="flex items-center text-base justify-center w-full md:w-auto">
       <li>
-        <BuyMeACoffeeButton />
-      </li>
-      <li>
         <a aria-label="Share on Twitter" target="_blank"
           href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator">
           <svg class="w-5 h-5 mx-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
@@ -60,11 +57,9 @@
 
 <script>
 import Lsdb from "@reliutg/lsdb";
-import BuyMeACoffeeButton from "./BuyMeACoffeeButton.vue"
 
 export default {
   name: "Navbar",
-  components: { BuyMeACoffeeButton },
   data() {
     return {
       database: null,
