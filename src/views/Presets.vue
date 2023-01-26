@@ -12,7 +12,7 @@
     >
       Gradients
     </h1>
-    <template v-for="preset in presets" :key="preset.author.url">
+    <template v-for="(preset, index) in presets" :key="`preset-${index}`">
       <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <li
           v-for="(gradient, index) in preset.gradients"

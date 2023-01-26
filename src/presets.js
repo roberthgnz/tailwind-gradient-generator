@@ -1,9 +1,5 @@
 export const presets = [
   {
-    author: {
-      url: "https://instagram.com/itzel.osegueda",
-      name: "Itzel Osegueda",
-    },
     gradients: [
       "bg-gradient-to-r from-teal-400 to-blue-500",
       "bg-gradient-to-r from-teal-100 via-teal-200 to-green-300",
