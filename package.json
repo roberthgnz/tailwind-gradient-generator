@@ -2,7 +2,7 @@
   "name": "tailwind-gradient-generator",
   "version": "1.0.0",
   "description": "",
-  "author": "Eliut González",
+  "author": "Roberth González",
   "engines": {
     "node": ">=14"
   },
@@ -19,12 +19,12 @@
     "vue-router": "4.1.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "3.2.0",
+    "@vitejs/plugin-vue": "4.0.0",
     "@vue/compiler-sfc": "3.2.45",
     "autoprefixer": "10.4.13",
-    "postcss": "8.4.19",
+    "postcss": "8.4.21",
     "tailwindcss": "3.2.4",
-    "vite": "^3.2.4"
+    "vite": "^4.0.4"
   },
   "browserslist": [
     "> 1%",
@@ -32,13 +32,13 @@
     "not dead"
   ],
   "bugs": {
-    "url": "https://github.com/eliutdev/tailwind-gradient-generator/issues"
+    "url": "https://github.com/HolaSoyGonZzA/tailwind-gradient-generator/issues"
   },
-  "homepage": "https://github.com/eliutdev/tailwind-gradient-generator#readme",
+  "homepage": "https://github.com/HolaSoyGonZzA/tailwind-gradient-generator#readme",
   "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliutdev/tailwind-gradient-generator.git"
+    "url": "git+https://github.com/HolaSoyGonZzA/tailwind-gradient-generator.git"
   }
 }
