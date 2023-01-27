@@ -62,7 +62,7 @@
 .bmc-btn {
     min-width: 210px;
     color: #000000;
-    background-color: #FFDD00 !important;
+    background-color: #ffdd00 !important;
     height: 60px;
     border-radius: 12px;
     font-size: 28px;
