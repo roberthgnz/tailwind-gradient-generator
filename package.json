@@ -15,6 +15,7 @@
   "dependencies": {
     "@reliutg/buzz-notify": "2.5.6",
     "@reliutg/lsdb": "4.8.2",
+    "@vercel/analytics": "^0.1.8",
     "vue": "3.2.45",
     "vue-router": "4.1.6"
   },
