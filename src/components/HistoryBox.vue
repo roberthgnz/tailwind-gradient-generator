@@ -3,6 +3,8 @@ import { copyToClipboard } from '../helpers/index.js'
 import { Notify } from '@reliutg/buzz-notify/dist/esm/index'
 import '@reliutg/buzz-notify/dist/buzz-notify.css'
 
+const $emit = defineEmits(['remove-history-items'])
+
 defineProps({
     history: {
         type: Array,
@@ -28,14 +30,15 @@ const copyHistoryItem = (classes) => {
         })
     })
 }
+
 const handleRemoveHistoryItems = (classes) => {
-    this.$emit('remove-history-items', classes)
+    $emit('remove-history-items', classes)
 }
 </script>
 
 <template>
     <div
-        class="w-3/4 md:w-9/12 rounded-xl border p-2 my-8 mx-auto relative dark:border-gray-700 dark:text-white"
+        class="w-full rounded-xl border p-2 my-8 mx-auto relative dark:border-gray-700 dark:text-white"
         v-if="history.length > 0"
     >
         <h2 class="text-gray-500 font-normal md:mb-4 text-center dark:text-white">SAVED GRADIENTS</h2>
