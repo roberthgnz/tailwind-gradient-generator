@@ -56,7 +56,7 @@ const toggleTheme = () => {
                 <span class="font-semibold text-xl tracking-tight dark:text-white"> Tailwind Gradient Generator </span>
             </router-link>
         </h1>
-        <ul class="flex items-center text-base justify-center w-full md:w-auto">
+        <ul class="flex items-center text-base justify-center w-full md:w-auto space-x-4">
             <li>
                 <a
                     aria-label="Share on Twitter"
@@ -64,7 +64,7 @@ const toggleTheme = () => {
                     href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftailwind-gradient-generator.vercel.app%2F&text=Try%20it%2C%20you%20will%20love%20it&hashtags=TailwindGradientGenerator"
                 >
                     <svg
-                        class="w-5 h-5 mx-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
+                        class="w-5 h-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -87,7 +87,7 @@ const toggleTheme = () => {
                     rel="noopener noreferrer"
                 >
                     <svg
-                        class="w-5 h-5 mr-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
+                        class="w-5 h-5 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
@@ -99,7 +99,7 @@ const toggleTheme = () => {
                 </a>
             </li>
             <li>
-                <button type="button" class="flex ml-6" title="Toggle theme" @click="toggleTheme">
+                <button type="button" class="flex" title="Toggle theme" @click="toggleTheme">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="w-5 h-5 hover:text-gray-900"
