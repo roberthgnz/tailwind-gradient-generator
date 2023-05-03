@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@reliutg/buzz-notify': 2.5.6
-  '@reliutg/lsdb': 4.9.0
+  '@reliutg/lsdb': 4.9.1
   '@vercel/analytics': ^1.0.1
   '@vitejs/plugin-vue': 4.2.1
   '@vue/compiler-sfc': 3.2.47
@@ -19,7 +19,7 @@ specifiers:
 
 dependencies:
   '@reliutg/buzz-notify': 2.5.6
-  '@reliutg/lsdb': 4.9.0
+  '@reliutg/lsdb': 4.9.1
   '@vercel/analytics': 1.0.1
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
@@ -380,8 +380,8 @@ packages:
     resolution: {integrity: sha512-gjGOcFsSpr3qRGKDbgnU1uG/xlcuuAkGHvIsUp/V40ESuF0HLFyfC+GbF8H0lvSJSNc2xj06MArwfDpSORERxg==}
     dev: false
 
-  /@reliutg/lsdb/4.9.0:
-    resolution: {integrity: sha512-nX8W5qAAB+2Iao1HhE4VqF4kFin2+twKI8J+vUJNVZ5DuAeBH9F86Fh9yI2OBbitYM55Ne9Wggo2BFEwPI6jsQ==}
+  /@reliutg/lsdb/4.9.1:
+    resolution: {integrity: sha512-HxR9mFqxUzYdLcJ3DRblo5RLihb0ZpTp8SrST6F3g1Os5Fen0o1KjGLCL3OKr0pzgwao5DbzAXU557dqFIvkxg==}
     dev: false
 
   /@vercel/analytics/1.0.1:
