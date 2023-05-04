@@ -7,16 +7,12 @@
 </template>
 
 <script>
-import { inject } from "@vercel/analytics";
 import Navbar from "./components/Navbar.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
-  },
-  mounted() {
-    inject()
   }
 };
 </script>
