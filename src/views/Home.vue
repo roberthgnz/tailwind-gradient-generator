@@ -2,7 +2,7 @@
     <div class="home">
         <div class="grid md:grid-cols-2 gap-4 p-4 h-full">
             <div class="sticky top-0 z-50 h-full">
-                <template v-if="gradient">
+                <div>
                     <div class="relative rounded-xl" style="height: 50vh" :class="classes">
                         <DirectionController :direction="direction" @click="handleDirection">
                             <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
@@ -27,7 +27,7 @@
                             </button>
                         </DirectionController>
                     </div>
-                </template>
+                </div>
                 <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
                     <ShareButton :direction="direction" :value="classes" />
