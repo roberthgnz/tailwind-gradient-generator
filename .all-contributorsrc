@@ -78,13 +78,23 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sajidul-kabir",
+      "name": "Sajidul kabir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53114757?v=4",
+      "profile": "https://www.linkedin.com/in/sajidul-kabir-748b57211/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "tailwind-gradient-generator",
-  "projectOwner": "rxb3rth",
+  "projectOwner": "roberthgnz",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
