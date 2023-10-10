@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-2 gap-4 p-4 h-full">
             <div class="sticky top-0 z-50 h-full">
                 <div>
-                    <div class="relative rounded-xl" style="height: 50vh" :class="classes">
+                    <div ref="gradientContainer" class="relative rounded-xl" style="height: 50vh" :class="classes">
                         <DirectionController :direction="direction" @click="handleDirection">
                             <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
                                 <svg
@@ -28,6 +28,7 @@
                         </DirectionController>
                     </div>
                 </div>
+                <p>{{ nativeCss }}</p>
                 <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
                     <ShareButton :direction="direction" :value="classes" />
@@ -89,6 +90,7 @@ import {
     debounce,
     getRandomInt,
     removeClassesFromLocalStorage,
+    getNativeCssCode,
 } from '../helpers'
 
 export default {
@@ -141,6 +143,7 @@ export default {
             },
             direction: 'r',
             target: 'to',
+            nativeCss: '',
             savedGradients: [],
             debouncedUpdate: undefined,
             database: null,
@@ -198,6 +201,9 @@ export default {
             const dir = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : 'r'
             this.handleDirection(dir)
         }
+    },
+    updated() {
+        this.nativeCss = getNativeCssCode(this.$refs.gradientContainer)
     },
     methods: {
         handleColorStop({ stop, color }) {
