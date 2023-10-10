@@ -28,9 +28,9 @@
                         </DirectionController>
                     </div>
                 </div>
-                <p>{{ nativeCss }}</p>
                 <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
+                    <ClassOutput value="Native Css" @click="copyCssCode" />
                     <ShareButton :direction="direction" :value="classes" />
                 </div>
             </div>
@@ -240,6 +240,25 @@ export default {
             addClassesToLocalStorage(this.classes, this.database)
             if (!this.history.includes(this.classes)) {
                 this.savedGradients.push(this.classes)
+            }
+        },
+        copyCssCode() {
+            copyToClipboard(this.nativeCss, () => {
+                Notify({
+                    title: 'Copied',
+                    type: 'success',
+                    position: 'top-center',
+                    duration: 1500,
+                    config: {
+                        icons: {
+                            success: '🎉',
+                        },
+                    },
+                })
+            })
+            addClassesToLocalStorage(this.nativeCss, this.database)
+            if (!this.history.includes(this.nativeCss)) {
+                this.savedGradients.push(this.nativeCss)
             }
         },
         removeClasses(classes) {
