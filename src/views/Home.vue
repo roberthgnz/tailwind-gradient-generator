@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-2 gap-4 p-4 h-full">
             <div class="sticky top-0 z-50 h-full">
                 <div>
-                    <div class="relative rounded-xl" style="height: 50vh" :class="classes">
+                    <div ref="gradientContainer" class="relative rounded-xl" style="height: 50vh" :class="classes">
                         <DirectionController :direction="direction" @click="handleDirection">
                             <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
                                 <svg
@@ -30,6 +30,7 @@
                 </div>
                 <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
+                    <ClassOutput value="Native Css" @click="copyCssCode" />
                     <ShareButton :direction="direction" :value="classes" />
                 </div>
             </div>
@@ -89,6 +90,7 @@ import {
     debounce,
     getRandomInt,
     removeClassesFromLocalStorage,
+    getNativeCssCode,
 } from '../helpers'
 
 export default {
@@ -141,6 +143,7 @@ export default {
             },
             direction: 'r',
             target: 'to',
+            nativeCss: '',
             savedGradients: [],
             debouncedUpdate: undefined,
             database: null,
@@ -199,6 +202,9 @@ export default {
             this.handleDirection(dir)
         }
     },
+    updated() {
+        this.nativeCss = getNativeCssCode(this.$refs.gradientContainer)
+    },
     methods: {
         handleColorStop({ stop, color }) {
             this.target = stop
@@ -234,6 +240,25 @@ export default {
             addClassesToLocalStorage(this.classes, this.database)
             if (!this.history.includes(this.classes)) {
                 this.savedGradients.push(this.classes)
+            }
+        },
+        copyCssCode() {
+            copyToClipboard(this.nativeCss, () => {
+                Notify({
+                    title: 'Copied',
+                    type: 'success',
+                    position: 'top-center',
+                    duration: 1500,
+                    config: {
+                        icons: {
+                            success: '🎉',
+                        },
+                    },
+                })
+            })
+            addClassesToLocalStorage(this.nativeCss, this.database)
+            if (!this.history.includes(this.nativeCss)) {
+                this.savedGradients.push(this.nativeCss)
             }
         },
         removeClasses(classes) {
