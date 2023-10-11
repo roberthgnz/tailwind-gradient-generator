@@ -26,13 +26,15 @@
                 </div>
             </li>
         </ul>
-        <gradient-shade-selector
-            v-if="!noShadeAvailable.includes(color)"
-            :color="color"
-            :shade="shade"
-            :selected-shade="selectedShade"
-            @click="({ shade }) => $emit('shade-selected', { stop, shade })"
-        ></gradient-shade-selector>
+        <transition name="animate">
+            <gradient-shade-selector
+                v-if="!noShadeAvailable.includes(color)"
+                :color="color"
+                :shade="shade"
+                :selected-shade="selectedShade"
+                @click="({ shade }) => $emit('shade-selected', { stop, shade })"
+            ></gradient-shade-selector>
+        </transition>
     </div>
 </template>
 
@@ -148,5 +150,17 @@ li.selected::after {
     height: 50%;
     border-radius: 50%;
     background: #00000050;
+}
+
+.animate-enter-active {
+    transition: all 0.5s ease;
+}
+.animate-leave-active {
+    transition: 0.2s ease;
+}
+.animate-enter-from,
+.animate-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
 }
 </style>
