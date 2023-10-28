@@ -1,20 +1,18 @@
 <template>
     <div
-        class="rounded-xl w-full border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto uppercase text-center mb-3 md:mb-0"
+        class="rounded-lg w-full border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto text-center mb-3 md:mb-0"
         style="height: fit-content"
     >
-        <h2 class="font-mono text-gray-900 font-bold mb-2 dark:text-white">
-            {{ title }}
-        </h2>
-        <p v-if="stop" class="mb-2 font-bold dark:text-white">{{ color }}</p>
-        <ul class="grid grid-cols-5 gap-1">
+        <h3 class="text-gray-800 font-semibold mb-2 dark:text-white text-lg">{{ title }} ({{ stop }})</h3>
+        <p v-if="stop" class="text-gray-500 font-normal mb-2 dark:text-white uppercase">{{ selected }}</p>
+        <ul class="grid grid-cols-5 gap-1 uppercase">
             <li
                 v-for="item in colors"
                 :key="item"
                 :title="item"
                 style="justify-self: center"
                 :class="{
-                    selected: item === color,
+                    selected: item === selected,
                 }"
                 @click="handleColor({ stop, color: item })"
             >
@@ -27,13 +25,13 @@
             </li>
         </ul>
         <transition name="animate">
-            <gradient-shade-selector
-                v-if="!noShadeAvailable.includes(color)"
-                :color="color"
+            <GradientShadeSelector
+                v-if="!noShadeAvailable.includes(selected)"
+                :color="selected"
                 :shade="shade"
                 :selected-shade="selectedShade"
                 @click="({ shade }) => $emit('shade-selected', { stop, shade })"
-            ></gradient-shade-selector>
+            ></GradientShadeSelector>
         </transition>
     </div>
 </template>
@@ -46,9 +44,12 @@ const GradientShadeSelector = defineAsyncComponent(() => import('./GradientShade
 export default {
     name: 'GradientSelector',
     components: { GradientShadeSelector },
-    emits: ['shade-selected', 'color-selected'],
     props: {
         title: {
+            type: String,
+            required: true,
+        },
+        color: {
             type: String,
             required: true,
         },
@@ -69,19 +70,22 @@ export default {
             required: true,
         },
     },
+    emits: ['shade-selected', 'color-selected'],
     data: () => {
         return {
-            color: null,
+            selected: 'none',
             noShadeAvailable: ['black', 'white', 'none', 'transparent'],
         }
     },
     computed: {
         selectedShade() {
             let minus = this.shade !== 500 ? 100 : 200
-            return `bg-${this.color}-${900 - this.shade + minus}`
+            return `bg-${this.selected}-${900 - this.shade + minus}`
         },
     },
     mounted() {
+        this.selected = this.color
+
         if (this.$route.name === 'gradient') {
             this.initFromRoute()
         }
@@ -100,14 +104,14 @@ export default {
             if (this.stop === 'to') {
                 ;[color, shade] = to ? to.split('-') : ['none', 500]
             }
-            this.color = color.toLowerCase()
-            this.handleColor({ stop: this.stop, color: this.color })
+            this.selected = color.toLowerCase()
+            this.handleColor({ stop: this.stop, color: this.selected })
             // shade value is sent in single digits because the parent event "@shade-selected" multiplies it by 100
             this.handleShade({ stop: this.stop, shade: +shade / 100 || 5 })
         },
         handleColor({ stop, color }) {
             if (color !== 'current') {
-                this.color = color
+                this.selected = color
                 this.$emit('color-selected', { stop, color })
             }
         },
@@ -116,9 +120,9 @@ export default {
         },
         getBg(color, shade) {
             if (color === 'current') {
-                return !['transparent', 'black', 'white'].includes(this.color)
-                    ? `bg-${this.color}-${this.shade}`
-                    : `bg-${this.color}`
+                return !['transparent', 'black', 'white'].includes(this.selected)
+                    ? `bg-${this.selected}-${this.shade}`
+                    : `bg-${this.selected}`
             }
             return !['transparent', 'black', 'white'].includes(color) ? `bg-${color}-${shade}` : `bg-${color}`
         },

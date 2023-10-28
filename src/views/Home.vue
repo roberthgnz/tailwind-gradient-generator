@@ -1,73 +1,72 @@
 <template>
     <div class="home">
-        <div class="grid md:grid-cols-2 gap-4 p-4 h-full">
-            <div class="sticky top-0 z-50 h-full">
-                <div>
-                    <div ref="gradientContainer" class="relative rounded-xl" style="height: 50vh" :class="classes">
-                        <DirectionController :direction="direction" @click="handleDirection">
-                            <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-refresh-cw"
-                                >
-                                    <polyline points="23 4 23 10 17 10"></polyline>
-                                    <polyline points="1 20 1 14 7 14"></polyline>
-                                    <path
-                                        d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
-                                    ></path>
-                                </svg>
-                            </button>
-                        </DirectionController>
-                    </div>
+        <Hero />
+        <div class="grid md:grid-cols-2 gap-8 container mx-auto px-4 xl:px-0 mb-32">
+            <div class="space-y-4">
+                <div ref="gradientContainer" class="relative rounded-lg h-[33.33vh]" :class="classes">
+                    <DirectionController :direction="direction" @click="handleDirection">
+                        <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-refresh-cw"
+                            >
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                        </button>
+                    </DirectionController>
                 </div>
-                <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center p-3 gap-3">
+                <div class="flex flex-col xl:flex-row xl:justify-between items-center w-full justify-center gap-2">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
-                    <ClassOutput value="Native Css" @click="copyCssCode" />
                     <ShareButton :direction="direction" :value="classes" />
                 </div>
             </div>
             <div>
                 <div class="w-full grid md:grid-cols-3 gap-4">
                     <GradientSelector
-                        :title="'FROM'"
+                        :title="'Starting color'"
                         :colors="colors"
+                        :color="stop.from.color"
                         :stop="'from'"
-                        :shade="stop['from'].shade"
+                        :shade="stop.from.shade"
                         :target="target"
                         @color-selected="handleColorStop"
                         @shade-selected="handleColorShade"
                     />
 
                     <GradientSelector
-                        :title="'VIA'"
+                        :title="'Middle color'"
                         :colors="colors"
+                        :color="stop.via.color"
                         :stop="'via'"
-                        :shade="stop['via'].shade"
+                        :shade="stop.via.shade"
                         :target="target"
                         @color-selected="handleColorStop"
                         @shade-selected="handleColorShade"
                     />
 
                     <GradientSelector
-                        :title="'TO'"
+                        :title="'Ending color'"
                         :colors="colors"
+                        :color="stop.to.color"
                         :stop="'to'"
-                        :shade="stop['to'].shade"
+                        :shade="stop.to.shade"
                         :target="target"
                         @color-selected="handleColorStop"
                         @shade-selected="handleColorShade"
                     />
                 </div>
 
-                <HistoryBox :history="history" @remove-history-items="removeClasses" />
+                <HistoryBox :history="history" @edit="handleGradient" @remove="removeClasses" />
             </div>
         </div>
     </div>
@@ -78,12 +77,6 @@ import Lsdb from '@reliutg/lsdb'
 import { Notify } from '@reliutg/buzz-notify/dist/esm/index'
 import '@reliutg/buzz-notify/dist/buzz-notify.css'
 
-import DirectionController from '../components/DirectionController.vue'
-import GradientSelector from '../components/GradientSelector.vue'
-import HistoryBox from '../components/HistoryBox.vue'
-import ClassOutput from '../components/ClassOutput.vue'
-import ShareButton from '../components/ShareButton.vue'
-
 import {
     copyToClipboard,
     addClassesToLocalStorage,
@@ -93,9 +86,16 @@ import {
     getNativeCssCode,
 } from '../helpers'
 
+import Hero from '../components/Hero.vue'
+import DirectionController from '../components/DirectionController.vue'
+import GradientSelector from '../components/GradientSelector.vue'
+import HistoryBox from '../components/HistoryBox.vue'
+import ClassOutput from '../components/ClassOutput.vue'
+import ShareButton from '../components/ShareButton.vue'
+
 export default {
     name: 'Home',
-    components: { DirectionController, GradientSelector, HistoryBox, ClassOutput, ShareButton },
+    components: { Hero, DirectionController, GradientSelector, HistoryBox, ClassOutput, ShareButton },
     data() {
         return {
             gradient: '',
@@ -206,6 +206,15 @@ export default {
         this.nativeCss = getNativeCssCode(this.$refs.gradientContainer)
     },
     methods: {
+        handleGradient({ from, via, to, direction }) {
+            this.handleColorStop({ stop: 'from', color: from.color })
+            this.handleColorShade({ stop: 'from', shade: from.shade })
+            this.handleColorStop({ stop: 'via', color: via.color })
+            this.handleColorShade({ stop: 'via', shade: via.shade })
+            this.handleColorStop({ stop: 'to', color: to.color })
+            this.handleColorShade({ stop: 'to', shade: to.shade })
+            this.handleDirection(direction)
+        },
         handleColorStop({ stop, color }) {
             this.target = stop
             this.stop[stop].color = color
