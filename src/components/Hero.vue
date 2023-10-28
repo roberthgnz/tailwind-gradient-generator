@@ -1,8 +1,8 @@
 <template>
     <div class="relative z-20 h-[32rem] 2xl:h-[45rem] container mx-auto py-16 xl:py-32 space-y-16">
         <div class="w-2/3 mx-auto space-y-4 text-center">
-            <h2 class="text-gray-800 text-3xl xl:text-6xl font-bold">Tailwind Gradient Generator</h2>
-            <p class="w-2/3 mx-auto">
+            <h2 class="text-gray-800 text-3xl dark:text-white xl:text-6xl font-bold">Tailwind Gradient Generator</h2>
+            <p class="w-2/3 mx-auto dark:text-gray-400">
                 Make your own Tailwind CSS gradient with this easy to use tool. You easily can copy the CSS code and use
                 it in your project.
             </p>
