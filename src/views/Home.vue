@@ -25,7 +25,7 @@
                         </button>
                     </DirectionController>
                 </div>
-                <div class="flex flex-col xl:flex-row xl:justify-between items-center w-full justify-center gap-2">
+                <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center gap-2">
                     <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
                     <ShareButton :direction="direction" :value="classes" />
                 </div>

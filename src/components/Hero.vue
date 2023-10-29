@@ -7,7 +7,7 @@
                 it in your project.
             </p>
         </div>
-        <div class="mx-auto w-2/3">
+        <!-- <div class="mx-auto w-2/3">
             <div class="relative w-full h-16">
                 <div class="absolute left-0 top-0 -ml-4 flex h-12 flex-col items-center">
                     <div
@@ -32,6 +32,6 @@
                 </div>
             </div>
             <div class="h-10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-        </div>
+        </div> -->
     </div>
 </template>
