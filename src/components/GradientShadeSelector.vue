@@ -19,11 +19,11 @@ defineProps({
 
 <template>
     <div class="space-y-2">
-        <h2 class="text-gray-500 font-normal dark:text-white">SHADE: {{ shade }}</h2>
+        <h2 class="text-slate-400 font-normal dark:text-white text-sm">SHADE: {{ shade }}</h2>
         <ul class="grid grid-cols-5 gap-2">
             <li v-for="n in 9" :key="n" style="justify-self: center" @click="$emit('click', { shade: n })">
                 <div
-                    class="border dark:border-gray-700 rounded flex justify-center items-center w-9 h-9 cursor-pointer"
+                    class="shadow ring-1 ring-slate-900/10 dark:ring-slate-700 rounded-md flex justify-center items-center w-9 h-9 cursor-pointer"
                     :class="`bg-${color}-${n}00`"
                 >
                     <div

@@ -51,9 +51,9 @@ watch(
     <button
         type="button"
         title="Click to copy to clipboard"
-        class="w-full sm:w-auto flex-none bg-gray-50 text-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 hover:text-gray-900 font-mono leading-6 text-center py-3 px-6 border border-gray-200 rounded-lg flex items-center justify-center focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200"
+        class="w-full bg-gray-50 text-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 hover:text-gray-900 font-mono leading-6 text-center text-sm py-2.5 px-4 border border-gray-200 rounded-lg inline-flex items-center justify-center focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200 space-x-4"
     >
-        <span class="hidden md:block font-bold text-center p-2" v-html="parsedValue"> </span>
+        <span class="hidden md:block font-bold text-center" v-html="parsedValue"> </span>
         <span class="sr-only">(click to copy to clipboard)</span>
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path

@@ -36,23 +36,32 @@ const toggleTheme = () => {
 </script>
 
 <template>
-    <header class="bg-white border-b border-gray-200 dark:bg-slate-900 dark:border-gray-700">
-        <nav class="container mx-auto py-4 flex items-center justify-between flex-wrap md:flex-row md:flex-nowrap">
-            <h1 class="flex justify-center md:justify-start w-full">
+    <header class="bg-white border-b dark:bg-slate-900 border-gray-200 dark:border-gray-800">
+        <nav
+            class="container mx-auto py-4 px-4 xl:px-0 flex items-center justify-between flex-wrap md:flex-row md:flex-nowrap"
+        >
+            <h1 class="flex justify-center md:justify-start w-full space-x-2">
                 <svg
-                    class="h-8 w-8 mr-2 text-gray-800 dark:text-white"
-                    width="54"
-                    height="54"
-                    viewBox="0 0 54 54"
-                    fill="currentColor"
+                    class="w-8 h-8"
+                    viewBox="0 0 256 154"
+                    width="256"
+                    height="154"
                     xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid"
                 >
+                    <defs>
+                        <linearGradient x1="-2.778%" y1="32%" x2="100%" y2="67.556%" id="a">
+                            <stop stop-color="#2298BD" offset="0%" />
+                            <stop stop-color="#0ED7B5" offset="100%" />
+                        </linearGradient>
+                    </defs>
                     <path
-                        d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
+                        d="M128 0C93.867 0 72.533 17.067 64 51.2 76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0ZM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2 9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8Z"
+                        fill="url(#a)"
                     />
                 </svg>
                 <router-link to="/">
-                    <span class="text-xl tracking-tight text-gray-800 font-bold dark:text-white">
+                    <span class="text-xl tracking-tight text-black font-semibold dark:text-white">
                         Tailwind Gradient Generator
                     </span>
                 </router-link>

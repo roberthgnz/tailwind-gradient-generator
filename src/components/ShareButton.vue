@@ -62,10 +62,10 @@ const onShare = async () => {
 
 <template>
     <button
-        class="w-full sm:w-auto flex-none bg-gray-50 text-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 hover:text-gray-900 font-mono leading-6 text-center py-3 px-6 border border-gray-200 rounded-lg flex items-center justify-center focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200"
+        class="w-full sm:w-auto flex-none bg-gray-50 text-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 hover:text-gray-900 font-mono leading-6 text-center py-2.5 px-4 border border-gray-200 rounded-lg flex items-center justify-center focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition-colors duration-200 space-x-4"
         @click="onShare"
     >
-        <span class="hidden md:block font-bold text-center p-2">Share</span>
+        <span class="hidden md:block font-bold text-center">Share</span>
         <span class="sr-only">(share gradient)</span>
         <svg
             stroke="currentColor"

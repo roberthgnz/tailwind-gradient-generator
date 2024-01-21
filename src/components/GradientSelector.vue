@@ -1,38 +1,38 @@
 <template>
-    <div
-        class="h-fit rounded-lg w-full border bg-white dark:border-gray-700 dark:bg-gray-900 p-2 mx-auto text-center mb-3 md:mb-0 space-y-4"
-    >
-        <div>
-            <h3 class="text-gray-800 font-semibold dark:text-white text-lg">{{ title }} ({{ stop }})</h3>
-            <p v-if="stop" class="text-gray-500 font-normal dark:text-white uppercase">{{ selected }}</p>
+    <div class="rounded-lg w-full border bg-white dark:border-gray-700 dark:bg-gray-900 p-4 text-center space-y-4">
+        <h3 class="text-gray-800 font-semibold dark:text-white text-lg">{{ title }} ({{ stop }})</h3>
+        <div class="flex gap-8">
+            <div class="space-y-2">
+                <p v-if="stop" class="text-slate-400 font-normal dark:text-white uppercase text-sm">{{ selected }}</p>
+                <ul class="grid grid-cols-5 gap-2 uppercase">
+                    <li
+                        v-for="item in colors"
+                        :key="item"
+                        :title="item"
+                        style="justify-self: center"
+                        :class="{
+                            selected: item === selected,
+                        }"
+                        @click="handleColor({ stop, color: item })"
+                    >
+                        <div
+                            class="shadow ring-1 ring-slate-900/10 dark:ring-slate-700 dark:text-slate-50 flex rounded-md justify-center items-center w-9 h-9 cursor-pointer text-sm"
+                            :class="getBg(item, 400)"
+                        >
+                            {{ getAbbr(item) }}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <GradientShadeSelector
+                v-if="!noShadeAvailable.includes(selected)"
+                :color="selected"
+                :shade="shade"
+                :selected-shade="selectedShade"
+                @click="({ shade }) => $emit('shade-selected', { stop, shade })"
+            />
+            <StopPositionSelector :stop="stop" @change="$emit('stop-position-changed', $event)" />
         </div>
-        <ul class="grid grid-cols-5 gap-1 uppercase">
-            <li
-                v-for="item in colors"
-                :key="item"
-                :title="item"
-                style="justify-self: center"
-                :class="{
-                    selected: item === selected,
-                }"
-                @click="handleColor({ stop, color: item })"
-            >
-                <div
-                    class="border dark:border-gray-700 flex rounded justify-center items-center w-9 h-9 cursor-pointer"
-                    :class="getBg(item, 400)"
-                >
-                    {{ getAbbr(item) }}
-                </div>
-            </li>
-        </ul>
-        <GradientShadeSelector
-            v-if="!noShadeAvailable.includes(selected)"
-            :color="selected"
-            :shade="shade"
-            :selected-shade="selectedShade"
-            @click="({ shade }) => $emit('shade-selected', { stop, shade })"
-        />
-        <StopPositionSelector stop="from" @change="$emit('stop-position-changed', $event)" />
     </div>
 </template>
 

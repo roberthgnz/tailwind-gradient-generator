@@ -1,75 +1,72 @@
 <template>
-    <div class="home">
-        <Hero />
-        <div class="grid md:grid-cols-2 gap-8 container mx-auto px-4 xl:px-0 mb-32">
-            <div class="space-y-4">
-                <div ref="gradientContainer" class="relative rounded-lg h-[33.33vh]" :class="classes">
-                    <DirectionController :direction="direction" @click="handleDirection">
-                        <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="feather feather-refresh-cw"
-                            >
-                                <polyline points="23 4 23 10 17 10"></polyline>
-                                <polyline points="1 20 1 14 7 14"></polyline>
-                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                            </svg>
-                        </button>
-                    </DirectionController>
-                </div>
-                <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center gap-2">
-                    <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
-                    <ShareButton :direction="direction" :value="classes" />
-                </div>
-            </div>
-            <div>
-                <div class="w-full grid md:grid-cols-3 gap-4">
-                    <div>
-                        <GradientSelector
-                            :title="'Starting color'"
-                            :colors="colors"
-                            :color="stop.from.color"
-                            :stop="'from'"
-                            :shade="stop.from.shade"
-                            :target="target"
-                            @color-selected="handleColorStop"
-                            @shade-selected="handleColorShade"
-                        />
-                    </div>
-
-                    <GradientSelector
-                        :title="'Middle color'"
-                        :colors="colors"
-                        :color="stop.via.color"
-                        :stop="'via'"
-                        :shade="stop.via.shade"
-                        :target="target"
-                        @color-selected="handleColorStop"
-                        @shade-selected="handleColorShade"
-                    />
-
-                    <GradientSelector
-                        :title="'Ending color'"
-                        :colors="colors"
-                        :color="stop.to.color"
-                        :stop="'to'"
-                        :shade="stop.to.shade"
-                        :target="target"
-                        @color-selected="handleColorStop"
-                        @shade-selected="handleColorShade"
-                    />
-                </div>
+    <div class="h-[var(--content-height)]">
+        <div class="h-full grid md:grid-cols-2 container mx-auto px-4 xl:px-0 mb-32">
+            <div class="h-full overflow-y-auto flex flex-col gap-4 p-4">
+                <GradientSelector
+                    stop="from"
+                    :title="'Starting color'"
+                    :colors="colors"
+                    :color="stop.from.color"
+                    :shade="stop.from.shade"
+                    :target="target"
+                    @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade"
+                />
+                <GradientSelector
+                    stop="via"
+                    :title="'Middle color'"
+                    :colors="colors"
+                    :color="stop.via.color"
+                    :shade="stop.via.shade"
+                    :target="target"
+                    @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade"
+                />
+                <GradientSelector
+                    stop="to"
+                    :title="'Ending color'"
+                    :colors="colors"
+                    :color="stop.to.color"
+                    :shade="stop.to.shade"
+                    :target="target"
+                    @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade"
+                />
 
                 <HistoryBox :history="history" @edit="handleGradient" @remove="removeClasses" />
             </div>
+            <Background>
+                <div class="space-y-4 w-full">
+                    <div ref="gradientContainer" class="relative h-[33.33vh]" :class="classes">
+                        <DirectionController :direction="direction" @click="handleDirection">
+                            <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-refresh-cw"
+                                >
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path
+                                        d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </DirectionController>
+                    </div>
+                    <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center gap-2">
+                        <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
+                        <!-- <ShareButton :direction="direction" :value="classes" /> -->
+                    </div>
+                </div>
+            </Background>
         </div>
     </div>
 </template>
@@ -88,22 +85,22 @@ import {
     getNativeCssCode,
 } from '../helpers'
 
-import Hero from '../components/Hero.vue'
 import DirectionController from '../components/DirectionController.vue'
 import GradientSelector from '../components/GradientSelector.vue'
 import HistoryBox from '../components/HistoryBox.vue'
 import ClassOutput from '../components/ClassOutput.vue'
 import ShareButton from '../components/ShareButton.vue'
+import Background from '../components/Background.vue'
 
 export default {
     name: 'Home',
     components: {
-        Hero,
         DirectionController,
         GradientSelector,
         HistoryBox,
         ClassOutput,
         ShareButton,
+        Background,
     },
     data() {
         return {
