@@ -15,6 +15,7 @@
     "dependencies": {
         "@reliutg/buzz-notify": "2.5.6",
         "@reliutg/lsdb": "4.9.1",
+        "vite-plugin-webfont-dl": "^3.9.1",
         "vue": "3.4.15",
         "vue-router": "4.2.5"
     },
