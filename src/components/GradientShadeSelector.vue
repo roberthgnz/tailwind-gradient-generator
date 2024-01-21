@@ -18,8 +18,8 @@ defineProps({
 </script>
 
 <template>
-    <div>
-        <h2 class="text-gray-500 font-normal my-2 dark:text-white">SHADE: {{ shade }}</h2>
+    <div class="space-y-2">
+        <h2 class="text-gray-500 font-normal dark:text-white">SHADE: {{ shade }}</h2>
         <ul class="grid grid-cols-5 gap-2">
             <li v-for="n in 9" :key="n" style="justify-self: center" @click="$emit('click', { shade: n })">
                 <div

@@ -32,16 +32,18 @@
             </div>
             <div>
                 <div class="w-full grid md:grid-cols-3 gap-4">
-                    <GradientSelector
-                        :title="'Starting color'"
-                        :colors="colors"
-                        :color="stop.from.color"
-                        :stop="'from'"
-                        :shade="stop.from.shade"
-                        :target="target"
-                        @color-selected="handleColorStop"
-                        @shade-selected="handleColorShade"
-                    />
+                    <div>
+                        <GradientSelector
+                            :title="'Starting color'"
+                            :colors="colors"
+                            :color="stop.from.color"
+                            :stop="'from'"
+                            :shade="stop.from.shade"
+                            :target="target"
+                            @color-selected="handleColorStop"
+                            @shade-selected="handleColorShade"
+                        />
+                    </div>
 
                     <GradientSelector
                         :title="'Middle color'"
@@ -95,7 +97,14 @@ import ShareButton from '../components/ShareButton.vue'
 
 export default {
     name: 'Home',
-    components: { Hero, DirectionController, GradientSelector, HistoryBox, ClassOutput, ShareButton },
+    components: {
+        Hero,
+        DirectionController,
+        GradientSelector,
+        HistoryBox,
+        ClassOutput,
+        ShareButton,
+    },
     data() {
         return {
             gradient: '',
@@ -226,6 +235,9 @@ export default {
             if (typeof direction === 'string') {
                 this.direction = direction
             }
+        },
+        handleStopPosition({ stop, position }) {
+            console.log(stop, position)
         },
         fetchSavedGradients() {
             this.savedGradients = this.database.all('gradients')
