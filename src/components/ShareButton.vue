@@ -1,61 +1,42 @@
 <script setup>
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-
-const $router = useRouter()
+import { encode } from 'js-base64'
+import { toRaw } from 'vue'
 
 const props = defineProps({
     direction: {
         type: String,
-        default: 't',
     },
-    value: {
-        type: String,
-        default: '',
+    stop: {
+        type: Object,
     },
 })
 
-const isFirstVisit = computed(() => $router.currentRoute.value.fullPath === '/')
+const normalizeStop = (stop) => {
+    const _stop = structuredClone(toRaw(stop))
+    return Object.keys(_stop).reduce((acc, key) => {
+        const value = _stop[key]
+
+        value.shade = value.shade / 100
+
+        return {
+            ...acc,
+            [key]: value,
+        }
+    }, {})
+}
 
 const onShare = async () => {
-    const url = new URL('https://twitter.com/intent/tweet')
     try {
-        const queryParams = new URLSearchParams()
-        if (isFirstVisit.value) {
-            let colors = props.value // e.g "bg-gradient-to-br from-slate-900 via-pink-200 to-green-100";
-            colors = colors
-                .replaceAll(/(bg-gradient-to-)[a-zA-Z]{1,2}/g, '')
-                .replaceAll(/(from-|via-|to-)/g, '')
-                .trim()
-                .split(' ')
-                .join(',')
-            queryParams.append('colors', colors)
-            queryParams.append('direction', props.direction)
-        }
-        const baseURL = 'https://tailwind-gradient-generator.vercel.app'
-        const currentPath = isFirstVisit.value
-            ? `/gradient?${queryParams.toString()}`
-            : $router.currentRoute.value.fullPath
-
-        url.searchParams.append('url', baseURL + currentPath)
-        url.searchParams.append('text', 'Check this gradient. You will love it!')
-        url.searchParams.append('hashtags', 'TailwindGradientGenerator')
-
-        // Check if Web Share API is available. If it is not supported, share it in the traditional way
         if ('share' in navigator) {
+            const endcoded = encode(JSON.stringify({ stop: normalizeStop(props.stop), direction: props.direction }))
             await navigator.share({
                 title: document.title,
                 text: 'Check this gradient. You will love it!',
-                url: baseURL + currentPath,
+                url: `${window.location.origin}?g=${endcoded}`,
             })
-        } else {
-            // Fallback sharing option
-            window.open(url, '_blank')
         }
     } catch (error) {
         console.error(error)
-        // Failed to share it. Fallback sharing option
-        window.open(url, '_blank')
     }
 }
 </script>

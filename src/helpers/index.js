@@ -49,8 +49,3 @@ export const getRandomInt = (min, max) => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
-
-// Get the computed background color of an element
-export const getNativeCssCode = (element) => {
-    return getComputedStyle(element).getPropertyValue('background-image')
-}

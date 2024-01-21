@@ -66,7 +66,7 @@
                     </div>
                     <div class="flex flex-col xl:flex-row flex-wrap items-center w-full justify-center gap-2">
                         <ClassOutput :value="classes" :direction="direction" @click="copyClasses" />
-                        <!-- <ShareButton :direction="direction" :value="classes" /> -->
+                        <ShareButton :direction="direction" :stop="stop" />
                     </div>
                 </div>
             </Background>
@@ -75,18 +75,12 @@
 </template>
 
 <script>
+import { decode } from 'js-base64'
 import Lsdb from '@reliutg/lsdb'
 import { Notify } from '@reliutg/buzz-notify/dist/esm/index'
 import '@reliutg/buzz-notify/dist/buzz-notify.css'
 
-import {
-    copyToClipboard,
-    addClassesToLocalStorage,
-    debounce,
-    getRandomInt,
-    removeClassesFromLocalStorage,
-    getNativeCssCode,
-} from '../helpers'
+import { copyToClipboard, addClassesToLocalStorage, getRandomInt, removeClassesFromLocalStorage } from '../helpers'
 
 import DirectionController from '../components/DirectionController.vue'
 import GradientSelector from '../components/GradientSelector.vue'
@@ -157,7 +151,6 @@ export default {
             target: 'to',
             nativeCss: '',
             savedGradients: [],
-            debouncedUpdate: undefined,
             database: null,
         }
     },
@@ -188,37 +181,21 @@ export default {
                     }
                 }
                 this.gradient = result.join(' ')
-                if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
             },
             // watcher will look for changes as soon as this component is created
             immediate: true,
             deep: true,
         },
-        direction: {
-            handler() {
-                if (typeof this.debouncedUpdate === 'function') this.debouncedUpdate()
-            },
-        },
-    },
-    beforeMount() {
-        // assign the function to be debounced
-        // the "this.updateRoute" function will update the URL after 1000ms any time the user changes the colors or direction
-        this.debouncedUpdate = debounce(this.updateRoute, 1000)
     },
     mounted() {
         this.database = new Lsdb('tailwind-gradient-generator')
         this.database.collection(['gradients'])
         this.fetchSavedGradients()
-        if (this.$route.name === 'gradient') {
-            // direction should be either of the following:
-            // "t", "tl", "tr", "b", "bl", "br", "l", "r" (uppercase and lowercase both are accepted)
-            // if direction is not mentioned in the URL, then "r" as default
-            const dir = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : 'r'
-            this.handleDirection(dir)
+        if (this.$route.query.g) {
+            const decoded = decode(this.$route.query.g)
+            const { stop, direction } = JSON.parse(decoded)
+            this.handleGradient({ ...stop, direction })
         }
-    },
-    updated() {
-        this.nativeCss = getNativeCssCode(this.$refs.gradientContainer)
     },
     methods: {
         handleGradient({ from, via, to, direction }) {
@@ -269,25 +246,6 @@ export default {
                 this.savedGradients.push(this.classes)
             }
         },
-        copyCssCode() {
-            copyToClipboard(this.nativeCss, () => {
-                Notify({
-                    title: 'Copied',
-                    type: 'success',
-                    position: 'top-center',
-                    duration: 1500,
-                    config: {
-                        icons: {
-                            success: '🎉',
-                        },
-                    },
-                })
-            })
-            addClassesToLocalStorage(this.nativeCss, this.database)
-            if (!this.history.includes(this.nativeCss)) {
-                this.savedGradients.push(this.nativeCss)
-            }
-        },
         removeClasses(classes) {
             removeClassesFromLocalStorage(classes, this.database, () => {
                 this.fetchSavedGradients()
@@ -302,23 +260,6 @@ export default {
                         },
                     },
                 })
-            })
-        },
-        updateRoute() {
-            const oldColors = this.$route.query.colors
-            const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''
-            const oldPath = `${oldColors}${oldDirection}`
-            const newColors = `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`
-            const newDirection = this.direction.toLowerCase()
-            const newPath = `${newColors}${newDirection}`
-            // for avoiding the "NavigationDuplicated" error in vue-router, do not push to the route if the previous route was the same
-            if (oldPath === newPath) return
-            this.$router.push({
-                name: 'gradient',
-                query: {
-                    colors: `${this.stop.from.color}-${this.stop.from.shade},${this.stop.via.color}-${this.stop.via.shade},${this.stop.to.color}-${this.stop.to.shade}`,
-                    direction: this.direction.toUpperCase(),
-                },
             })
         },
         generateRandomGradient() {
