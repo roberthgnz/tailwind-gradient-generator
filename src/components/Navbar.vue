@@ -1,5 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+
 import Lsdb from '@reliutg/lsdb'
 
 const database = ref(null)
@@ -67,6 +69,43 @@ const toggleTheme = () => {
                 </router-link>
             </h1>
             <ul class="flex items-center text-base justify-center w-full md:w-auto space-x-4">
+                <li class="relative z-50">
+                    <Menu as="div" class="relative inline-block text-left">
+                        <MenuButton class="py-1.5 px-3 border border-gray-200 rounded-lg dark:text-slate-50"
+                            >Feedback</MenuButton
+                        >
+                        <MenuItems
+                            class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+                        >
+                            <MenuItem v-slot="{ active }">
+                                <a
+                                    :class="[
+                                        active ? 'font-semibold' : 'text-gray-900',
+                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                    ]"
+                                    href="https://tailwind-gradient-generator.canny.io/feature-requests"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Feature request
+                                </a>
+                            </MenuItem>
+                            <MenuItem v-slot="{ active }">
+                                <a
+                                    :class="[
+                                        active ? 'font-semibold' : 'text-gray-900',
+                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                    ]"
+                                    href="https://github.com/roberthgnz/tailwind-gradient-generator/issues/new"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Report a bug
+                                </a>
+                            </MenuItem>
+                        </MenuItems>
+                    </Menu>
+                </li>
                 <li>
                     <a
                         aria-label="GitHub Respository"
