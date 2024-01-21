@@ -15,22 +15,22 @@
     "dependencies": {
         "@reliutg/buzz-notify": "2.5.6",
         "@reliutg/lsdb": "4.9.1",
-        "vue": "3.4.5",
+        "vue": "3.4.15",
         "vue-router": "4.2.5"
     },
     "devDependencies": {
         "@unocss/transformer-variant-group": "^0.58.3",
-        "@vitejs/plugin-vue": "5.0.2",
-        "@vue/compiler-sfc": "3.4.5",
-        "autoprefixer": "10.4.16",
+        "@vitejs/plugin-vue": "5.0.3",
+        "@vue/compiler-sfc": "3.4.15",
+        "autoprefixer": "10.4.17",
         "eslint": "^8.56.0",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.1.2",
-        "eslint-plugin-vue": "^9.19.2",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-vue": "^9.20.1",
         "postcss": "8.4.33",
         "tailwindcss": "3.4.1",
         "unocss": "^0.58.3",
-        "vite": "^5.0.11"
+        "vite": "^5.0.12"
     },
     "browserslist": [
         "> 1%",
