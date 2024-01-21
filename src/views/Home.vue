@@ -11,6 +11,7 @@
                     :target="target"
                     @color-selected="handleColorStop"
                     @shade-selected="handleColorShade"
+                    @stop-position-changed="handleStopPosition"
                 />
                 <GradientSelector
                     stop="via"
@@ -21,6 +22,7 @@
                     :target="target"
                     @color-selected="handleColorStop"
                     @shade-selected="handleColorShade"
+                    @stop-position-changed="handleStopPosition"
                 />
                 <GradientSelector
                     stop="to"
@@ -31,6 +33,7 @@
                     :target="target"
                     @color-selected="handleColorStop"
                     @shade-selected="handleColorShade"
+                    @stop-position-changed="handleStopPosition"
                 />
 
                 <HistoryBox :history="history" @edit="handleGradient" @remove="removeClasses" />
@@ -137,14 +140,17 @@ export default {
                 from: {
                     color: 'green',
                     shade: 400,
+                    position: 0,
                 },
                 via: {
                     color: 'cyan',
                     shade: 900,
+                    position: 0,
                 },
                 to: {
                     color: 'blue',
                     shade: 500,
+                    position: 0,
                 },
             },
             direction: 'r',
@@ -169,11 +175,14 @@ export default {
                 let result = []
                 let gradient = ''
                 for (const key in this.stop) {
-                    const element = this.stop[key]
-                    if (element.color !== 'none' && !(key === 'to' && element.color === 'transparent')) {
-                        gradient = `${key}-${element.color}`
-                        if (!['transparent', 'current', 'black', 'white'].includes(element.color)) {
-                            gradient += `-${element.shade}`
+                    const stopValue = this.stop[key]
+                    if (stopValue.color !== 'none' && !(key === 'to' && stopValue.color === 'transparent')) {
+                        gradient = `${key}-${stopValue.color}`
+                        if (!['transparent', 'current', 'black', 'white'].includes(stopValue.color)) {
+                            gradient += `-${stopValue.shade}`
+                        }
+                        if (stopValue.position) {
+                            gradient += ` ${key}-${stopValue.position}`
                         }
                         result.push(gradient)
                     }
@@ -234,7 +243,7 @@ export default {
             }
         },
         handleStopPosition({ stop, position }) {
-            console.log(stop, position)
+            this.stop[stop].position = position.replace(`${stop}-`, '')
         },
         fetchSavedGradients() {
             this.savedGradients = this.database.all('gradients')
@@ -295,7 +304,6 @@ export default {
                 })
             })
         },
-        // function will update the URL based on the colors, shades and direction the user chooses
         updateRoute() {
             const oldColors = this.$route.query.colors
             const oldDirection = this.$route.query.direction ? this.$route.query.direction.toLowerCase() : ''

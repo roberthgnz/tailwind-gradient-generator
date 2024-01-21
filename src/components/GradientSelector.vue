@@ -31,7 +31,10 @@
                 :selected-shade="selectedShade"
                 @click="({ shade }) => $emit('shade-selected', { stop, shade })"
             />
-            <StopPositionSelector :stop="stop" @change="$emit('stop-position-changed', $event)" />
+            <StopPositionSelector
+                :stop="stop"
+                @update:model-value="(position) => $emit('stop-position-changed', { stop, position })"
+            />
         </div>
     </div>
 </template>
