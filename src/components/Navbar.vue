@@ -108,14 +108,6 @@ const toggleTheme = () => {
                 </li>
                 <li>
                     <a
-                        href="https://tailwind-gradient-generator-git-next-holasoygonzza.vercel.app"
-                        class="inline-flex text-nowrap text-xs font-medium text-sky-600 dark:text-sky-400 bg-sky-400/10 rounded-full py-1 px-3 hover:bg-sky-400/20"
-                    >
-                        New version available 🚀
-                    </a>
-                </li>
-                <li>
-                    <a
                         aria-label="GitHub Respository"
                         href="https://github.com/roberthgnz/tailwind-gradient-generator"
                         target="_blank"
