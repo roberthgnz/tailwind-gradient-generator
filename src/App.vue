@@ -17,3 +17,11 @@ export default {
     },
 }
 </script>
+
+<style>
+:root {
+    --navbar-height: 64.94px;
+    --footer-height: 72.93px;
+    --content-height: calc(100dvh - var(--navbar-height) - var(--footer-height));
+}
+</style>

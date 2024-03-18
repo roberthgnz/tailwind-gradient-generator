@@ -58,17 +58,17 @@ const handleRemoveHistory = (classes) => {
 <template>
     <div
         v-if="history.length > 0"
-        class="w-full rounded-lg shadow-sm border p-6 my-8 mx-auto relative dark:border-gray-700 dark:text-white"
+        class="w-full rounded-lg shadow-sm border p-4 mx-auto relative dark:border-gray-700 dark:text-white"
     >
-        <h3 class="text-gray-500 font-normal md:mb-4 text-center dark:text-white">SAVED GRADIENTS</h3>
+        <h3 class="text-slate-400 font-normal md:mb-4 text-center dark:text-white">SAVED GRADIENTS</h3>
         <span
-            class="block text-gray-400 font-thin md:absolute md:top-0 md:right-0 p-3 text-center cursor-pointer dark:text-white hover:text-gray-700 dark:hover:text-gray-200"
+            class="block text-gray-400 font-thin md:absolute md:top-0 md:right-0 p-4 text-center cursor-pointer dark:text-white hover:text-gray-700 dark:hover:text-gray-200"
             @click="handleRemoveHistory(history)"
             >Remove all</span
         >
         <ul class="h-56 overflow-y-auto text-center space-y-2 my-8">
             <li v-for="item in history" :key="item">
-                <div class="flex justify-between items-center mx-auto rounded px-2 py-1">
+                <div class="flex justify-between items-center mx-auto py-2">
                     <code
                         class="bg-clip-text text-center md:text-left leading-7 pr-1 cursor-pointer hover:text-gray-700 dark:hover:text-gray-200"
                         title="Click to copy"
