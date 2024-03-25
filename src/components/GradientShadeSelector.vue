@@ -23,7 +23,7 @@ defineProps({
         <ul class="grid grid-cols-5 gap-2">
             <li v-for="n in 9" :key="n" style="justify-self: center" @click="$emit('click', { shade: n })">
                 <div
-                    class="shadow ring-1 ring-slate-900/10 dark:ring-slate-700 rounded-md flex justify-center items-center w-9 h-9 cursor-pointer"
+                    class="rounded-md flex justify-center items-center size-7 cursor-pointer"
                     :class="`bg-${color}-${n}00`"
                 >
                     <div

@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[var(--content-height)]">
+    <div class="relative h-[var(--content-height)]">
         <div class="h-full grid md:grid-cols-2 container mx-auto px-4 xl:px-0 mb-32">
             <div class="h-full overflow-y-auto flex flex-col gap-4 p-4">
                 <GradientSelector
@@ -39,8 +39,8 @@
                 <HistoryBox :history="history" @edit="handleGradient" @remove="removeClasses" />
             </div>
             <Background>
-                <div class="space-y-4 w-full">
-                    <div ref="gradientContainer" class="relative h-[33.33vh]" :class="classes">
+                <div class="space-y-4 w-full rounded">
+                    <div ref="gradientContainer" class="relative rounded-lg h-[33.33vh]" :class="classes">
                         <DirectionController :direction="direction" @click="handleDirection">
                             <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
                                 <svg

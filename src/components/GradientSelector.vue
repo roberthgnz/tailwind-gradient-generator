@@ -16,7 +16,7 @@
                         @click="handleColor({ stop, color: item })"
                     >
                         <div
-                            class="shadow ring-1 ring-slate-900/10 dark:ring-slate-700 dark:text-slate-50 flex rounded-md justify-center items-center w-9 h-9 cursor-pointer text-sm"
+                            class="dark:text-slate-50 flex rounded-md justify-center items-center size-7 max-w-9 max-h-9 cursor-pointer text-sm"
                             :class="getBg(item, 400)"
                         >
                             {{ getAbbr(item) }}

@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="h-full w-full">
+    <div class="h-full w-full rounded">
         <button
             type="button"
             :class="[direction === 'tl' ? 'direction-button--active' : null]"

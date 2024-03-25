@@ -20,8 +20,8 @@ export default {
 
 <style>
 :root {
-    --navbar-height: 64.94px;
-    --footer-height: 72.93px;
-    --content-height: calc(100dvh - var(--navbar-height) - var(--footer-height));
+    --navbar-height: 64px;
+    --footer-height: 72px;
+    --content-height: calc(100vh - var(--navbar-height) - var(--footer-height));
 }
 </style>
