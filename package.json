@@ -16,7 +16,7 @@
         "@headlessui/vue": "^1.7.17",
         "@reliutg/buzz-notify": "2.7.0",
         "@reliutg/lsdb": "4.9.1",
-        "vue": "3.4.21",
+        "vue": "3.4.22",
         "vue-router": "4.3.0",
         "js-base64": "^3.7.6",
         "vite-plugin-webfont-dl": "^3.9.1"
