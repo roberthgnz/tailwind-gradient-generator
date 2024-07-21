@@ -2,10 +2,12 @@
     <Navbar />
     <router-view></router-view>
     <Footer />
-    <div data-notify></div>
+    <Toaster position="bottom-center" rich-colors />
 </template>
 
 <script>
+import { Toaster } from 'vue-sonner'
+
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
@@ -14,6 +16,7 @@ export default {
     components: {
         Navbar,
         Footer,
+        Toaster
     },
 }
 </script>

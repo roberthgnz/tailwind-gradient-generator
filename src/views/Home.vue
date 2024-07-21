@@ -2,39 +2,15 @@
     <div class="relative h-[var(--content-height)]">
         <div class="h-full grid md:grid-cols-2 container mx-auto px-4 xl:px-0 mb-32">
             <div class="h-full overflow-y-auto flex flex-col gap-4 p-4">
-                <GradientSelector
-                    stop="from"
-                    :title="'Starting color'"
-                    :colors="colors"
-                    :color="stop.from.color"
-                    :shade="stop.from.shade"
-                    :target="target"
-                    @color-selected="handleColorStop"
-                    @shade-selected="handleColorShade"
-                    @stop-position-changed="handleStopPosition"
-                />
-                <GradientSelector
-                    stop="via"
-                    :title="'Middle color'"
-                    :colors="colors"
-                    :color="stop.via.color"
-                    :shade="stop.via.shade"
-                    :target="target"
-                    @color-selected="handleColorStop"
-                    @shade-selected="handleColorShade"
-                    @stop-position-changed="handleStopPosition"
-                />
-                <GradientSelector
-                    stop="to"
-                    :title="'Ending color'"
-                    :colors="colors"
-                    :color="stop.to.color"
-                    :shade="stop.to.shade"
-                    :target="target"
-                    @color-selected="handleColorStop"
-                    @shade-selected="handleColorShade"
-                    @stop-position-changed="handleStopPosition"
-                />
+                <GradientSelector stop="from" :title="'Starting color'" :colors="colors" :color="stop.from.color"
+                    :shade="stop.from.shade" :target="target" @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade" @stop-position-changed="handleStopPosition" />
+                <GradientSelector stop="via" :title="'Middle color'" :colors="colors" :color="stop.via.color"
+                    :shade="stop.via.shade" :target="target" @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade" @stop-position-changed="handleStopPosition" />
+                <GradientSelector stop="to" :title="'Ending color'" :colors="colors" :color="stop.to.color"
+                    :shade="stop.to.shade" :target="target" @color-selected="handleColorStop"
+                    @shade-selected="handleColorShade" @stop-position-changed="handleStopPosition" />
 
                 <HistoryBox :history="history" @edit="handleGradient" @remove="removeClasses" />
             </div>
@@ -43,23 +19,13 @@
                     <div ref="gradientContainer" class="relative rounded-lg h-[33.33vh]" :class="classes">
                         <DirectionController :direction="direction" @click="handleDirection">
                             <button type="button" title=" Generate random gradient" @click="generateRandomGradient">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-refresh-cw"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-refresh-cw">
                                     <polyline points="23 4 23 10 17 10"></polyline>
                                     <polyline points="1 20 1 14 7 14"></polyline>
-                                    <path
-                                        d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
-                                    ></path>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15">
+                                    </path>
                                 </svg>
                             </button>
                         </DirectionController>
@@ -75,10 +41,9 @@
 </template>
 
 <script>
+import { toast } from 'vue-sonner'
 import { decode } from 'js-base64'
 import Lsdb from '@reliutg/lsdb'
-import { Notify } from '@reliutg/buzz-notify/dist/esm/index'
-import '@reliutg/buzz-notify/dist/buzz-notify.css'
 
 import { copyToClipboard, addClassesToLocalStorage, getRandomInt, removeClassesFromLocalStorage } from '../helpers'
 
@@ -229,17 +194,7 @@ export default {
         },
         copyClasses() {
             copyToClipboard(this.classes, () => {
-                Notify({
-                    title: 'Copied',
-                    type: 'success',
-                    position: 'top-center',
-                    duration: 1500,
-                    config: {
-                        icons: {
-                            success: '🎉',
-                        },
-                    },
-                })
+                toast.success('Gradient copied to clipboard')
             })
             addClassesToLocalStorage(this.classes, this.database)
             if (!this.history.includes(this.classes)) {
