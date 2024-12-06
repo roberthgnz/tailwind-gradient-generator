@@ -29,7 +29,7 @@ export const GradientOutputClass = ({ value }: GradientOutputClassProps) => {
         }
 
         const reg = new RegExp(`(${diff[0]})`, 'gi')
-        return currentValue.replace(reg, '<code class="text-gray-900 dark:text-gray-200">$&</code>')
+        return currentValue.replace(reg, '<code class="text-sm font-bold text-accent-foreground">$&</code>')
     }
 
     const [parsedValue, setParsedValue] = useState(() => transformValue(value))
@@ -51,6 +51,9 @@ export const GradientOutputClass = ({ value }: GradientOutputClassProps) => {
     }
 
     return (
-        <span className="hidden md:block font-bold text-center" dangerouslySetInnerHTML={{ __html: processedValue }} />
+        <span
+            className="hidden md:block font-semibold text-xs text-center transition-all"
+            dangerouslySetInnerHTML={{ __html: processedValue }}
+        />
     )
 }
