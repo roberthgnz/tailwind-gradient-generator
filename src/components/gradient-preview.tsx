@@ -61,7 +61,7 @@ export function GradientPreview({
                         </Tooltip>
                     </TooltipProvider>
                 </div>
-                <div className={`relative z-10 h-[50dvh] rounded ${gradientClass}`}>
+                <div className={`relative z-10 h-[50dvh] rounded-md ${gradientClass}`}>
                     <div className="absolute inset-4 grid grid-cols-3 grid-rows-3 gap-4">
                         <Button
                             variant="ghost"
