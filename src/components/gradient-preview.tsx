@@ -32,19 +32,11 @@ import { toggleGradient } from '@/store/main-slice'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
 import { encode } from 'js-base64'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 import { toPng, toJpeg, toSvg } from 'html-to-image'
-import { useCallback, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
-import { GradientDownloadPreview } from './gradient-dowload-preview'
 import { ASPECT_RATIOS } from '@/contants'
 
 interface GradientPreviewProps {
@@ -94,7 +86,7 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
         })
     }
 
-    const onExport = (format: string) => {
+    const onExport = (format: 'png' | 'jpeg' | 'svg') => {
         if (gradientRef.current === null) {
             return
         }
