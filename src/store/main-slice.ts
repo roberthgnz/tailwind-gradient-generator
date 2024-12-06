@@ -17,6 +17,14 @@ export const mainSlice = createSlice({
         updateGradient: (
             state,
             action: {
+                payload: GradientStop
+            },
+        ) => {
+            state.gradient = action.payload as any
+        },
+        updateGradientBy: (
+            state,
+            action: {
                 payload: {
                     stop: GradientStop
                     property: 'color' | 'shade' | 'position'
@@ -41,7 +49,7 @@ export const mainSlice = createSlice({
     },
 })
 
-export const { updateGradient, toggleGradient } = mainSlice.actions
+export const { updateGradient, updateGradientBy, toggleGradient } = mainSlice.actions
 
 export default mainSlice.reducer
 

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ColorSelector } from '@/components/color-selector'
 import { GradientPreview } from '@/components/gradient-preview'
 import { Github, MoonIcon, SunIcon } from 'lucide-react'
@@ -9,9 +9,9 @@ import { Toaster } from '@/components/ui/toaster'
 import { useResizeObserver } from 'usehooks-ts'
 import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { getGradientClass } from '@/lib/gradient'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateGradient } from './store/main-slice'
+import { updateGradient, updateGradientBy } from './store/main-slice'
+import { encode, decode } from 'js-base64'
 
 const getRandomItem = (array: readonly any[]) => array[Math.floor(Math.random() * array.length)]
 
@@ -30,26 +30,25 @@ export default function App() {
 
     const [direction, setDirection] = useState('to-r')
 
-    const gradientClass = getGradientClass(gradient, direction)
-
     const onRandomGradient = () => {
         const randomColor = () => getRandomItem(TAILWIND_COLORS)
         const randomShade = () => getRandomItem(SHADES)
 
-        dispatch(updateGradient({ stop: 'start', property: 'color', value: randomColor() }))
-        dispatch(updateGradient({ stop: 'start', property: 'shade', value: randomShade() }))
+        const randomGradient = {
+            start: { color: randomColor(), shade: randomShade(), position: '0%', active: true },
+            middle: { color: randomColor(), shade: randomShade(), position: '50%', active: true },
+            end: { color: randomColor(), shade: randomShade(), position: '100%', active: true },
+        }
 
-        dispatch(updateGradient({ stop: 'middle', property: 'color', value: randomColor() }))
-        dispatch(updateGradient({ stop: 'middle', property: 'shade', value: randomShade() }))
-
-        dispatch(updateGradient({ stop: 'end', property: 'color', value: randomColor() }))
-        dispatch(updateGradient({ stop: 'end', property: 'shade', value: randomShade() }))
+        dispatch(updateGradient(randomGradient))
 
         setDirection(getRandomItem(DIRECTIONS))
     }
 
     const onShare = () => {
-        navigator.clipboard.writeText(gradientClass).then(() => {
+        const shareUrl = `${window.location.origin}/?gradient=${encode(JSON.stringify(gradient))}`
+
+        navigator.clipboard.writeText(shareUrl).then(() => {
             toast({
                 title: 'Gradient class copied!',
                 description: 'The gradient class has been copied to your clipboard.',
@@ -72,6 +71,16 @@ export default function App() {
             description: 'The gradient has been exported as CSS.',
         })
     }
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search)
+        const gradientParam = urlParams.get('gradient')
+
+        if (gradientParam) {
+            const decodedGradient = JSON.parse(decode(gradientParam))
+            dispatch(updateGradient(decodedGradient))
+        }
+    }, [])
 
     return (
         <div className="bg-background">
@@ -114,15 +123,15 @@ export default function App() {
                                 label="Starting color (from)"
                                 selectedColor={gradient.start.color}
                                 onColorSelect={(color) =>
-                                    dispatch(updateGradient({ stop: 'start', property: 'color', value: color }))
+                                    dispatch(updateGradientBy({ stop: 'start', property: 'color', value: color }))
                                 }
                                 shade={gradient.start.shade}
                                 onShadeSelect={(shade) =>
-                                    dispatch(updateGradient({ stop: 'start', property: 'shade', value: shade }))
+                                    dispatch(updateGradientBy({ stop: 'start', property: 'shade', value: shade }))
                                 }
                                 stopPosition={gradient.start.position}
                                 onStopPositionSelect={(position) =>
-                                    dispatch(updateGradient({ stop: 'start', property: 'position', value: position }))
+                                    dispatch(updateGradientBy({ stop: 'start', property: 'position', value: position }))
                                 }
                             />
                             <ColorSelector
@@ -130,15 +139,17 @@ export default function App() {
                                 label="Middle color (via)"
                                 selectedColor={gradient.middle.color}
                                 onColorSelect={(color) =>
-                                    dispatch(updateGradient({ stop: 'middle', property: 'color', value: color }))
+                                    dispatch(updateGradientBy({ stop: 'middle', property: 'color', value: color }))
                                 }
                                 shade={gradient.middle.shade}
                                 onShadeSelect={(shade) =>
-                                    dispatch(updateGradient({ stop: 'middle', property: 'shade', value: shade }))
+                                    dispatch(updateGradientBy({ stop: 'middle', property: 'shade', value: shade }))
                                 }
                                 stopPosition={gradient.middle.position}
                                 onStopPositionSelect={(position) =>
-                                    dispatch(updateGradient({ stop: 'middle', property: 'position', value: position }))
+                                    dispatch(
+                                        updateGradientBy({ stop: 'middle', property: 'position', value: position }),
+                                    )
                                 }
                             />
                             <ColorSelector
@@ -146,15 +157,15 @@ export default function App() {
                                 label="Ending color (to)"
                                 selectedColor={gradient.end.color}
                                 onColorSelect={(color) =>
-                                    dispatch(updateGradient({ stop: 'end', property: 'color', value: color }))
+                                    dispatch(updateGradientBy({ stop: 'end', property: 'color', value: color }))
                                 }
                                 shade={gradient.end.shade}
                                 onShadeSelect={(shade) =>
-                                    dispatch(updateGradient({ stop: 'end', property: 'shade', value: shade }))
+                                    dispatch(updateGradientBy({ stop: 'end', property: 'shade', value: shade }))
                                 }
                                 stopPosition={gradient.end.position}
                                 onStopPositionSelect={(position) =>
-                                    dispatch(updateGradient({ stop: 'end', property: 'position', value: position }))
+                                    dispatch(updateGradientBy({ stop: 'end', property: 'position', value: position }))
                                 }
                             />
                         </div>
