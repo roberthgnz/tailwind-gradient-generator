@@ -9,26 +9,10 @@ import { Toaster } from '@/components/ui/toaster'
 import { useResizeObserver } from 'usehooks-ts'
 import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
 import { ScrollArea } from '@/components/ui/scroll-area'
-
-type GradientStop = 'start' | 'middle' | 'end'
-
-interface GradientColor {
-    color: string
-    shade: string
-    position: string
-}
-
-interface Gradient {
-    start: GradientColor
-    middle: GradientColor
-    end: GradientColor
-}
+import { getGradientClass } from '@/lib/gradient'
+import type { Gradient, GradientStop } from './types'
 
 const getRandomItem = (array: readonly any[]) => array[Math.floor(Math.random() * array.length)]
-
-const getGradientClass = (gradient: Gradient, direction: string) => {
-    return `bg-gradient-${direction} from-${gradient.start.color}-${gradient.start.shade} from-${gradient.start.position} via-${gradient.middle.color}-${gradient.middle.shade} via-${gradient.middle.position} to-${gradient.end.color}-${gradient.end.shade} to-${gradient.end.position}`
-}
 
 export default function App() {
     const { toast } = useToast()
@@ -167,7 +151,8 @@ export default function App() {
                         </div>
                     </ScrollArea>
                     <GradientPreview
-                        gradientClass={gradientClass}
+                        gradient={gradient}
+                        direction={direction}
                         onDirectionChange={setDirection}
                         onRandomGradient={onRandomGradient}
                         onShare={onShare}

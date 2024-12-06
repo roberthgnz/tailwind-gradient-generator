@@ -2,9 +2,12 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Share2, Save, Download, Refr
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { GradientOutput } from './gradient-output'
+import { getGradientClass } from '@/lib/gradient'
+import type { Gradient } from '@/types'
 
 interface GradientPreviewProps {
-    gradientClass: string
+    gradient: Gradient
+    direction: string
     onDirectionChange: (direction: string) => void
     onRandomGradient: () => void
     onShare: () => void
@@ -13,13 +16,16 @@ interface GradientPreviewProps {
 }
 
 export function GradientPreview({
-    gradientClass,
+    gradient,
+    direction,
     onDirectionChange,
     onRandomGradient,
     onShare,
     onSave,
     onExport,
 }: GradientPreviewProps) {
+    const gradientClass = getGradientClass(gradient, direction)
+
     return (
         <div className="flex h-full mx-auto max-w-full aspect-video flex-col justify-center overflow-hidden">
             <div className="p-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:w-[90%] space-y-4 sm:rounded-lg">
