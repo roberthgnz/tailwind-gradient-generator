@@ -7,35 +7,27 @@ import { useTheme } from 'next-themes'
 import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
 import { useResizeObserver } from 'usehooks-ts'
+import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
 
-const tailwindColors = [
-    'slate',
-    'gray',
-    'zinc',
-    'neutral',
-    'stone',
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-]
-const shades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
-const directions = ['to-r', 'to-l', 'to-t', 'to-b', 'to-tr', 'to-tl', 'to-br', 'to-bl']
+type GradientStop = 'start' | 'middle' | 'end'
 
-const getRandomItem = (array: any[]) => array[Math.floor(Math.random() * array.length)]
+interface GradientColor {
+    color: string
+    shade: string
+    position: string
+}
+
+interface Gradient {
+    start: GradientColor
+    middle: GradientColor
+    end: GradientColor
+}
+
+const getRandomItem = (array: readonly any[]) => array[Math.floor(Math.random() * array.length)]
+
+const getGradientClass = (gradient: Gradient, direction: string) => {
+    return `bg-gradient-${direction} from-${gradient.start.color}-${gradient.start.shade} from-${gradient.start.position} via-${gradient.middle.color}-${gradient.middle.shade} via-${gradient.middle.position} to-${gradient.end.color}-${gradient.end.shade} to-${gradient.end.position}`
+}
 
 export default function App() {
     const { toast } = useToast()
@@ -47,33 +39,40 @@ export default function App() {
     const footerRef = useRef<HTMLDivElement>(null)
     const footerSizes = useResizeObserver({ ref: footerRef, box: 'border-box' })
 
-    const [startColor, setStartColor] = useState('green')
-    const [startShade, setStartShade] = useState('400')
-    const [startPosition, setStartPosition] = useState('0%')
-
-    const [middleColor, setMiddleColor] = useState('cyan')
-    const [middleShade, setMiddleShade] = useState('900')
-    const [middlePosition, setMiddlePosition] = useState('50%')
-
-    const [endColor, setEndColor] = useState('blue')
-    const [endShade, setEndShade] = useState('500')
-    const [endPosition, setEndPosition] = useState('100%')
+    const [gradient, setGradient] = useState<Gradient>({
+        start: { color: 'green', shade: '400', position: '0%' },
+        middle: { color: 'cyan', shade: '900', position: '50%' },
+        end: { color: 'blue', shade: '500', position: '100%' },
+    })
 
     const [direction, setDirection] = useState('to-r')
 
-    const gradientClass = `bg-gradient-${direction} from-${startColor}-${startShade} from-${startPosition} via-${middleColor}-${middleShade} via-${middlePosition} to-${endColor}-${endShade} to-${endPosition}`
+    const gradientClass = getGradientClass(gradient, direction)
+
+    const updateGradient = (key: GradientStop, property: 'color' | 'shade' | 'position', value: string) => {
+        setGradient((prevState) => ({
+            ...prevState,
+            [key]: {
+                ...prevState[key],
+                [property]: value,
+            },
+        }))
+    }
 
     const onRandomGradient = () => {
-        setStartColor(getRandomItem(tailwindColors))
-        setStartShade(getRandomItem(shades))
+        const randomColor = () => getRandomItem(TAILWIND_COLORS)
+        const randomShade = () => getRandomItem(SHADES)
 
-        setMiddleColor(getRandomItem(tailwindColors))
-        setMiddleShade(getRandomItem(shades))
+        updateGradient('start', 'color', randomColor())
+        updateGradient('start', 'shade', randomShade())
 
-        setEndColor(getRandomItem(tailwindColors))
-        setEndShade(getRandomItem(shades))
+        updateGradient('middle', 'color', randomColor())
+        updateGradient('middle', 'shade', randomShade())
 
-        setDirection(getRandomItem(directions))
+        updateGradient('end', 'color', randomColor())
+        updateGradient('end', 'shade', randomShade())
+
+        setDirection(getRandomItem(DIRECTIONS))
     }
 
     const onShare = () => {
@@ -138,30 +137,30 @@ export default function App() {
                     <div className="h-full overflow-y-auto flex flex-col gap-4">
                         <ColorSelector
                             label="Starting color (from)"
-                            selectedColor={startColor}
-                            onColorSelect={setStartColor}
-                            shade={startShade}
-                            onShadeSelect={setStartShade}
-                            stopPosition={startPosition}
-                            onStopPositionSelect={setStartPosition}
+                            selectedColor={gradient.start.color}
+                            onColorSelect={(color) => updateGradient('start', 'color', color)}
+                            shade={gradient.start.shade}
+                            onShadeSelect={(shade) => updateGradient('start', 'shade', shade)}
+                            stopPosition={gradient.start.position}
+                            onStopPositionSelect={(position) => updateGradient('start', 'position', position)}
                         />
                         <ColorSelector
                             label="Middle color (via)"
-                            selectedColor={middleColor}
-                            onColorSelect={setMiddleColor}
-                            shade={middleShade}
-                            onShadeSelect={setMiddleShade}
-                            stopPosition={middlePosition}
-                            onStopPositionSelect={setMiddlePosition}
+                            selectedColor={gradient.middle.color}
+                            onColorSelect={(color) => updateGradient('middle', 'color', color)}
+                            shade={gradient.middle.shade}
+                            onShadeSelect={(shade) => updateGradient('middle', 'shade', shade)}
+                            stopPosition={gradient.middle.position}
+                            onStopPositionSelect={(position) => updateGradient('middle', 'position', position)}
                         />
                         <ColorSelector
                             label="Ending color (to)"
-                            selectedColor={endColor}
-                            onColorSelect={setEndColor}
-                            shade={endShade}
-                            onShadeSelect={setEndShade}
-                            stopPosition={endPosition}
-                            onStopPositionSelect={setEndPosition}
+                            selectedColor={gradient.end.color}
+                            onColorSelect={(color) => updateGradient('end', 'color', color)}
+                            shade={gradient.end.shade}
+                            onShadeSelect={(shade) => updateGradient('end', 'shade', shade)}
+                            stopPosition={gradient.end.position}
+                            onStopPositionSelect={(position) => updateGradient('end', 'position', position)}
                         />
                     </div>
                     <GradientPreview
