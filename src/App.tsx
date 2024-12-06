@@ -110,6 +110,7 @@ export default function App() {
                     <ScrollArea className="px-4">
                         <div className="h-full overflow-y-auto flex flex-col gap-4 px-4">
                             <ColorSelector
+                                stop="start"
                                 label="Starting color (from)"
                                 selectedColor={gradient.start.color}
                                 onColorSelect={(color) =>
@@ -125,6 +126,7 @@ export default function App() {
                                 }
                             />
                             <ColorSelector
+                                stop="middle"
                                 label="Middle color (via)"
                                 selectedColor={gradient.middle.color}
                                 onColorSelect={(color) =>
@@ -140,6 +142,7 @@ export default function App() {
                                 }
                             />
                             <ColorSelector
+                                stop="end"
                                 label="Ending color (to)"
                                 selectedColor={gradient.end.color}
                                 onColorSelect={(color) =>

@@ -2,8 +2,13 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ColorGrid } from './color-grid'
 import { POSITIONS, SHADES } from '@/contants'
+import { Switch } from '@/components/ui/switch'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsGradientActive, toggleGradient } from '@/store/main-slice'
+import type { GradientStop } from '@/types'
 
 interface ColorSelectorProps {
+    stop: GradientStop
     label: string
     selectedColor: string
     onColorSelect: (color: string) => void
@@ -14,6 +19,7 @@ interface ColorSelectorProps {
 }
 
 export function ColorSelector({
+    stop,
     label,
     selectedColor,
     onColorSelect,
@@ -22,6 +28,9 @@ export function ColorSelector({
     stopPosition,
     onStopPositionSelect,
 }: ColorSelectorProps) {
+    const dispatch = useDispatch()
+    const isChecked = useSelector((state) => selectIsGradientActive(state)(stop))
+
     return (
         <div className="p-6 bg-card rounded-lg border shadow-sm">
             <div className="space-y-4">
@@ -33,8 +42,7 @@ export function ColorSelector({
                         </p>
                     </div>
                     <div className="flex gap-1">
-                        <div className="w-6 h-6 rounded bg-black" />
-                        <div className="w-6 h-6 rounded bg-white border" />
+                        <Switch checked={isChecked} onCheckedChange={() => dispatch(toggleGradient({ stop }))} />
                     </div>
                 </div>
 

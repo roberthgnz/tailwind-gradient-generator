@@ -44,3 +44,7 @@ export const mainSlice = createSlice({
 export const { updateGradient, toggleGradient } = mainSlice.actions
 
 export default mainSlice.reducer
+
+export const selectIsGradientActive = (state) => {
+    return (stop: GradientStop) => state.main.gradient[stop].active
+}
