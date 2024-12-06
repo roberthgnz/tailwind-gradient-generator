@@ -3,22 +3,19 @@ import { ColorSelector } from '@/components/color-selector'
 import { GradientPreview } from '@/components/gradient-preview'
 import { Bug, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
 import { useResizeObserver } from 'usehooks-ts'
 import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateGradient, updateGradientBy } from './store/main-slice'
-import { encode, decode } from 'js-base64'
+import { decode } from 'js-base64'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
 
 const getRandomItem = (array: readonly any[]) => array[Math.floor(Math.random() * array.length)]
 
 export default function App() {
-    const { toast } = useToast()
-
     const headerRef = useRef<HTMLDivElement>(null)
     const headerSizes = useResizeObserver({ ref: headerRef, box: 'border-box' })
 
@@ -43,33 +40,6 @@ export default function App() {
         dispatch(updateGradient(randomGradient))
 
         setDirection(getRandomItem(DIRECTIONS))
-    }
-
-    const onShare = () => {
-        const shareUrl = `${window.location.origin}/?gradient=${encode(JSON.stringify(gradient))}`
-
-        navigator.clipboard.writeText(shareUrl).then(() => {
-            toast({
-                title: 'Gradient class copied!',
-                description: 'The gradient class has been copied to your clipboard.',
-            })
-        })
-    }
-
-    const onSave = () => {
-        // Implement save functionality (e.g., to local storage)
-        toast({
-            title: 'Gradient saved!',
-            description: 'The gradient has been saved to your collection.',
-        })
-    }
-
-    const onExport = () => {
-        // Implement export functionality (e.g., as CSS or image)
-        toast({
-            title: 'Gradient exported!',
-            description: 'The gradient has been exported as CSS.',
-        })
     }
 
     useEffect(() => {
@@ -187,9 +157,6 @@ export default function App() {
                             direction={direction}
                             onDirectionChange={setDirection}
                             onRandomGradient={onRandomGradient}
-                            onShare={onShare}
-                            onSave={onSave}
-                            onExport={onExport}
                         />
                     </div>
                 </main>

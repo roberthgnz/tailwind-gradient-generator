@@ -9,33 +9,69 @@ import colors from 'tailwindcss/colors'
 import { useDispatch } from 'react-redux'
 import { toggleGradient } from '@/store/main-slice'
 import { cn } from '@/lib/utils'
+import { useToast } from '@/hooks/use-toast'
+import { encode } from 'js-base64'
+
+import { toPng } from 'html-to-image'
+import { useCallback, useRef } from 'react'
 
 interface GradientPreviewProps {
     gradient: Gradient
     direction: string
     onDirectionChange: (direction: string) => void
     onRandomGradient: () => void
-    onShare: () => void
-    onSave: () => void
-    onExport: () => void
 }
 
 const getTextColor = (color: GradientColor) => {
     return (colors as any)[color.color][color.shade]
 }
 
-export function GradientPreview({
-    gradient,
-    direction,
-    onDirectionChange,
-    onRandomGradient,
-    onShare,
-    onSave,
-    onExport,
-}: GradientPreviewProps) {
+export function GradientPreview({ gradient, direction, onDirectionChange, onRandomGradient }: GradientPreviewProps) {
+    const { toast } = useToast()
+
     const dispatch = useDispatch()
 
     const gradientClass = getGradientClass(gradient, direction)
+
+    const gradientRef = useRef<HTMLDivElement>(null)
+
+    const onShare = () => {
+        const shareUrl = `${window.location.origin}/?gradient=${encode(JSON.stringify(gradient))}`
+
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            toast({
+                title: 'Gradient class copied!',
+                description: 'The gradient class has been copied to your clipboard.',
+            })
+        })
+    }
+
+    const onSave = () => {
+        // Implement save functionality (e.g., to local storage)
+        toast({
+            title: 'Gradient saved!',
+            description: 'The gradient has been saved to your collection.',
+        })
+    }
+
+    const onExport = useCallback(() => {
+        if (gradientRef.current === null) {
+            return
+        }
+        const link = document.createElement('a')
+        toPng(gradientRef.current, { cacheBust: true })
+            .then((dataUrl) => {
+                link.download = 'gradient.png'
+                link.href = dataUrl
+                link.click()
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+            .finally(() => {
+                link.remove()
+            })
+    }, [gradientRef])
 
     return (
         <div className="flex h-full mx-auto max-w-full aspect-video flex-col justify-center overflow-hidden">
@@ -100,7 +136,8 @@ export function GradientPreview({
                         </TooltipProvider>
                     </div>
                 </div>
-                <div className={`relative z-10 h-[50dvh] rounded-md ${gradientClass}`}>
+                <div ref={gradientRef} className="relative z-10 overflow-hidden h-[50dvh] rounded-md">
+                    <div className={`absolute inset-0 size-full ${gradientClass}`} />
                     <div className="absolute inset-4 grid grid-cols-3 grid-rows-3 gap-4">
                         <Button
                             variant="ghost"
