@@ -93,7 +93,7 @@ export default function App() {
                         height: `calc(100vh - ${headerSizes?.height || 56.9}px - ${footerSizes?.height || 56.9}px)`,
                     }}
                 >
-                    <div className="h-full grid md:grid-cols-2 py-6 sm:py-12">
+                    <div className="h-full grid md:grid-cols-2 py-6">
                         <ScrollArea className="px-4">
                             <div className="h-full overflow-y-auto flex flex-col gap-4 px-4">
                                 <ColorSelector
