@@ -8,6 +8,7 @@ import type { Gradient, GradientColor, GradientStop } from '@/types'
 import colors from 'tailwindcss/colors'
 import { useDispatch } from 'react-redux'
 import { toggleGradient } from '@/store/main-slice'
+import { cn } from '@/lib/utils'
 
 interface GradientPreviewProps {
     gradient: Gradient
@@ -52,7 +53,12 @@ export function GradientPreview({
                                 }}
                                 onClick={() => dispatch(toggleGradient({ stop: key as GradientStop }))}
                             >
-                                <EyeOff className="opacity-0 group-hover:opacity-100 size-4 text-[#ffffff95] transition-all" />
+                                <EyeOff
+                                    className={cn(
+                                        'opacity-0 group-hover:opacity-100 size-4 text-[#ffffff95] transition-all',
+                                        !gradient[key as GradientStop].active && 'opacity-100',
+                                    )}
+                                />
                             </Button>
                         ))}
                     </div>

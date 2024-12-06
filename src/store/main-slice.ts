@@ -1,4 +1,4 @@
-import type { GradientStop } from '@/types'
+import type { Gradient, GradientStop } from '@/types'
 
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -7,7 +7,7 @@ const mainState = {
         start: { color: 'green', shade: '400', position: '0%', active: true },
         middle: { color: 'cyan', shade: '900', position: '50%', active: true },
         end: { color: 'blue', shade: '500', position: '100%', active: true },
-    },
+    } as Gradient,
 }
 
 export const mainSlice = createSlice({

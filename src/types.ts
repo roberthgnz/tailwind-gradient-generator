@@ -2,6 +2,7 @@ export interface GradientColor {
     color: string
     shade: string
     position: string
+    active: boolean
 }
 
 export interface Gradient {
