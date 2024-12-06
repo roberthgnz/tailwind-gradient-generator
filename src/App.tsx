@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
 import { useResizeObserver } from 'usehooks-ts'
 import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 type GradientStop = 'start' | 'middle' | 'end'
 
@@ -103,7 +104,7 @@ export default function App() {
     return (
         <div className="bg-background">
             <header ref={headerRef} className="border-b">
-                <div className="container mx-auto max-w-screen-xl flex h-14 items-center justify-between">
+                <div className="container mx-auto flex h-14 items-center justify-between px-4 xl:px-0">
                     <div className="flex items-center gap-2">
                         <div className="bg-gradient-to-r from-cyan-500 to-blue-500 w-6 h-6 rounded" />
                         <span className="font-semibold">Tailwind Gradient Generator</span>
@@ -128,41 +129,43 @@ export default function App() {
             </header>
 
             <main
-                className="container mx-auto max-w-screen-xl"
+                className="container mx-auto px-4 xl:px-0"
                 style={{
                     height: `calc(100vh - ${headerSizes?.height || 56.9}px - ${footerSizes?.height || 56.9}px)`,
                 }}
             >
-                <div className="h-full grid md:grid-cols-2 gap-8 py-6 sm:py-12">
-                    <div className="h-full overflow-y-auto flex flex-col gap-4">
-                        <ColorSelector
-                            label="Starting color (from)"
-                            selectedColor={gradient.start.color}
-                            onColorSelect={(color) => updateGradient('start', 'color', color)}
-                            shade={gradient.start.shade}
-                            onShadeSelect={(shade) => updateGradient('start', 'shade', shade)}
-                            stopPosition={gradient.start.position}
-                            onStopPositionSelect={(position) => updateGradient('start', 'position', position)}
-                        />
-                        <ColorSelector
-                            label="Middle color (via)"
-                            selectedColor={gradient.middle.color}
-                            onColorSelect={(color) => updateGradient('middle', 'color', color)}
-                            shade={gradient.middle.shade}
-                            onShadeSelect={(shade) => updateGradient('middle', 'shade', shade)}
-                            stopPosition={gradient.middle.position}
-                            onStopPositionSelect={(position) => updateGradient('middle', 'position', position)}
-                        />
-                        <ColorSelector
-                            label="Ending color (to)"
-                            selectedColor={gradient.end.color}
-                            onColorSelect={(color) => updateGradient('end', 'color', color)}
-                            shade={gradient.end.shade}
-                            onShadeSelect={(shade) => updateGradient('end', 'shade', shade)}
-                            stopPosition={gradient.end.position}
-                            onStopPositionSelect={(position) => updateGradient('end', 'position', position)}
-                        />
-                    </div>
+                <div className="h-full grid md:grid-cols-2 gap-2 py-6 sm:py-12">
+                    <ScrollArea className="px-3">
+                        <div className="h-full overflow-y-auto flex flex-col gap-4">
+                            <ColorSelector
+                                label="Starting color (from)"
+                                selectedColor={gradient.start.color}
+                                onColorSelect={(color) => updateGradient('start', 'color', color)}
+                                shade={gradient.start.shade}
+                                onShadeSelect={(shade) => updateGradient('start', 'shade', shade)}
+                                stopPosition={gradient.start.position}
+                                onStopPositionSelect={(position) => updateGradient('start', 'position', position)}
+                            />
+                            <ColorSelector
+                                label="Middle color (via)"
+                                selectedColor={gradient.middle.color}
+                                onColorSelect={(color) => updateGradient('middle', 'color', color)}
+                                shade={gradient.middle.shade}
+                                onShadeSelect={(shade) => updateGradient('middle', 'shade', shade)}
+                                stopPosition={gradient.middle.position}
+                                onStopPositionSelect={(position) => updateGradient('middle', 'position', position)}
+                            />
+                            <ColorSelector
+                                label="Ending color (to)"
+                                selectedColor={gradient.end.color}
+                                onColorSelect={(color) => updateGradient('end', 'color', color)}
+                                shade={gradient.end.shade}
+                                onShadeSelect={(shade) => updateGradient('end', 'shade', shade)}
+                                stopPosition={gradient.end.position}
+                                onStopPositionSelect={(position) => updateGradient('end', 'position', position)}
+                            />
+                        </div>
+                    </ScrollArea>
                     <GradientPreview
                         gradientClass={gradientClass}
                         onDirectionChange={setDirection}
@@ -175,7 +178,7 @@ export default function App() {
             </main>
 
             <footer ref={footerRef} className="border-t py-6 md:py-0">
-                <div className="container mx-auto max-w-screen-xl flex h-14 items-center justify-between">
+                <div className="container mx-auto px-4 xl:px-0 flex h-14 items-center justify-between">
                     <div className="text-sm text-muted-foreground">Copyright © 2024 Tailwind Gradient Generator</div>
                     <div className="text-sm text-muted-foreground">Made with ❤️ by Roberth González</div>
                 </div>
