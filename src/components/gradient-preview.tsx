@@ -66,7 +66,7 @@ export function GradientPreview({
                         ))}
                     </div>
                     <div className="flex gap-2">
-                        <TooltipProvider>
+                        <TooltipProvider delayDuration={150}>
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Button variant="outline" size="icon" onClick={onShare}>
@@ -77,8 +77,6 @@ export function GradientPreview({
                                     <p>Copy URL</p>
                                 </TooltipContent>
                             </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Button variant="outline" size="icon" onClick={onExport}>
@@ -89,8 +87,6 @@ export function GradientPreview({
                                     <p>Download as image</p>
                                 </TooltipContent>
                             </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Button variant="outline" size="icon" onClick={onSave}>

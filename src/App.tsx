@@ -185,7 +185,12 @@ export default function App() {
             <footer ref={footerRef} className="border-t py-6 md:py-0">
                 <div className="container mx-auto px-4 xl:px-0 flex h-14 items-center justify-between">
                     <div className="text-sm text-muted-foreground">Copyright © 2024 Tailwind Gradient Generator</div>
-                    <div className="text-sm text-muted-foreground">Made with ❤️ by Roberth González</div>
+                    <div className="text-sm text-muted-foreground">
+                        Made with ❤️ by{' '}
+                        <a href="https://x.com/roberthgnz" target="_blank">
+                            Roberth González
+                        </a>
+                    </div>
                 </div>
             </footer>
 
