@@ -1,9 +1,30 @@
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Save, Download, RefreshCcw, Link2, EyeOff } from 'lucide-react'
+import {
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    Save,
+    Download,
+    RefreshCcw,
+    Link2,
+    EyeOff,
+    Image,
+    ChevronDown,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { GradientOutput } from './gradient-output'
 import { getGradientClass } from '@/lib/gradient'
 import type { Gradient, GradientColor, GradientStop } from '@/types'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog'
 
 import colors from 'tailwindcss/colors'
 import { useDispatch } from 'react-redux'
@@ -11,9 +32,20 @@ import { toggleGradient } from '@/store/main-slice'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
 import { encode } from 'js-base64'
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
-import { toPng } from 'html-to-image'
-import { useCallback, useRef } from 'react'
+import { toPng, toJpeg, toSvg } from 'html-to-image'
+import { useCallback, useRef, useState } from 'react'
+import { DialogClose } from '@radix-ui/react-dialog'
+import { GradientDownloadPreview } from './gradient-dowload-preview'
+import { ASPECT_RATIOS } from '@/contants'
 
 interface GradientPreviewProps {
     gradient: Gradient
@@ -22,12 +54,20 @@ interface GradientPreviewProps {
     onRandomGradient: () => void
 }
 
-const getTextColor = (color: GradientColor) => {
+const getGradientColor = (color: GradientColor) => {
     return (colors as any)[color.color][color.shade]
+}
+
+const getAspectRation = (aspect: string) => {
+    const [width, height] = aspect.split(':').map(Number)
+    return width / height
 }
 
 export function GradientPreview({ gradient, direction, onDirectionChange, onRandomGradient }: GradientPreviewProps) {
     const { toast } = useToast()
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedAspect, setSelectedAspect] = useState('1:1')
 
     const dispatch = useDispatch()
 
@@ -54,14 +94,24 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
         })
     }
 
-    const onExport = useCallback(() => {
+    const onExport = (format: string) => {
         if (gradientRef.current === null) {
             return
         }
+
+        const fnEpect = {
+            png: toPng,
+            jpeg: toJpeg,
+            svg: toSvg,
+        }
+
+        const download = fnEpect[format]
+
         const link = document.createElement('a')
-        toPng(gradientRef.current, { cacheBust: true })
+
+        download(gradientRef.current, { cacheBust: true })
             .then((dataUrl) => {
-                link.download = 'gradient.png'
+                link.download = 'gradient.' + format
                 link.href = dataUrl
                 link.click()
             })
@@ -71,7 +121,7 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
             .finally(() => {
                 link.remove()
             })
-    }, [gradientRef])
+    }
 
     return (
         <div className="flex h-full mx-auto max-w-full aspect-video flex-col justify-center overflow-hidden">
@@ -86,7 +136,7 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                                 className="group"
                                 disabled={key === 'start'}
                                 style={{
-                                    backgroundColor: getTextColor(gradient[key as GradientStop]),
+                                    backgroundColor: getGradientColor(gradient[key as GradientStop]),
                                 }}
                                 onClick={() => dispatch(toggleGradient({ stop: key as GradientStop }))}
                             >
@@ -115,7 +165,7 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                             </Tooltip>
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <Button variant="outline" size="icon" onClick={onExport}>
+                                    <Button variant="outline" size="icon" onClick={() => setIsOpen(true)}>
                                         <Download className="size-4" />
                                     </Button>
                                 </TooltipTrigger>
@@ -136,7 +186,7 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                         </TooltipProvider>
                     </div>
                 </div>
-                <div ref={gradientRef} className="relative z-10 overflow-hidden h-[50dvh] rounded-md">
+                <div className="relative z-10 overflow-hidden h-[50dvh] rounded-md">
                     <div className={`absolute inset-0 size-full ${gradientClass}`} />
                     <div className="absolute inset-4 grid grid-cols-3 grid-rows-3 gap-4">
                         <Button
@@ -215,6 +265,64 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                 </div>
                 <GradientOutput value={gradientClass} />
             </div>
+            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogTrigger>Open</DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Download as image</DialogTitle>
+                        <DialogDescription>
+                            Select the aspect ratio for the image and download it in PNG, JPEG or SVG format.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="relative aspect-square">
+                        <div
+                            ref={gradientRef}
+                            className={`absolute inset-0 max-w-full max-h-full ${gradientClass}`}
+                            style={{
+                                aspectRatio: getAspectRation(selectedAspect),
+                            }}
+                        />
+                        <div className="absolute overflow-hidden top-4 left-4 flex flex-col rounded-md bg-white/20 shadow">
+                            {ASPECT_RATIOS.map((aspect) => (
+                                <button
+                                    key={aspect}
+                                    type="button"
+                                    className={cn(
+                                        'cursor-pointer p-4 hover:bg-white/40 transition-all',
+                                        selectedAspect === aspect && 'bg-white/40',
+                                    )}
+                                    onClick={() => setSelectedAspect(aspect)}
+                                >
+                                    {aspect}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <DialogFooter>
+                        <DialogClose asChild>
+                            <Button type="button" variant="secondary">
+                                Close
+                            </Button>
+                        </DialogClose>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button>
+                                    <Image className="size-4" />
+                                    Download
+                                    <ChevronDown className="size-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuItem onSelect={() => onExport('png')}>Download as PNG</DropdownMenuItem>
+                                <DropdownMenuItem onSelect={() => onExport('jpeg')}>Download as JPEG</DropdownMenuItem>
+                                <DropdownMenuItem onSelect={() => onExport('svg')}>Download as SVG</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
