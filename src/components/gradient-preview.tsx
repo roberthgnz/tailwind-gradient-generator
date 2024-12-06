@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { GradientOutput } from './gradient-output'
 import { getGradientClass } from '@/lib/gradient'
-import type { Gradient } from '@/types'
+import type { Gradient, GradientColor } from '@/types'
+
+import colors from 'tailwindcss/colors'
 
 interface GradientPreviewProps {
     gradient: Gradient
@@ -13,6 +15,10 @@ interface GradientPreviewProps {
     onShare: () => void
     onSave: () => void
     onExport: () => void
+}
+
+const getTextColor = (color: GradientColor) => {
+    return (colors as any)[color.color][color.shade]
 }
 
 export function GradientPreview({
@@ -29,43 +35,56 @@ export function GradientPreview({
     return (
         <div className="flex h-full mx-auto max-w-full aspect-video flex-col justify-center overflow-hidden">
             <div className="p-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:w-[90%] space-y-4 sm:rounded-lg">
-                <div>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="outline" size="icon" onClick={onShare}>
-                                    <Share2 className="h-4 w-4" />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Share gradient</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="outline" size="icon" onClick={onSave} className="ml-2">
-                                    <Save className="h-4 w-4" />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Save gradient</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="outline" size="icon" onClick={onExport} className="ml-2">
-                                    <Download className="h-4 w-4" />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Export gradient</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                <div className="flex items-center justify-between">
+                    <div className="flex gap-2">
+                        {Object.keys(gradient).map((key) => (
+                            <div
+                                key={key}
+                                className="size-9 border rounded-md"
+                                style={{
+                                    backgroundColor: getTextColor(gradient[key as keyof Gradient]),
+                                }}
+                            ></div>
+                        ))}
+                    </div>
+                    <div className="flex gap-2">
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" size="icon" onClick={onShare}>
+                                        <Share2 className="size-4" />
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Share gradient</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" size="icon" onClick={onSave}>
+                                        <Save className="size-4" />
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Save gradient</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" size="icon" onClick={onExport}>
+                                        <Download className="size-4" />
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Export gradient</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    </div>
                 </div>
                 <div className={`relative z-10 h-[50dvh] rounded-md ${gradientClass}`}>
                     <div className="absolute inset-4 grid grid-cols-3 grid-rows-3 gap-4">
