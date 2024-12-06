@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 import { ColorSelector } from '@/components/color-selector'
 import { GradientPreview } from '@/components/gradient-preview'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Github, MoonIcon, SunIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
@@ -34,7 +33,6 @@ const tailwindColors = [
     'rose',
 ]
 const shades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
-const positions = ['0%', '25%', '50%', '75%', '100%']
 const directions = ['to-r', 'to-l', 'to-t', 'to-b', 'to-tr', 'to-tl', 'to-br', 'to-bl']
 
 const getRandomItem = (array: any[]) => array[Math.floor(Math.random() * array.length)]
@@ -68,15 +66,12 @@ export default function App() {
     const onRandomGradient = () => {
         setStartColor(getRandomItem(tailwindColors))
         setStartShade(getRandomItem(shades))
-        setStartPosition(getRandomItem(positions))
 
         setMiddleColor(getRandomItem(tailwindColors))
         setMiddleShade(getRandomItem(shades))
-        setMiddlePosition(getRandomItem(positions))
 
         setEndColor(getRandomItem(tailwindColors))
         setEndShade(getRandomItem(shades))
-        setEndPosition(getRandomItem(positions))
 
         setDirection(getRandomItem(directions))
     }
@@ -136,7 +131,7 @@ export default function App() {
             <main
                 className="container mx-auto max-w-screen-xl"
                 style={{
-                    height: `calc(100vh - ${56.9}px - ${56.9}px)`,
+                    height: `calc(100vh - ${headerSizes?.height || 56.9}px - ${footerSizes?.height || 56.9}px)`,
                 }}
             >
                 <div className="h-full grid md:grid-cols-2 gap-8 py-6 sm:py-12">
