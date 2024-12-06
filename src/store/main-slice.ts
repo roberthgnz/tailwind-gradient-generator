@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const mainState = {
     gradient: {
-        start: { color: 'green', shade: '400', position: '0%', active: true },
-        middle: { color: 'cyan', shade: '900', position: '50%', active: true },
-        end: { color: 'blue', shade: '500', position: '100%', active: true },
+        start: { color: 'cyan', shade: '500', position: '', active: true },
+        middle: { color: 'blue', shade: '500', position: '', active: true },
+        end: { color: 'blue', shade: '', position: '', active: false },
     } as Gradient,
 }
 
