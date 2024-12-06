@@ -1,21 +1,11 @@
-import { useToast } from '@/hooks/use-toast'
-
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 interface GradientOutputButtonProps {
     children: React.ReactNode
+    onClick: () => void
 }
 
-export const GradientOutputButton = ({ children }: GradientOutputButtonProps) => {
-    const { toast } = useToast()
-
-    const onClick = () => {
-        toast({
-            title: 'Gradient copied!',
-            description: 'You can now paste the gradient in your CSS file.',
-        })
-    }
-
+export const GradientOutputButton = ({ children, onClick }: GradientOutputButtonProps) => {
     return (
         <TooltipProvider delayDuration={150}>
             <Tooltip>
