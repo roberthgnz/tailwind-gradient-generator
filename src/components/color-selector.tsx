@@ -42,7 +42,9 @@ export function ColorSelector({
                         </p>
                     </div>
                     <div className="flex gap-1">
-                        <Switch checked={isChecked} onCheckedChange={() => dispatch(toggleGradient({ stop }))} />
+                        {stop !== 'start' && (
+                            <Switch checked={isChecked} onCheckedChange={() => dispatch(toggleGradient({ stop }))} />
+                        )}
                     </div>
                 </div>
 
