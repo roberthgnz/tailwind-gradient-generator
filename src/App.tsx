@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { ColorSelector } from '@/components/color-selector'
 import { GradientPreview } from '@/components/gradient-preview'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Github, MoonIcon, SunIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
+import { useResizeObserver } from 'usehooks-ts'
 
 const tailwindColors = [
     'slate',
@@ -40,6 +42,13 @@ const getRandomItem = (array: any[]) => array[Math.floor(Math.random() * array.l
 export default function App() {
     const { toast } = useToast()
     const { theme, setTheme } = useTheme()
+
+    const headerRef = useRef<HTMLDivElement>(null)
+    const headerSizes = useResizeObserver({ ref: headerRef, box: 'border-box' })
+
+    const footerRef = useRef<HTMLDivElement>(null)
+    const footerSizes = useResizeObserver({ ref: footerRef, box: 'border-box' })
+
     const [startColor, setStartColor] = useState('green')
     const [startShade, setStartShade] = useState('400')
     const [startPosition, setStartPosition] = useState('0%')
@@ -53,7 +62,6 @@ export default function App() {
     const [endPosition, setEndPosition] = useState('100%')
 
     const [direction, setDirection] = useState('to-r')
-    const [warningMessage, setWarningMessage] = useState<string | undefined>(undefined)
 
     const gradientClass = `bg-gradient-${direction} from-${startColor}-${startShade} from-${startPosition} via-${middleColor}-${middleShade} via-${middlePosition} to-${endColor}-${endShade} to-${endPosition}`
 
@@ -99,8 +107,8 @@ export default function App() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
-            <header className="border-b">
+        <div className="bg-background">
+            <header ref={headerRef} className="border-b">
                 <div className="container mx-auto max-w-screen-xl flex h-14 items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="bg-gradient-to-r from-cyan-500 to-blue-500 w-6 h-6 rounded" />
@@ -125,9 +133,14 @@ export default function App() {
                 </div>
             </header>
 
-            <main className="flex-1 container mx-auto max-w-screen-xl py-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
+            <main
+                className="container mx-auto max-w-screen-xl"
+                style={{
+                    height: `calc(100vh - ${56.9}px - ${56.9}px)`,
+                }}
+            >
+                <div className="h-full grid md:grid-cols-2 gap-8 py-6 sm:py-12">
+                    <div className="h-full overflow-y-auto flex flex-col gap-4">
                         <ColorSelector
                             label="Starting color (from)"
                             selectedColor={startColor}
@@ -156,21 +169,18 @@ export default function App() {
                             onStopPositionSelect={setEndPosition}
                         />
                     </div>
-                    <div>
-                        <GradientPreview
-                            gradientClass={gradientClass}
-                            onDirectionChange={setDirection}
-                            onRandomGradient={onRandomGradient}
-                            onShare={onShare}
-                            onSave={onSave}
-                            onExport={onExport}
-                            warningMessage={warningMessage}
-                        />
-                    </div>
+                    <GradientPreview
+                        gradientClass={gradientClass}
+                        onDirectionChange={setDirection}
+                        onRandomGradient={onRandomGradient}
+                        onShare={onShare}
+                        onSave={onSave}
+                        onExport={onExport}
+                    />
                 </div>
             </main>
 
-            <footer className="border-t py-6 md:py-0">
+            <footer ref={footerRef} className="border-t py-6 md:py-0">
                 <div className="container mx-auto max-w-screen-xl flex h-14 items-center justify-between">
                     <div className="text-sm text-muted-foreground">Copyright © 2024 Tailwind Gradient Generator</div>
                     <div className="text-sm text-muted-foreground">Made with ❤️ by Roberth González</div>
