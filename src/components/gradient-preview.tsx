@@ -258,7 +258,6 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                 <GradientOutput value={gradientClass} />
             </div>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                <DialogTrigger>Open</DialogTrigger>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
                         <DialogTitle>Download as image</DialogTitle>
@@ -275,14 +274,14 @@ export function GradientPreview({ gradient, direction, onDirectionChange, onRand
                                 aspectRatio: getAspectRation(selectedAspect),
                             }}
                         />
-                        <div className="absolute overflow-hidden top-4 left-4 flex flex-col rounded-md bg-white/20 shadow">
+                        <div className="absolute overflow-hidden top-4 left-4 flex flex-col rounded-md bg-white/30 backdrop-blur-md">
                             {ASPECT_RATIOS.map((aspect) => (
                                 <button
                                     key={aspect}
                                     type="button"
                                     className={cn(
-                                        'cursor-pointer p-4 hover:bg-white/40 transition-all',
-                                        selectedAspect === aspect && 'bg-white/40',
+                                        'cursor-pointer px-4 py-2 hover:bg-white/60 text-sm transition-all',
+                                        selectedAspect === aspect && 'bg-white/60',
                                     )}
                                     onClick={() => setSelectedAspect(aspect)}
                                 >
