@@ -1,6 +1,7 @@
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ColorGrid } from './color-grid'
+import { POSITIONS, SHADES } from '@/contants'
 
 interface ColorSelectorProps {
     label: string
@@ -11,9 +12,6 @@ interface ColorSelectorProps {
     stopPosition: string
     onStopPositionSelect: (position: string) => void
 }
-
-const shades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
-const positions = ['0%', '25%', '50%', '75%', '100%']
 
 export function ColorSelector({
     label,
@@ -46,7 +44,7 @@ export function ColorSelector({
                     <div className="flex-1">
                         <Label className="text-xs">Shade</Label>
                         <div className="flex gap-1 mt-1.5">
-                            {shades.map((s) => (
+                            {SHADES.map((s) => (
                                 <button
                                     key={s}
                                     className={`w-6 h-6 rounded transition-all bg-${selectedColor}-${s} hover:ring-2 hover:ring-${selectedColor}-${s}/50 focus:outline-none focus:ring-2 focus:ring-${selectedColor}-${s} ${
@@ -66,7 +64,7 @@ export function ColorSelector({
                                 <SelectValue placeholder="Select position" />
                             </SelectTrigger>
                             <SelectContent>
-                                {positions.map((position) => (
+                                {POSITIONS.map((position) => (
                                     <SelectItem key={position} value={position}>
                                         {position}
                                     </SelectItem>
