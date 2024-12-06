@@ -10,7 +10,8 @@ import { useResizeObserver } from 'usehooks-ts'
 import { DIRECTIONS, SHADES, TAILWIND_COLORS } from './contants'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { getGradientClass } from '@/lib/gradient'
-import type { Gradient, GradientStop } from './types'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateGradient } from './store/main-slice'
 
 const getRandomItem = (array: readonly any[]) => array[Math.floor(Math.random() * array.length)]
 
@@ -24,38 +25,25 @@ export default function App() {
     const footerRef = useRef<HTMLDivElement>(null)
     const footerSizes = useResizeObserver({ ref: footerRef, box: 'border-box' })
 
-    const [gradient, setGradient] = useState<Gradient>({
-        start: { color: 'green', shade: '400', position: '0%' },
-        middle: { color: 'cyan', shade: '900', position: '50%' },
-        end: { color: 'blue', shade: '500', position: '100%' },
-    })
+    const dispatch = useDispatch()
+    const gradient = useSelector((state) => state.main.gradient)
 
     const [direction, setDirection] = useState('to-r')
 
     const gradientClass = getGradientClass(gradient, direction)
 
-    const updateGradient = (key: GradientStop, property: 'color' | 'shade' | 'position', value: string) => {
-        setGradient((prevState) => ({
-            ...prevState,
-            [key]: {
-                ...prevState[key],
-                [property]: value,
-            },
-        }))
-    }
-
     const onRandomGradient = () => {
         const randomColor = () => getRandomItem(TAILWIND_COLORS)
         const randomShade = () => getRandomItem(SHADES)
 
-        updateGradient('start', 'color', randomColor())
-        updateGradient('start', 'shade', randomShade())
+        dispatch(updateGradient({ stop: 'start', property: 'color', value: randomColor() }))
+        dispatch(updateGradient({ stop: 'start', property: 'shade', value: randomShade() }))
 
-        updateGradient('middle', 'color', randomColor())
-        updateGradient('middle', 'shade', randomShade())
+        dispatch(updateGradient({ stop: 'middle', property: 'color', value: randomColor() }))
+        dispatch(updateGradient({ stop: 'middle', property: 'shade', value: randomShade() }))
 
-        updateGradient('end', 'color', randomColor())
-        updateGradient('end', 'shade', randomShade())
+        dispatch(updateGradient({ stop: 'end', property: 'color', value: randomColor() }))
+        dispatch(updateGradient({ stop: 'end', property: 'shade', value: randomShade() }))
 
         setDirection(getRandomItem(DIRECTIONS))
     }
@@ -124,29 +112,47 @@ export default function App() {
                             <ColorSelector
                                 label="Starting color (from)"
                                 selectedColor={gradient.start.color}
-                                onColorSelect={(color) => updateGradient('start', 'color', color)}
+                                onColorSelect={(color) =>
+                                    dispatch(updateGradient({ stop: 'start', property: 'color', value: color }))
+                                }
                                 shade={gradient.start.shade}
-                                onShadeSelect={(shade) => updateGradient('start', 'shade', shade)}
+                                onShadeSelect={(shade) =>
+                                    dispatch(updateGradient({ stop: 'start', property: 'shade', value: shade }))
+                                }
                                 stopPosition={gradient.start.position}
-                                onStopPositionSelect={(position) => updateGradient('start', 'position', position)}
+                                onStopPositionSelect={(position) =>
+                                    dispatch(updateGradient({ stop: 'start', property: 'position', value: position }))
+                                }
                             />
                             <ColorSelector
                                 label="Middle color (via)"
                                 selectedColor={gradient.middle.color}
-                                onColorSelect={(color) => updateGradient('middle', 'color', color)}
+                                onColorSelect={(color) =>
+                                    dispatch(updateGradient({ stop: 'middle', property: 'color', value: color }))
+                                }
                                 shade={gradient.middle.shade}
-                                onShadeSelect={(shade) => updateGradient('middle', 'shade', shade)}
+                                onShadeSelect={(shade) =>
+                                    dispatch(updateGradient({ stop: 'middle', property: 'shade', value: shade }))
+                                }
                                 stopPosition={gradient.middle.position}
-                                onStopPositionSelect={(position) => updateGradient('middle', 'position', position)}
+                                onStopPositionSelect={(position) =>
+                                    dispatch(updateGradient({ stop: 'middle', property: 'position', value: position }))
+                                }
                             />
                             <ColorSelector
                                 label="Ending color (to)"
                                 selectedColor={gradient.end.color}
-                                onColorSelect={(color) => updateGradient('end', 'color', color)}
+                                onColorSelect={(color) =>
+                                    dispatch(updateGradient({ stop: 'end', property: 'color', value: color }))
+                                }
                                 shade={gradient.end.shade}
-                                onShadeSelect={(shade) => updateGradient('end', 'shade', shade)}
+                                onShadeSelect={(shade) =>
+                                    dispatch(updateGradient({ stop: 'end', property: 'shade', value: shade }))
+                                }
                                 stopPosition={gradient.end.position}
-                                onStopPositionSelect={(position) => updateGradient('end', 'position', position)}
+                                onStopPositionSelect={(position) =>
+                                    dispatch(updateGradient({ stop: 'end', property: 'position', value: position }))
+                                }
                             />
                         </div>
                     </ScrollArea>

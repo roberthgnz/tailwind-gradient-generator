@@ -1,11 +1,13 @@
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Save, Download, RefreshCcw, Link2 } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Save, Download, RefreshCcw, Link2, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { GradientOutput } from './gradient-output'
 import { getGradientClass } from '@/lib/gradient'
-import type { Gradient, GradientColor } from '@/types'
+import type { Gradient, GradientColor, GradientStop } from '@/types'
 
 import colors from 'tailwindcss/colors'
+import { useDispatch } from 'react-redux'
+import { toggleGradient } from '@/store/main-slice'
 
 interface GradientPreviewProps {
     gradient: Gradient
@@ -30,6 +32,8 @@ export function GradientPreview({
     onSave,
     onExport,
 }: GradientPreviewProps) {
+    const dispatch = useDispatch()
+
     const gradientClass = getGradientClass(gradient, direction)
 
     return (
@@ -38,13 +42,18 @@ export function GradientPreview({
                 <div className="flex items-center justify-between">
                     <div className="flex gap-2">
                         {Object.keys(gradient).map((key) => (
-                            <div
+                            <Button
                                 key={key}
-                                className="size-9 border rounded-md"
+                                variant={'ghost'}
+                                size="icon"
+                                className="group"
                                 style={{
-                                    backgroundColor: getTextColor(gradient[key as keyof Gradient]),
+                                    backgroundColor: getTextColor(gradient[key as GradientStop]),
                                 }}
-                            ></div>
+                                onClick={() => dispatch(toggleGradient({ stop: key as GradientStop }))}
+                            >
+                                <EyeOff className="opacity-0 group-hover:opacity-100 size-4 text-[#ffffff95] transition-all" />
+                            </Button>
                         ))}
                     </div>
                     <div className="flex gap-2">

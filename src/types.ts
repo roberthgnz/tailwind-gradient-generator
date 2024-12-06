@@ -1,5 +1,3 @@
-export type GradientStop = 'start' | 'middle' | 'end'
-
 export interface GradientColor {
     color: string
     shade: string
@@ -11,3 +9,5 @@ export interface Gradient {
     middle: GradientColor
     end: GradientColor
 }
+
+export type GradientStop = keyof Gradient
