@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ColorSelector } from '@/components/color-selector'
 import { GradientPreview } from '@/components/gradient-preview'
-import { Github, MoonIcon, SunIcon } from 'lucide-react'
+import { Bug, Lightbulb, MoonIcon, SunIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import { useToast } from '@/hooks/use-toast'
@@ -91,11 +91,25 @@ export default function App() {
                         <span className="font-semibold">Tailwind Gradient Generator</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon">
-                            Feedback
+                        <Button variant="outline" asChild>
+                            <a
+                                href="https://tailwind-gradient-generator.canny.io/feature-requests"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Lightbulb className="h-5 w-5" />
+                                Feature request
+                            </a>
                         </Button>
-                        <Button variant="ghost" size="icon">
-                            <Github className="h-5 w-5" />
+                        <Button variant="outline" asChild>
+                            <a
+                                href="hhttps://github.com/roberthgnz/tailwind-gradient-generator/issues/new"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Bug className="h-5 w-5" />
+                                Report bug
+                            </a>
                         </Button>
                         <Button
                             variant="ghost"
