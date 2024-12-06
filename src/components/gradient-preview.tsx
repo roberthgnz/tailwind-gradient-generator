@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Share2, Save, Download, RefreshCcw } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Share2, Save, Download, RefreshCcw, Link2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { GradientOutput } from './gradient-output'
@@ -52,11 +52,23 @@ export function GradientPreview({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Button variant="outline" size="icon" onClick={onShare}>
-                                        <Share2 className="size-4" />
+                                        <Link2 className="size-4" />
                                     </Button>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                    <p>Share gradient</p>
+                                    <p>Copy URL</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" size="icon" onClick={onExport}>
+                                        <Download className="size-4" />
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Download as image</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
@@ -69,18 +81,6 @@ export function GradientPreview({
                                 </TooltipTrigger>
                                 <TooltipContent>
                                     <p>Save gradient</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Button variant="outline" size="icon" onClick={onExport}>
-                                        <Download className="size-4" />
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Export gradient</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
