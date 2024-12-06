@@ -48,17 +48,20 @@ export function GradientPreview({
                                 variant={'ghost'}
                                 size="icon"
                                 className="group"
+                                disabled={key === 'start'}
                                 style={{
                                     backgroundColor: getTextColor(gradient[key as GradientStop]),
                                 }}
                                 onClick={() => dispatch(toggleGradient({ stop: key as GradientStop }))}
                             >
-                                <EyeOff
-                                    className={cn(
-                                        'opacity-0 group-hover:opacity-100 size-4 text-[#ffffff95] transition-all',
-                                        !gradient[key as GradientStop].active && 'opacity-100',
-                                    )}
-                                />
+                                {key !== 'start' && (
+                                    <EyeOff
+                                        className={cn(
+                                            'opacity-0 group-hover:opacity-100 size-4 text-[#ffffff95] transition-all',
+                                            !gradient[key as GradientStop].active && 'opacity-100',
+                                        )}
+                                    />
+                                )}
                             </Button>
                         ))}
                     </div>
